@@ -1,0 +1,55 @@
+
+<header *ngIf="user">
+  
+    <div class="header">
+      <div class="left-menu">
+        <div class="logo-container">
+          <img style="cursor: pointer;" routerLink="/" class="logo" src="https://steamstore-a.akamaihd.net/public/shared/images/header/logo_steam.svg?t=962016" alt="" width="60%">
+        </div>
+        
+        <div>
+          <nav>
+            <ul class="nav__links">
+              <li class="dropdown">
+                <a href="#">STORE</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#h">HOME</a></li>
+                  <li><a href="#d">DISCOVERY QUEUE</a></li>
+                  <li><a href="#w">WISHLIST</a></li>
+                  <li><a href="#p">POINTS SHOP</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#">COMMUNITY</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#h">HOME</a></li>
+                  <li><a href="#dis">DISCUSSION</a></li>
+                  <li><a href="#work">WORKSHOP</a></li>
+                  <li><a routerLink='/market'>MARKET</a></li>
+                  <li><a href="#bt">BROADCAST</a></li>
+                </ul>
+              </li>
+              <li><a href="#">ABOUT</a></li>
+              <li><a href="#">SUPPORT</a></li>
+            </ul>
+          </nav>
+        </div>
+          
+      </div>
+  
+      <div class="right-menu">
+          <div class="install">
+            <button>Install Steam</button>
+          </div>
+          <div class="notify">
+            <button>not</button>
+          </div>
+          <div>
+            <p><a routerLink="/login">{{user?.username}}</a></p>
+            <p class="saldo"><span style="cursor: pointer;" routerLink="/topup-wallet">{{user?.balance | currency:"Rp ":'symbol':'3.0'}}</span></p>
+          </div>
+          <img style="cursor: pointer;" routerLink="/profile/{{user?.id}}" src="../../../assets/Avatar/{{user?.avatar}}.jpg" alt="" width="13%">
+        </div>
+    </div>
+    
+  </header>
+  

@@ -1,0 +1,131 @@
+<main *ngIf="id && user && usergame && friends && comments && idLogin!=0">
+
+    <div class="background">
+        <video autoplay loop poster="../../../assets/background-user/{{user.featuredbadge}}">
+            <source src="../../../assets/background-user/{{user.featuredbadge}}">
+        </video>
+    </div>
+
+    <div class="content">
+        
+        <div class="header">
+            <div class="img">
+                <img src="../../../assets/Avatar/{{user?.avatar}}.jpg" alt="" width="164px">
+
+                <div class="desc"> 
+                    <p>{{user?.username}}</p>
+                    <p>Level {{user?.level}}</p>
+                    <p>{{user?.summary}}</p>
+                </div>
+            </div>
+            
+
+            <div class="edit" *ngIf="idLogin == id"> 
+                <p>Edit Profile</p>
+            </div>
+        </div>
+        
+
+        <div class="content-body">
+            <div class="user-game">
+                <div class="user-game-header">
+                    <p>User Game</p>
+                </div>
+
+                <div class="user-game-card" *ngFor="let g of usergame; let i = index">
+                
+                    <img src="../../../assets/Search Picture/{{g?.game[0].image}}.jpg" alt="" width="55%">
+                
+                    <div>
+                        <p class="card-name">{{g?.game[0].name}}</p>
+                        <p class="card-category">{{g?.game[0].category}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="user-friend">
+                <div class="user-friend-header">
+                    <p>User Friend</p>
+                </div>
+                
+                <div class="user-friend-card" *ngFor="let f of friends; let i = index" (mouseenter)="hovered(i)" (mouseleave)="leave(i)">
+                    <div class="user-friend-card-main">
+                        <div class="user-friend-card-main-image" (click)="navigate(f?.friend[0].id)" >
+                            <img src="../../../assets/Avatar/{{f?.friend[0].avatar}}.jpg" alt="">
+
+                            <div class="user-friend-card-main-image-desc">
+                                <p>{{f?.friend[0].username}}</p>
+                                <p>{{f?.friend[0].status}}</p>
+                            </div>
+                        </div>
+                        
+
+                        <div class="user-friend-card-main-right">
+                            <div *ngIf="idLogin != f?.friend[0].id" >
+                                <img style="cursor: pointer;" (click)="chat(f?.friend[0].id)" src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_menu_notifications.png" alt="" width="30px" height="25px">
+                            </div>
+                            <div class="user-friend-card-main-right-level">
+                                <p>{{f?.friend[0].level}}</p>
+                            </div>
+                                
+                        </div>
+                    </div>
+
+                    <div class="user-friend-card-hidden">
+                        <div class="user-friend-card-hidden-video">
+                            <video autoplay loop poster="../../../assets/background-user/{{f?.friend[0].featuredbadge}}" width="100%" >
+                                <source src="../../../assets/background-user/{{f?.friend[0].featuredbadge}}">
+                            </video>
+                        </div>
+
+                        <div class="user-friend-card-hidden-content">
+                            <div class="user-friend-card-hidden-content-head">
+                                <img src="../../../assets/Avatar/{{f?.friend[0].avatar}}.jpg" alt="" width="100px">
+
+                                <div>
+                                    <p>{{f?.friend[0].username}}</p>
+                                    <p>{{f?.friend[0].status}}</p>
+                                </div>
+                            </div>
+
+                            <div class="user-friend-card-hidden-content-tail">
+                                <p><span class="span">{{f?.friend[0].level}}</span>  Steam Level</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content-comment">
+            <div class="content-comment-header">
+                <p>Comment</p>
+            </div>
+
+            <div class="content-comment-body">
+                <div class="content-comment-body-card" *ngFor="let c of comments; let i = index">
+                    
+                    <img src="../../../assets/Avatar/{{c?.person[0].avatar}}.jpg" alt="" width="40px">
+
+                    <div class="content-comment-body-card-desc">
+                        <p class="username">{{c?.person[0].username}}</p>
+                        <p class="comment">{{c?.commentdesc}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+                        
+    </div>
+    
+
+</main>

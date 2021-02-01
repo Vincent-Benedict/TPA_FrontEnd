@@ -1,0 +1,9 @@
+<div *ngIf="jwt; then thenBlock else elseBlock"></div>
+
+<ng-template #thenBlock><header-login style="position: relative;"></header-login></ng-template>
+<ng-template #elseBlock><header-logoff style="position: relative;"></header-logoff></ng-template>
+
+<!-- <checkout-components [price]="price"></checkout-components> -->
+<profile-components [id]="id"></profile-components>
+<footer></footer>
+

@@ -1,0 +1,33 @@
+<main *ngIf="item">
+
+    <div class="content">
+
+        <div class="content-image">
+            <img src="{{item?.itemimage}}" alt="" width="360px">
+        </div>
+
+        <div class="content-desc">
+            <div class="content-desc-name">
+                <p>{{item?.itemname}}</p>
+            </div>
+
+            <div class="content-desc-game">
+                <div class="image">
+                    <img src="../../../assets/{{item?.game[0].image}}.jpg" alt="" width="32px" height="32px">
+                </div>
+                <div class="name">
+                    <p>{{item?.game[0].name}}</p>
+                </div>
+            </div>
+
+            <div class="content-desc-description">
+                <p>{{item?.itemdescription}}</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</main>

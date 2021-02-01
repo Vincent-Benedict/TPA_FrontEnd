@@ -1,0 +1,48 @@
+<main>
+
+    <div class="content">
+       <div class="header">
+           <img src="../../../assets/Avatar/{{data?.avatar}}.jpg" alt="">
+            <p>{{data?.username}}'S WISHLIST </p>
+       </div>
+
+
+
+       <div class="wishlist-cards">
+
+            <div class="card" *ngFor="let g of wishlist">
+
+                <div class="card-left">
+                    <img src="../../../assets/{{g?.game[0]?.image}}.jpg" alt="" width="292px" height="136px">
+
+                    <div class="card-content">
+                        <div class="game-name">
+                            <p>{{g?.game[0]?.name}}</p>
+                        </div>
+                        <div class="game-desc">
+                            <p><span class="span-desc">Overall Reviews :</span> {{g?.game[0]?.overall}}</p>
+                            <p><span class="span-desc">Developer :</span> {{g?.game[0]?.developer}}</p>
+                            <p><span class="span-desc">Publisher :</span> {{g?.game[0]?.publisher}}</p>
+                        </div>
+                        
+                        <div class="game-category">
+                            <p>{{g?.game[0]?.category}}</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="card-right">
+                    <p>{{g?.game[0]?.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                </div>
+
+            </div>
+
+       </div>
+
+
+
+    </div>
+
+
+</main>

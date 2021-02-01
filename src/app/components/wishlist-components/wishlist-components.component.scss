@@ -1,0 +1,107 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    
+    
+    min-width: 1000px;
+    background: #202326;
+    overflow: hidden;
+    
+}
+
+.content{
+    width: 60%;
+    min-width: 300px;
+    margin: 50px auto;
+
+    .wishlist-cards{
+        
+        margin-top: 30px;
+        border-top: 2px solid #3f3f3f;
+        padding: 10px 0;
+
+        .card{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(64, 81, 99, 0.9);
+            padding: 10px 25px;
+            margin: 5px 0;
+
+            &-left{
+                display: flex;
+                
+                .card-content{
+                    margin-left: 25px;
+
+                    .game-name{
+                        margin-top: 2px;
+                        p{
+                            font-size: 22.5px;
+                            color: $white;
+                            letter-spacing: 1px;
+                        }
+                    }
+
+                    .game-desc{
+                        margin-top: 20px;
+                        p{
+                            font-size: 11px;
+                            color: #66C0F4;
+                            letter-spacing: 1.5px;
+                            padding: 2px;
+                        }
+
+                        .span-desc{
+                            color: #b2b8bd;
+                        }
+
+
+                    }
+
+                    .game-category{
+                        margin-top: 22px;
+                        border: 1px solid #8f98a0;
+                        width: fit-content;
+                        padding: 1px 4px;
+                        p{
+                            font-size: 12px;
+                            color: #8f98a0;
+                        }
+                    }
+                }
+            }
+
+            &-right{
+                font-size: 12.5px;
+                color: $white;
+                background: rgba(48, 60, 73, 0.9);
+                padding: 6.5px 10px;
+
+                p{
+                    letter-spacing: 1.5px;
+                }
+            }
+
+        }
+    }
+
+    .header{
+        display: flex;
+        align-items: center;
+
+        img{
+            width: 67px;
+            border: 2px solid #5f5f5f;
+            margin-right: 20px;
+        }
+
+        p{
+            font-size: 25px;
+            color: $white;
+            letter-spacing: 5px;
+        }
+    }
+
+}

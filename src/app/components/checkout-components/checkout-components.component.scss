@@ -1,0 +1,311 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background-color: $theme2;
+    padding: 20px 0;
+    min-width: 1000px;
+    min-height: 600px;
+   
+}
+
+.content{
+    width: 50%;
+    min-width: 300px;
+    margin: 50px auto;
+    background-color: #24374e;
+    padding: 20px 20px;
+
+    &-head{
+        p{
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: $gray;
+            text-align: center;
+        }
+    }
+
+    &-body{
+        margin-top: 20px;
+
+        &-head{
+            p{
+                font-size: 13px;
+                letter-spacing: 2px;
+                color: #a5a5a5;
+                text-align: center;
+            }
+        }
+
+        &-body{
+            width: 25%;
+            margin: 35px auto;
+
+            p{
+                font-size: 13px;
+                letter-spacing: 2px;
+                color: $gray;
+                text-align: center;
+            }
+
+            .price{
+                margin-top: 15px;
+                font-size: 23px;
+                font-weight: bold;
+            }
+        }
+    }
+
+    &-body2{
+        width: 50%;
+        margin: 30px auto;
+        background-color: $theme2;
+        color: $gray;
+        padding: 10px 20px;
+
+        div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+    }
+
+    &-body2 div:nth-child(4){
+        
+        margin: 10px auto;
+        padding-top: 8px;
+        border-top: 1.5px solid $gray2;
+
+    }
+
+    &-tail{
+        width: 50%;
+        margin: 30px auto;
+
+        &-head{
+            p{
+                font-size: 15px;
+                letter-spacing: 1.5px;
+                color: #a5a5a5;
+                text-align: center;
+            }
+            margin-bottom: 20px;
+        }
+
+        &-body{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            div{
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .yes{
+                background-color: rgb(86, 143, 1);
+                color: rgb(203, 255, 125);
+            }
+
+            .yes:hover{
+                background-color: rgb(115, 192, 0);
+                color: rgb(249, 255, 241);
+            }
+
+            .no{
+                background-color: rgba(202, 0, 0, 0.801);
+                color: rgb(231, 231, 231); 
+            }
+
+            .no:hover{
+                background-color: rgba(255, 130, 130, 0.801) ;
+                color: rgb(255, 255, 255); 
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+.payment{
+
+    width: 50%;
+    min-width: 300px;
+    margin: 50px auto;
+    background-color: #24374e;
+    padding: 20px 20px;
+
+    
+
+    &-header{
+        margin-top: 30px;
+        p{
+            font-size: 25px;
+            text-align: center;
+            color: $gray;
+        }
+    }
+
+    &-form{
+        width: 70%;
+        margin: 40px auto;
+
+        label{
+            font-size: 11.5px;
+            color: $gray;
+            letter-spacing: 1.7px;           
+        }
+
+        .label{
+            margin-bottom: 3.5px;
+        }
+
+        .input{
+            margin-bottom: 10px;
+            
+
+            input{
+                width: 40%;
+                height: 30px;
+                background-color: #1e2d3f;
+                border-color: #3b3e41;
+                color: $white;
+                padding: 3px 8px;
+                font-size: 13px;
+                letter-spacing: 1.8px;
+            }
+        }
+
+        select{
+            width: 45%;
+                padding: 5px 15px;
+                border-radius: 3px;
+                color: $white;
+                background: #1e2d3f;
+                border-color: #3b3e41;
+                scrollbar-color: $gray2 black;
+                font-size: 14px;
+                
+                option{
+                    color: $white;
+                    background: #32353C;
+                    padding: 20px 0;
+                    font-size: 14px;
+                    
+                    
+                }
+        }
+
+        .payment-billingrow1, .payment-billingrow2, .payment-billingrow3{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            div{
+                margin-right: 60px;
+            }
+
+            input, select{
+                width: 150%;
+            }
+        }
+
+        .checkbox{
+            color: white;
+            margin: 30px 0;
+
+            input{
+                margin-right: 10px;
+            }
+        }
+        
+
+        .paymentform-description{
+            font-size: 11.5px;
+            color: $gray;
+            letter-spacing: 1.7px; 
+            margin-bottom: 20px;
+        }
+
+        .payment-billing{
+            margin-top: 30px;
+            margin-bottom: 20px;
+            p{
+                font-size: 25px;
+                color: $white;
+                letter-spacing: 3px;
+            }
+        }
+
+
+        .button{
+            margin-top: 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            
+
+            input{
+                padding: 8px 40px;
+                background-color: rgb(70, 104, 20);
+                color: rgb(203, 255, 124);
+                border-style: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            input:hover{
+                background-color: rgb(127, 185, 39);
+                color: rgb(255, 255, 255);
+            }
+
+            input:active{
+                background-color: rgb(55, 80, 17);
+                color: rgb(255, 255, 255);
+            }
+        }
+
+    }
+
+}
+
+
+.change-method{
+    width:10%;
+    min-width: 200px;
+    margin: 30px auto;
+    margin-top: 40px;
+    color: $gray;
+    text-align: center;
+    background: #1e2d3f;
+    padding: 20px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-method:hover{
+    color: $white;
+    background: #2e445f;   
+}
+
+.change-method:active{
+    color: $white;
+    background: #141c25;   
+}
+
+
+
+
+
+
+

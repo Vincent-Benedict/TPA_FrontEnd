@@ -1,0 +1,335 @@
+<main *ngIf="gameRecommendeds && gameOnSales && gameCommunityRecommendeds && gameNewAndTrendings && gameTopSellers && gameSpecials">
+    <aside>
+        <img src="https://store.cloudflare.steamstatic.com/public/images//gift/steamcards_promo_02.png" alt="">
+    
+        <div class="discovery">
+            <p>DISCOVERY QUEUES</p>
+    
+            <ul>
+                <a href="#"><li>Recommendations</li></a>
+                <a href="#"><li>New Releases</li></a>
+            </ul>
+        </div>
+    
+        <div class="browse-category">
+            <p>BROWSE CATEGORIES</p>
+    
+            <ul>
+                <a (click)="goSearchCategory('top seller')"><li>Top Sellers</li></a>
+                <a (click)="goSearchCategory('new trending')"><li>New Releases</li></a>
+                <a (click)="goSearchCategory('community recommended')"><li>Community Recommended</li></a>
+                <a (click)="goSearchCategory('special')"><li>Specials</li></a>
+                <a (click)="goSearchCategory('recommend')"><li>Recommend</li></a>
+            </ul>
+        </div>
+    
+        <div class="browse-genre">
+            <p>BROWSE BY GENRE</p>
+    
+            <ul>
+                <a (click)="goSearchGenre('Action')"><li>Action</li></a>
+                <a (click)="goSearchGenre('Sport')"><li>Sport</li></a>
+                <a (click)="goSearchGenre('Adventure')"><li>Adventure</li></a>
+                <a (click)="goSearchGenre('Horror')"><li>Horror</li></a>
+                <a (click)="goSearchGenre('Dating Sim')"><li>Dating Sim</li></a>
+                <a (click)="goSearchGenre('RPG')"><li>RPG</li></a>
+                <a (click)="goSearchGenre('Multiplayer')"><li>Multiplayer</li></a>
+                <a (click)="goSearchGenre('Futuristic')"><li>Futuristic</li></a>
+                <a (click)="goSearchGenre('Western')"><li>Western</li></a>
+                <a (click)="goSearchGenre('Farming Sim')"><li>Farming Sim</li></a>
+                <a (click)="goSearchGenre('Strategy')"><li>Strategy</li></a>
+            </ul>
+        </div>
+    
+    </aside>
+    
+  
+    <div class="content">
+
+        <div *ngIf="jwt" class="wishlistAndCart">
+            <div (click)="goToWishlist()" class="wishlist">
+                <p>Wishlist</p>
+            </div>
+
+            <div (click)="goToCart()" class="cart">
+                <p>Cart</p>
+            </div>
+        </div>
+
+
+        <div class="search">
+            <form action="" class="search-bar">
+                <input type="text" placeholder="search the store" name="search"  [(ngModel)]="gameSearchString" (input) = "search()">
+                <button style="cursor: pointer;" type="submit" (click)="goSearch()"><img src="../../../assets/logo/search-icon.png" alt="" width="30%"></button>
+                
+            </form>
+
+
+            <div class="searchContainer">
+                <div *ngFor="let g of gameSearched; let i=index">
+                    <a (click)="inappropriateControl(g?.id, g?.inappropriate)"  class="searchContainer-card">
+                        <div>
+                            <img src="../../../assets/Search Picture/{{g.image}}.jpg" alt="" width="100px" height="60px">
+                        </div>
+                        
+                        <div class="searchContainer-card-content">
+                            <p>{{g.name}}</p>
+                            <p>{{g.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+
+
+        </div>    
+
+        <div class="recommended">
+            <H4>FEATURED & RECOMMENDED</H4>
+
+            <div class="recommended-cards" >
+                <div class="recommended-cards-card" *ngFor="let g of gameRecommendeds; let i=index">
+                    <!-- <a routerLink="/gamedetail/{{g.id}}"> -->
+                    <a style="cursor: pointer;" (click)="inappropriateControl(g?.id, g?.inappropriate)">
+                        <div>
+                            <img src="../../../assets/{{g.image}}.jpg" alt="">
+                        </div>
+                        <div class="content1">
+                            <p>{{g.name}}</p>
+                            <p>{{g.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                            <p>Top Seller</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="special-offers">
+            
+            <H4>SPECIAL OFFERS</H4>
+
+            <div class="special-offers-cards">
+                    <div class="special-offers-cards-card" *ngFor="let g of gameOnSales; let i = indeex">
+                        <img src="../../../assets/OnSale/{{g.image}}.jpg" alt="">
+                        
+                        <div class="content2">
+                            <div>
+                                <p>-{{g.discount}}%</p>
+                            </div>
+                            
+                            <div>
+                                <p>{{g.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                                <p>{{g.price -(g.price * g.discount / 100) | currency:"Rp ":'symbol':'3.0'}}</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+
+
+        <div class="community-recommended">
+
+            <h3>COMMUNITY RECOMMENDED</h3>
+            <h4>THESE GAMES TODAY</h4>
+
+            <div class="community-recommended-cards">
+                
+                <div class="community-recommended-cards-card" *ngFor="let g of gameCommunityRecommendeds; let i=index">
+                    <a href="#">
+                    <img src="../../../assets/Community Recommended/{{g.image}}.jpg" alt="" width="350px" height="230px">
+
+                    <div class="content3">
+                        <p>"{{g.review[0].reviewdesc}}"</p>
+                        
+                        <div class="avatar">
+                            <img src="../../../assets/Avatar/{{g.review[0].reviewavatar}}.jpg" alt="" width="12%">
+                            <div>
+                                <p>{{g.review[0].reviewusername}}</p>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    </a>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <div class="category">
+
+            <h4>NEW AND TRENDING</h4>
+
+            <div class="category-container">
+
+                <div class="category-side">
+                        
+                    <h3>{{gameHoveredName}}</h3>
+
+                    <div class="category-side-overall">
+                        <p>Overall user reviews:</p>
+                        <p>{{gameHoveredOverall}}</p>
+                    </div>
+
+                    <div class="category-side-category">
+                        <p>{{gameHoveredCategory}}</p>
+                    </div>
+
+                    <img src="../../../assets/New and Trending/SideImage/{{gameHoveredImage}}.jpg" alt="" width="100%">
+
+                </div>
+
+                <div class="category-cards">
+
+                    <div class="category-cards-card" (mouseenter)="hovered(g.id)" *ngFor="let g of gameNewAndTrendings; let i=index">
+                        <div>
+                            <img src="../../../assets/New and Trending/{{g.image}}.jpg" alt="" width="100%" height="auto">
+                        </div>
+
+                        <div class="content4">
+                            <p class="content4-name">{{g.name}}</p>
+                            <img src="../../../assets/logo/windows-logo.png" alt="" width="20px">
+                            <p class="content4-cat">{{g.category}}</p>
+                        </div>
+
+                        <div class="price">
+                            <p>{{g.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <div class="topseller">
+
+            <h4>TOP SELLER</h4>
+
+            <div class="topseller-container">
+
+                <div class="topseller-side">
+                        
+                    <h3>{{gameHoveredName2}}</h3>
+
+                    <div class="topseller-side-overall">
+                        <p>Overall user reviews:</p>
+                        <p>{{gameHoveredOverall2}}</p>
+                    </div>
+
+                    <div class="topseller-side-category">
+                        <p>{{gameHoveredCategory2}}</p>
+                    </div>
+
+                    <img src="../../../assets/Top Sellers/side-image/{{gameHoveredImage2}}.jpg" alt="" width="100%">
+
+                </div>
+
+                <div class="topseller-cards">
+
+                    <div class="topseller-cards-card" (mouseenter)="hovered2(g.id)" *ngFor="let g of gameTopSellers; let i=index">
+                        <div>
+                            <img src="../../../assets/Top Sellers/{{g.image}}.jpg" alt="" width="100%" height="auto">
+                        </div>
+
+                        <div class="content4">
+                            <p class="content4-name">{{g.name}}</p>
+                            <img src="../../../assets/logo/windows-logo.png" alt="" width="20px">
+                            <p class="content4-cat">{{g.category}}</p>
+                        </div>
+
+                        <div class="price">
+                            <p>{{g.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="special">
+
+            <h4>SPECIALS</h4>
+
+            <div class="special-container">
+
+                <div class="special-side">
+                        
+                    <h3>{{gameHoveredName3}}</h3>
+
+                    <div class="special-side-overall">
+                        <p>Overall user reviews:</p>
+                        <p>{{gameHoveredOverall3}}</p>
+                    </div>
+
+                    <div class="special-side-category">
+                        <p>{{gameHoveredCategory3}}</p>
+                    </div>
+
+                    <img src="../../../assets/Specials/side-image/{{gameHoveredImage3}}.jpg" alt="" width="100%">
+
+                </div>
+
+                <div class="special-cards">
+
+                    <div class="special-cards-card" (mouseenter)="hovered3(g.id)" *ngFor="let g of gameSpecials; let i=index">
+                        <div>
+                            <img src="../../../assets/Specials/{{g.image}}.jpg" alt="" width="100%" height="auto">
+                        </div>
+
+                        <div class="content4">
+                            <p class="content4-name">{{g.name}}</p>
+                            <img src="../../../assets/logo/windows-logo.png" alt="" width="20px">
+                            <p class="content4-cat">{{g.category}}</p>
+                        </div>
+
+                        <div class="price-specials">
+                            <div>
+                                <p>-{{g.discount}}%</p>
+                            </div>
+                            <div>
+                                <p>{{g.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                                <p>{{g.price - (g.price * g.discount/100) | currency:"Rp ":'symbol':'3.0'}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+
+
+
+
+    
+    </div>
+
+
+</main>
+

@@ -1,0 +1,9 @@
+<div *ngIf="jwt; then thenBlock else elseBlock"></div>
+
+<ng-template #thenBlock><header-login></header-login></ng-template>
+<ng-template #elseBlock><header-logoff></header-logoff></ng-template>
+
+<item-detail-components [id]="id"></item-detail-components>
+
+<!-- <game-detail-components [id]="id"></game-detail-components> -->
+<footer></footer>

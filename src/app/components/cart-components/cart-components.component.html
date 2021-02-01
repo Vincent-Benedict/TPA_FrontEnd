@@ -1,0 +1,108 @@
+<main *ngIf="games">
+    
+    <div class="content">
+
+        <div class="content-breadcrumb">
+            <p><a routerLink="">All Products</a> > Your Shopping Cart</p>
+        </div>
+        <div class="content-title">
+            <p>YOUR SHOPPING CART</p>
+        </div>
+
+        <div class="cart">
+
+            <div class="cart-card" *ngFor="let g of games; let i=index">
+                <div class="cart-card-section">
+                    <img class="image" src="../../../assets/Search Picture/{{g?.image}}.jpg" width="120px" height="45px" alt="">
+                    <p class="name">{{g?.name}}</p>
+                </div>
+                
+                <div class="cart-card-section">
+                    <div class="logo">
+                        <img src="../../../assets/logo/windows-logo.png" alt="">
+                    </div>
+                    
+                    <div class="price"> 
+                        <p>{{g?.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                        <a (click)="temp(g?.id)" >Remove</a>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <div class="popup" *ngIf = "deleteId != 0">
+
+            <div class="popup-content">
+                <p class="popup-content-title">Confirmationn Dialog</p>
+
+                <p class="popup-content-question">Are you sure you want to delete ?</p>
+
+                <div class="popup-content-confirmation">
+                    <a (click)="no()">
+                        <div class="no">
+                            <p>No</p>
+                        </div>
+                    </a>
+        
+                    <a (click)="yes()">
+                        <div class="yes">
+                            <p>Yes</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        
+
+        <div class="subtotal">
+
+            <div class="subtotal-content">
+                <p>Estimated total</p>
+                <p>{{subtotal | currency:"Rp ":'symbol':'3.0'}}</p>
+            </div>
+
+            <div class="subtotal-question">
+                <p>Is this a purchase for yourself or is it a gift? Select one to continue to checkout.</p>
+            </div>
+
+            <div class="subtotal-choice">
+
+                <a (click)="purchaseForMyself()">
+                    <div>
+                        <p>Purchase for myself</p>
+                    </div>
+                </a>
+
+                <a (click)="purchaseAsAGift()">
+                    <div>
+                        <p>Purchase as a gift</p>
+                    </div>
+                </a>
+
+
+            </div>
+            
+
+        </div>
+
+        
+
+
+
+
+        <div routerLink="" class="content-back-button">
+            <p>Continue Shopping</p>
+        </div>
+        
+
+
+    </div>
+
+</main>
+
+

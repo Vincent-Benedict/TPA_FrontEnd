@@ -1,0 +1,106 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    
+    
+    min-width: 1000px;
+    background-color: rgb(20, 50, 68);
+    overflow: hidden;
+    
+}
+
+.content{
+    width: 50%;
+    min-width: 300px;
+    margin: 50px auto;
+    position: relative;
+    background-color: rgb(20, 39, 51);
+    padding: 20px 10px;
+
+    .image{
+        display: flex;
+        justify-content: center;
+
+        img{
+            width: 40%;
+        }
+    }
+
+    &-desc{
+        color: $gray;
+        margin: 30px auto;
+        width: 70%;
+        letter-spacing: 1.5px;
+
+
+        p{
+            text-align: center;
+            font-size: 16px;
+            line-height: 25px;
+        }
+    }
+
+    &-desc p:nth-child(2){
+        margin-top: 15px;
+        color: #9db2be;
+    }
+
+    &-birthdate{
+       color: #9db2be;
+       width: fit-content;
+       margin: auto;
+       background-color: rgba(255,255,255,0.1);
+       padding: 15px 30px;
+
+       label{
+           text-align: center;
+           font-size: 14px;
+           letter-spacing: 1.5px;
+       }
+       input{
+           text-align: center;
+           margin-left: 70px;
+           margin-top: 10px;
+           background-color:rgba( 103, 193, 245, 0.2 );
+           color: #67c1f5;
+           letter-spacing: 1.5px;
+           border-style: none;
+           
+       }
+    }
+
+    &-submit{
+        width: 70%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+
+        .view-page{
+            background-color: rgba( 103, 193, 245, 0.2 );
+            color: #67c1f5;
+            margin: 30px 20px;
+            cursor: pointer;
+            padding: 10px 30px;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+
+        .cancel{
+            background-color: rgba( 103, 193, 245, 0.2 );
+            color: #67c1f5;
+            margin: 30px 20px;
+            cursor: pointer;
+            padding: 10px 30px;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+
+        .view-page:hover, .cancel:hover{
+            background-color: rgba(88, 194, 255, 0.884);
+            color: white;
+        }
+
+    }
+
+}

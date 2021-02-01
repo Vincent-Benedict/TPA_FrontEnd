@@ -1,0 +1,82 @@
+<main>
+
+    <div class="content">
+
+        <div class="content-left">
+            <div class="container">
+
+                <div class="title">
+                    <p>SIGN IN</p>
+                </div>
+
+                
+                <div class="form">
+                
+                    <div>
+                        <label for="account">Steam account name</label>
+                        <br>
+                        <input class="input" [(ngModel)]="username" type="text" id="account" name="password">
+                    </div>
+                    
+                    <div>
+                        <label for="password">Password</label>
+                        <br>
+                        <input class="input" [(ngModel)]="password" type="password" id="password" name="password">
+                    </div>
+                    <div>
+                        <input id="button" type="submit" (click)="login()" name="submit" value="Sign In">
+                    </div>
+
+                </div>
+
+
+                <!-- <form [formGroup]="form">
+                
+                    <div>
+                        <label for="account">Steam account name</label>
+                        <br>
+                        <input class="input" formControlName="accountname" type="text" id="account" name="password">
+                    </div>
+                    
+                    <div>
+                        <label for="password">Password</label>
+                        <br>
+                        <input class="input" formControlName="password"  type="password" id="password" name="password">
+                    </div>
+                    <div>
+                        <input id="button" type="submit" (click)="login()" name="submit" value="Sign In">
+                    </div>
+                
+                </form> -->
+                
+                <div>
+                    <p style="color: white; text-align: center;">{{error}}</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="content-right">
+            <div class="container">
+                <div class="container-join">
+                    <p>Join Steam and discover thousands of games to play.</p>
+                </div>
+                
+
+                <img src="https://store.cloudflare.steamstatic.com/public/shared/images/login/join_pc.png?v=1" alt="">
+            
+                <p>It's free and easy to use.</p>
+                
+                <a routerLink="../register">
+                    <div class="container-join-steam">
+                        <p>Join Steam</p>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+
+
+    </div>
+
+</main>

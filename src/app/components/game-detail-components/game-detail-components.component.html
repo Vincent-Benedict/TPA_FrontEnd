@@ -1,0 +1,277 @@
+<main *ngIf="game && isAdded != '' && isHaving != '' && mostHelpfulReviews && recentlyPostedReviews">
+
+    <div class="header">
+        <div class="breadcrumbs">
+            <a routerLink=''>Home > </a>
+            <a routerLink='gameDetail/game?.id'>{{game?.name}}</a>
+        </div>
+        
+        <h4>{{game?.name}}</h4>
+    </div>
+    
+
+    <div class="content">
+
+        <div class="slider">
+            <div class="slides">
+
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+                <input type="radio" name="radio-btn" id="radio5">
+                
+                <div class="slide first">
+                    <img src="{{game?.photo[0].photosource}}" alt="">
+                </div>
+                <div class="slide">
+                    <img src="{{game?.photo[1].photosource}}" alt="">
+                </div>
+                <div class="slide">
+                    <img src="{{game?.photo[2].photosource}}" alt="">
+                </div>
+                <div class="slide">
+                    <video controls poster="{{game?.photo[0].photosource}}">
+                        <source src="{{game?.video[0].videosource}}">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video controls poster="{{game?.photo[1].photosource}}">
+                        <source src="{{game?.video[1].videosource}}">
+                    </video>
+                </div>
+
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                    <div class="auto-btn5"></div>
+                </div>
+
+            </div>
+
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+                <label for="radio5" class="manual-btn"></label>
+            </div>
+
+        </div>
+
+
+
+        <div class="description">
+            <img src="../../../assets/Search Picture/{{game?.image}}.jpg" alt="" width="100%">
+
+            <div class="description-content">
+                <p>{{game?.description}}</p>
+            </div>
+
+            <div class="description-dev"> 
+                <p>DEVELOPER : {{game?.developer}}</p>
+                <p>PUBLISHER : {{game?.publisher}}</p>
+            </div>
+
+            <div class="description-category">
+                <p>{{game?.category}}</p>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="wishlist" *ngIf="jwt">
+
+        <div *ngIf="isAdded == 'false'; then thenBlock else elseBlock"></div>
+
+        <ng-template #thenBlock>
+            <div (click)="wishlistClicked()" class="wishlist-button">
+                <p>Add to Your Wishlist</p>
+            </div>
+        </ng-template>
+
+        <ng-template #elseBlock>
+            <div style="background-color: rgb(90, 116, 66);" (click)="redirectToWishlist()" class="wishlist-button">
+                <p>On Wishlist</p>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <div class="game-buy">
+        <div class="game-buy-name">
+            <p>Buy {{game?.name}}</p>
+        </div>
+        <div class="game-buy-price">
+            <div>
+                <p>{{game?.price | currency:"Rp ":'symbol':'3.0'}}</p>
+            </div>
+            <div class="game-buy-price-addCart">
+                <!-- <a routerLink="../../cart" (click)="insert()" >Add to Cart</a> -->
+                <a style="cursor: pointer;" (click)="insert()" >Add to Cart</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <h4>{{game?.name}}</h4>
+    <h4>{{game?.name}}</h4>
+    <h4>{{game?.name}}</h4> -->
+    
+    <div class="req">
+
+        <div class="req-content">
+            <p class="title">SYSTEM REQUIREMENT</p>
+
+            <p class="required"><span class="system">OS: </span>{{game?.systemrequirement[0].os}}</p>
+            <p class="required"><span class="system">Processor: </span>{{game?.systemrequirement[0].processor}}</p>
+            <p class="required"><span class="system">Memory: </span>{{game?.systemrequirement[0].memory}}</p>
+            <p class="required"><span class="system">Graphics: </span>{{game?.systemrequirement[0].graphics}}</p>
+            <p class="required"><span class="system">Storage: </span>{{game?.systemrequirement[0].storage}}</p>
+    
+        </div>
+        
+    </div>
+
+
+
+    <div class="reviews">
+
+        <h3>CUSTOMER REVIEWS</h3>
+
+        <div class="reviews-section">
+
+            <div class="reviews-section-helpful">
+                
+                <h4>MOST HELPFUL REVIEWS</h4>
+
+                <div class="reviews-section-helpful-card" *ngFor="let r of mostHelpfulReviews; let i = index">
+                    
+                    <div class="user" style="justify-content: space-between;">
+                        <div class="user-desc">
+                            <img src="../../../assets/Avatar/{{r.reviewavatar}}.jpg" alt="" width="34px" height="34px">
+                            <p>{{r.reviewusername}}</p>
+                        </div>
+                        
+                        <div class="user-recommended">
+                            <img src="../../../assets/logo/recommended-logo.png" alt="" width="70%">
+                            <p>RECOMMENDED</p>
+                        </div>
+                    </div>    
+                    <div class="review-desc">
+                        <p>
+                            {{r.reviewdesc}}
+                        </p>
+                        
+                    </div>
+
+                    <div class="vote">
+                        <div class="vote-quest">
+                            <p>Was this review helpful ?</p>
+                        </div>
+
+                        <div class="vote-button">
+                            <div (click)="upvoteHelpful(r?.id, i)">
+                                <img src="../../../assets/logo/recommended-logo.png" alt="">
+                                <p>Yes</p>
+                            </div>
+                            <div (click)="downvoteHelpful(r?.id, i)">
+                                <img src="../../../assets/logo/unrecommended-logo.png" alt="">
+                                <p>No</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="review-upvoted">
+                        <p>{{reviewUpvotedHelpful[i]}} people found this review helpful</p>
+                        <p>{{reviewDownvotedHelpful[i]}} people found this review bad</p>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="reviews-section-recently">
+
+                <h4>RECENTLY POSTED</h4>
+
+                <div class="reviews-section-recently-card" *ngFor="let r of recentlyPostedReviews; let i = index;">
+                    
+                    <div class="user">
+                        <div class="user-desc" style="display: flex; align-items: center;">
+                            <img src="../../../assets/Avatar/{{r.reviewavatar}}.jpg" alt="" width="34px" height="34px">
+                            <p>{{r.reviewusername}}</p>
+                        </div>
+                        
+
+                        <div class="user-recommended">
+                            <img src="../../../assets/logo/recommended-logo.png" alt="" width="70%">
+                        </div>
+
+                    </div>
+
+                    <div class="review-desc">
+                        <p>{{r.reviewdesc}}</p>
+                    </div>
+
+                    <div class="vote">
+                        <div class="vote-quest">
+                            <p>Was this review helpful ?</p>
+                        </div>
+
+                        <div class="vote-button">
+                            <div (click)="upvoteRecently(r?.id, i)">
+                                <img src="../../../assets/logo/recommended-logo.png" alt="">
+                                <p>Yes</p>
+                            </div>
+                            <div (click)="downvoteRecently(r?.id, i)">
+                                <img src="../../../assets/logo/unrecommended-logo.png" alt="">
+                                <p>No</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-upvoted">
+                        <p>{{reviewUpvotedRecently[i]}} people found this review helpful</p>
+                        <p>{{reviewDownvotedRecently[i]}} people found this review bad</p>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="input-reviews" *ngIf="isHaving == 'true'">
+
+        <div class="input-reviews-container">
+
+            <div class="question">
+                <label for="review">What would you like to say about this game ?</label>
+            </div>
+            
+            <div class="textarea">
+                <textarea rows="25" cols="100" [(ngModel)]="myReview" placeholder="Input Here..."></textarea>
+            </div>
+
+            <div class="input">
+                <input type="reset" value="Submit" (click)="submit()">
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- {{game?.name}}
+{{game?.image}}
+{{game?.category}} -->

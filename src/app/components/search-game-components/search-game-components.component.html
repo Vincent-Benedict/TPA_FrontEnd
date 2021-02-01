@@ -1,0 +1,112 @@
+<main *ngIf="gamesList&&gameShow">
+
+    <div (scroll)="scrollHandler($event)" class="content">
+
+        <div class="content-header">
+            <p>Your Product(s)</p>
+        </div>
+
+        <div class="menu">
+        
+            <div class="menu-right">
+                
+                <div class="menu-right-header">
+                    <select name="category" id="category" [(ngModel)]="category">
+                        <option value="">-- SELECT CATEGORY --</option>
+                        <option value="top seller">top seller</option>
+                        <option value="new trending">new releases</option>
+                        <option value="special">specials</option>
+                        <option value="community recommended">community recommended</option>
+                        <option value="recommend">recommend</option>
+                    </select>
+        
+                    <input type="submit" name="submit" value="search" (click)="submit()">
+                </div>
+                
+                <div class="menu-right-cards">
+                    <div class="card" *ngFor="let g of gameShow; let i = index" (mouseenter)="hovered(i)" (mouseleave)="leave(i)">
+                        <div class="card-main">
+                            <div class="card-main-left">
+                                <img src="../../../assets/Search Picture/{{g?.image}}.jpg" alt="" height="45px" width="120px">
+                                <div class="card-main-left-desc">
+                                    <p>{{g?.name}}</p>
+                                    <img src="../../../assets/logo/windows-logo.png" alt="" width="25px">
+                                </div>     
+                            </div>
+                            <div class="card-main-left-price">
+                                <div class="discount"  *ngIf="g?.discount != 0">
+                                    <p>-{{g?.discount}}%</p>
+                                </div>
+                                <p class="tes">{{g?.price - (g?.price*g?.discount/100)| currency:"Rp ":'symbol':'3.0'}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hidden">
+                            <p class="name">{{g?.name}}</p>
+                            <img src="../../../assets/Search Picture/{{g?.sideimage}}.jpg" alt="" width="100%" height="65%">
+
+                            <div class="overall">
+                                <p>Overall User Reviews : <span>{{g?.overall}}</span></p>
+                            </div>
+
+                            <div class="tags">
+                                <p>User Tags:</p>
+                                <p><span class="tags-span">{{g?.category}}</span></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="menu-left">
+
+                <div class="price">
+                    <div class="price-header">
+                        <label for="vol" name="vol">Narrow by price</label>
+                    </div>
+
+                    <div class="price-input">
+                        <input type="range" id="vol" name="vol" step="50000" min="0" max="600000" [(ngModel)]="price">
+                        <p *ngIf="price >= 600000">Any Price</p>
+                        <p *ngIf="price == 0">Free</p>
+                        <p *ngIf="price < 600000 && price > 0">Under {{price | currency:"Rp ":'symbol':'3.0'}}</p>
+                    </div>
+                </div>
+
+                <div class="genre">
+                    <div class="genre-header">
+                        <label for="">Narrow by genre</label>
+                    </div>
+                    
+                    <div class="genre-select">
+                        <select name="genre" id="genre" [(ngModel)]="genre">
+                            <option value="" selected>-- SELECT GENRE --</option>
+                            <option value="Action">Action</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Dating Sim">Dating Sim</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Multiplayer">Multiplayer</option>
+                            <option value="Futuristic">Futuristic</option>
+                            <option value="Western">Western</option>
+                            <option value="Farming Sim">Farming Sim</option>
+                            <option value="Strategy">Strategy</option>
+                        </select>
+
+                        <p *ngIf="genre == ''">All Genre</p>
+                        <p *ngIf="genre != ''">Genre Filter : {{genre}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+    </div>
+
+
+</main>

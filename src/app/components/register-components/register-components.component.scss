@@ -1,0 +1,111 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background: radial-gradient(30% 40% at 40% 30%, rgba(33, 36, 41, .5) 0%, rgba(33, 36, 41, 0) 100%) no-repeat, url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/acct_creation_bg.jpg) -25vw -100px no-repeat, #212429;;
+    padding: 20px 0;
+    min-width: 1000px;
+    height: 800px;
+    color: $white;
+
+    .content{
+        width: 45%;
+        margin: auto;
+        margin-top: 100px;
+
+        .title{
+            // text-align: center;
+            color: $white;
+            font-size: 35px;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        form{
+
+            
+            .email-section, .address-section, .country-section, .terms-section, .submit-section, .captcha-section{
+                margin-bottom: 30px;
+            }
+
+            .email-label, .address-label, .country-label, .submit-label{
+                
+                margin-bottom: 7px;
+                
+            }
+
+            .terms-section{
+                label{
+                    margin-left: 10px;
+                }
+            }
+
+            .input{
+                width: 50%;
+                height: 30px;
+                border-radius: 2px;
+                background: #32353C;
+                color: $white;
+                letter-spacing: 1.5px;
+                padding: 2px 5px;
+                border-style: none;
+            }
+
+            label{
+                color: #b8b6b4;
+                letter-spacing: 1px;
+                font-size: 13px;
+            }
+
+            select{
+                width: 40%;
+                padding: 5px 15px;
+                border-radius: 3px;
+                color: $white;
+                background: #32353C;
+                border-style: none;
+                scrollbar-color: $gray2 black;
+                font-size: 14px;
+                
+                
+
+                option{
+                    color: $white;
+                    background: #32353C;
+                    padding: 20px 0;
+                    font-size: 14px;
+                    
+                    
+                }
+            }
+
+            select::-webkit-scrollbar{
+                background-color: rgb(40, 39, 46);
+               
+            }
+
+            .link{
+                color: $white;
+            }
+
+            #button{ 
+                margin-top: 20px;   
+                width: 20%;
+                padding: 5px 10px;
+                background: linear-gradient( to right, #47bfff 10%, #1a44c2 60%);
+                border: none;
+                border-radius: 2px;
+                color: $white;
+                font-size: 17px;
+                cursor: pointer;
+                letter-spacing: 1px;
+            }
+
+            #button:hover{
+                background: linear-gradient( to right, #6fcdff 10%, #6a90ff 60%);
+            }
+
+        }
+
+    }
+}

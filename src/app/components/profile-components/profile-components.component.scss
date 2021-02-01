@@ -1,0 +1,366 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background-color: rgb(0, 0, 0);
+    position: relative;
+    height: 1500px;
+    min-width: 1000px;
+}
+
+.background{ 
+    video{
+        width: 100%;
+        height: 120%;
+
+    }
+}
+
+.content{
+    position: absolute;
+    top: 0;
+    width: 60%;
+    min-width: 200px;
+    // display: flex;
+    background-color: rgba(33, 40, 44, 0.93);
+    margin: 0px 18%;
+    padding: 20px 30px;
+    
+    // justify-content: center;
+    
+    .header{
+        display: flex;
+        margin-bottom: 40px;
+        align-items: center;
+        justify-content: space-between;
+        .img{
+            margin: 3px 17px;
+            display: flex;
+            img{
+                border: 4px solid #686868;
+            }
+        }
+
+        .edit{
+            background-color: rgb(70, 102, 22);
+            color: rgb(215, 255, 154);
+            padding: 5px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            // margin-left: 25%;
+        }
+
+        .edit:hover{
+            background-color: rgb(127, 180, 46);
+            color: rgb(231, 231, 231);
+        }
+
+        .edit:active{
+            background-color: rgb(113, 153, 54);
+            color:  rgb(255, 255, 255);
+        }
+    
+        .desc{
+            margin: 3px 17px;
+        }
+    
+        .desc p:nth-child(1){
+            font-size: 30px;
+            letter-spacing: 2.5px;
+            color: $white;
+        }
+    
+        .desc p:nth-child(2){
+            margin-top: 2px;
+            font-size: 14px;
+            letter-spacing: 2.5px;
+            color: rgb(158, 158, 158);
+            font-weight: bold;
+        }
+    
+        .desc p:nth-child(3){
+            margin-top: 30px;
+            font-size: 12.5px;
+            letter-spacing: 1.5px;
+            color: rgb(161, 161, 161);
+            // font-weight: bold;
+        }
+    }
+
+
+    &-body{
+        display: flex;
+        
+        .user-friend{
+            background: rgba(20, 20, 20, 0.5);
+            width: 45%;
+            padding: 20px 10px;
+            margin-left: 10px;
+            height: fit-content;
+
+            &-header{
+                p{
+                    font-size: 20px;
+                    letter-spacing: 2.5px;
+                    text-align: center;
+                    color: $gray;
+                    font-weight: bold;
+                }
+                margin-bottom: 30px;
+            }
+
+
+            &-card{
+
+                margin-bottom: 10px;
+                padding: 5px 10px;
+                
+                position: relative;
+
+                &-main{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    &-image{
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+
+                        img{
+                            width: 40px;
+                            border: 2px solid #686868;
+                        }
+
+                        &-desc{
+                            margin-left: 20px;
+                        }
+
+                        &-desc p:nth-child(1){
+                            color: rgb(199, 199, 199);
+                            margin-bottom: 1px;
+                            font-size: 13px;
+                            letter-spacing: 1px;
+                        }
+                        &-desc p:nth-child(2){
+                            color: rgb(133, 219, 253);
+                            font-size: 12px;
+                            letter-spacing: 1.5px;
+                            margin-top: 1px;
+                        }
+                    }
+
+                    &-right{
+                        display: flex;
+                        width: 120px;
+                        align-items: center;
+                        justify-content: flex-end;
+
+                        img{
+                            margin-right: 30px;
+                        }
+                    }
+
+                    &-right-level{
+                        margin-right: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 200px;
+                        border: 3px solid #ffae00;
+                        width: 35px;
+                        height: 35px;
+                        
+                        p{
+                            color: $white;        
+                        }
+                    }
+                }
+
+                &-hidden{
+                    // position: relative;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    right: 100%;
+                    display: none;
+                   
+                    &-content{
+                        position: absolute;
+                        top: 20px;
+                        left: 20px;
+
+
+                        &-head{
+                            display: flex;
+                            align-items: center;
+
+                            img{
+                                border: 3px solid #686868;
+                            }
+
+                            div{
+                                margin-left: 20px;
+
+                                p{
+                                    color: rgb(109, 214, 255);
+                                }
+                            }
+
+                            div p:nth-child(1){
+                                font-size: 20px;
+                                margin-bottom: 5px;
+                                font-weight: bold;
+                                letter-spacing: 2px;
+                            }
+                            div p:nth-child(2){
+                                font-size: 12px;
+                                margin-top: 5px;
+                                letter-spacing: 1px;
+                            }
+                            
+                        }
+
+                        &-tail{
+                            margin-top: 30px;
+                            color: $white;
+
+                            .span{
+                                border: 2px solid #ffae00;
+                                background-color: #181818;
+                                padding: 10px 15px;
+                                margin-right: 10px;
+                                border-radius: 200px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-card:hover{
+                background-color: #474747;
+            }
+            
+        }
+
+        .user-game{
+            background: rgba(20, 20, 20, 0.5);
+            width: 50%;
+            padding: 20px 10px;
+
+            &-header{
+                p{
+                    font-size: 20px;
+                    letter-spacing: 2.5px;
+                    text-align: center;
+                    color: $gray;
+                    font-weight: bold;
+                }
+                margin-bottom: 30px;
+            }
+
+            &-card{
+                
+                display: flex;
+                align-content: center;
+                // justify-content: center;
+                padding: 10px 4px;
+                margin-bottom: 5px;
+                background: rgba(78, 78, 78, 0.5);
+
+                img{
+                    border: 3px solid rgb(44, 44, 44);
+                }
+
+                div{
+                    margin-left: 15px;
+                    margin-top: 35px;
+
+                    p{
+                        color: #acacac;
+                    }
+
+                    .card-name{
+                        font-size: 12px;
+                        letter-spacing: 2px;
+                        font-weight: bold;
+                    }
+
+                    .card-category{
+                        background: rgb(185, 185, 185);
+                        width: fit-content;
+                        padding: 2px 5px;
+                        font-size: 11px;
+                        letter-spacing: 1px;
+                        border-radius: 3.5px;
+                        margin-top: 5px;
+                        color: #181818;
+
+                    }
+                }
+                
+                
+            }
+
+            
+            
+        }
+    }
+
+    &-comment{
+        margin-top: 20px;
+        width: 70%;
+        background: rgba(20, 20, 20, 0.5);
+        padding: 20px 30px;
+        &-header{
+            p{
+                font-size: 25px;
+                text-align: center;
+                color: $gray;
+            }
+            margin-bottom: 10px;
+        }
+
+        &-body{
+
+            &-card{
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                height: 50px;
+                padding: 2px;
+
+                img{
+                    border: 3px solid #686868;
+                }
+
+                &-desc{
+                    margin-left: 20px;
+
+                    .username{
+                        font-size: 15px;
+                        color: $gray;
+                        margin-bottom: 2px;
+                        letter-spacing: 1px;
+                    }
+
+                    .comment{
+                        font-size: 13px;
+                        color: #949494;
+                        margin-top: 2px;
+                        letter-spacing: 1px;
+                    }
+                }
+            }
+
+            &-card:hover{
+                background-color: #474747;
+            }
+        }
+
+    }
+
+    
+
+}
+

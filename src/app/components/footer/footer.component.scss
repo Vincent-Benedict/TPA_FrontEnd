@@ -1,0 +1,48 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.container{
+    background-color: $header;
+    color: $gray;
+    font-size: 15px;
+   
+    min-width: 1000px;
+
+    .footer{
+        @include dfjcsbaic;
+        flex-wrap: wrap;
+        margin: auto;
+        width: 60%;
+        
+
+        .top{
+            @include dfjcsbaic;
+            margin-top: 3rem;
+
+            div{
+                margin: 0px 15px;
+            }
+        }
+
+        .bottom{
+            @include dfjcsbaic;
+            flex-wrap: wrap;
+            margin: auto;
+            width: 200%;
+            padding: 40px 0;
+
+            a{
+                color: $gray;
+                text-decoration: none;
+                min-width: fit-content;
+            }
+
+            a:hover{
+                color: $white;
+                text-decoration: underline;
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,180 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background-color: $theme2;
+    padding: 20px 0;
+    min-width: 1000px;
+}
+
+.content{
+    width: 54%;
+    min-width: 300px;
+    margin: 50px auto;
+    position: relative;
+    padding: 20px 30px;
+    background-color: #16202d;
+
+    .header{
+        p{
+            text-align: center;
+            font-size: 24px;
+            color: $gray;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+
+    .pagination-region{
+
+        .pagination{
+
+            .header-pagination{
+                padding: 10px 15px;
+                margin: 2.5px;
+                background: rgb(51, 59, 77);
+                margin-bottom: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p{
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                    color: $white;
+                }
+
+                &-name{
+                    margin-left: 13px;
+                }
+
+                &-desc{
+                    display: flex;
+                    align-items: center;
+
+                    div{
+                        margin-right: 17px;
+                    }
+
+                    .quantity{
+                        margin-right: 40px;
+                    }
+                }
+            }
+
+            .card{
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: rgb(51, 59, 77);
+                padding: 10px 15px;
+                margin: 2.5px;
+                cursor: pointer;
+
+                &-left{
+                    display: flex;
+                    align-items: center;
+
+                    img{
+                        border: 1.5px solid #808080;
+                    }
+
+                    .not-image{
+                        margin-left: 25px;
+                    }
+
+                    .not-image p:nth-child(1){
+                        padding-bottom: 1.5px;
+                        font-weight: bold;
+                        letter-spacing: 1.5px;
+                        color: $gray;
+                    }
+
+                    .not-image p:nth-child(2){
+                        font-size: 11px;
+                        letter-spacing: 1.5px;
+                        color: #a1a1a1;
+                        padding-top: 1.5px;
+                    }
+                }
+
+                &-right{
+                    display: flex;
+                    align-items: center;
+
+                    .item-transaction{
+                        margin-right: 60px;
+                        p{
+                            text-align: left;
+                            color: #b4b4b4;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .item-price{
+                        color: #e4e4e4;
+
+                        p{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+
+            .card:hover{
+                background: rgb(70, 79, 102);
+            }
+
+            .card:active{
+                background: rgb(47, 53, 68);
+            }
+        }
+
+        .pagination-button{
+            margin-top: 30px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+
+            p{
+                color: $gray2;
+                font-size: 24px;
+            }
+
+            .prev{
+                margin-right: 20px;
+            }
+
+            .prev p:hover{
+                color: $white;
+            }
+
+            .prev p:active{
+                color: #797979;
+            }
+
+            .page{
+                p{
+                    color: $gray;
+                }
+                
+            }
+
+            .next{
+                margin-left: 20px;
+            }
+
+            .next p:hover{
+                color: $white;
+            }
+
+            .next p:active{
+                color: #797979;
+            }
+        }
+    }
+}

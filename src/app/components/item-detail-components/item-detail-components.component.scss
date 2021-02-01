@@ -1,0 +1,64 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background-color: $theme2;
+    padding: 20px 0;
+    min-width: 1000px;
+}
+
+.content{
+    width: 54%;
+    min-width: 300px;
+    margin: 50px auto;
+    position: relative;
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+
+    &-image{
+        background-color: #0c0c0e;
+        margin-right: 20px;
+    }
+
+    &-desc{
+        margin-left: 20px;
+
+        &-name{
+            p{
+                font-size: 25px;
+                color: $gray;
+                letter-spacing: 2px;
+            }
+            margin-bottom: 10px;
+        }
+
+        &-game{
+            display: flex;
+            align-items: center;
+
+            .image{
+                margin-right: 5px;
+            }
+
+            .name{
+                p{
+                    color: #767676;
+                    font-size: 13px;
+                    letter-spacing: 1.5px;
+                }
+            }
+        }
+
+        &-description{
+            margin-top: 20px;
+            p{
+                color: $gray;
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+}

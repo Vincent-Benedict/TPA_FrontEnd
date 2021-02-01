@@ -1,0 +1,95 @@
+<main>
+
+    <div class="content">
+
+        <p class="title">CREATE YOUR ACCOUNT</p>
+
+        <form action="">
+
+            <div class="email-section">
+                <div class="email-label">
+                    <label for="email">Email Address</label>
+                </div>
+    
+                <div class="email-input">
+                    <input class="input" type="email" name="email" id="email">
+                </div>
+            </div>
+
+            <div class="address-section">
+                <div class="address-label">
+                    <label for="address">Confirm your Address</label>
+                </div>
+
+                <div class="address-input">
+                    <input class="input" type="text" name="address" id="address">
+                </div>
+            </div>
+            
+            <div class="country-section">
+                <div class="country-label">
+                    <label for="country">Country of Residence</label>
+                </div>
+
+                <div class="country-input">
+                    <select name="country" id="country">
+                        <option value="afghanistan">Afghanistan</option>
+                        <option value="brazil">Brazil</option>
+                        <option value="canada">Canada</option>
+                        <option value="denmark">Denmark</option>
+                        <option value="egypt">Egypt</option>
+                        <option value="france">France</option>
+                        <option value="germany">Germany</option>
+                        <option value="hong kong">Hong Kong</option>
+                        <option value="indonesia" selected>Indonesia</option>
+                        <option value="japan">Japan</option>
+                        <option value="korea">Korea</option>
+                        <option value="lithuania">Lithuania</option>
+                        <option value="maldives">Maldives</option>
+                        <option value="netherlands">Netherlands</option>
+                        <option value="oman">Oman</option>
+                        <option value="philippines">Philippines</option>
+                        <option value="qatar">Qatar</option>
+                        <option value="russia">Russia</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="turkey">Turkey</option>
+                        <option value="united kingdom">United Kingdom</option>
+                        <option value="venezuela">Venezuela</option>
+                        <option value="zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- CAPTCHA SECTION -->
+            <div class="captcha-section">
+                
+                <form [formGroup]="aFormGroup">
+                    <ngx-recaptcha2 #captchaElem
+                      [siteKey]="siteKey"
+                      [theme]="theme"
+                      formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                  </form>
+
+            </div>
+
+            
+
+            <div class="terms-section">
+                <input type="checkbox" id="terms" name="terms" value="terms">
+                <label for="terms">I am 13 years of age or older and agree to the terms of the <span class="link">Steam Subscriber Agreement </span>and the <span class="link">Privacy Policy</span> Valve.</label><br>
+            </div>
+
+            <div class="submit-section">
+                <input type="reset" name="submit" value="continue" id="button">
+            </div>
+
+
+        </form>
+
+    </div>
+
+</main>
+
+
+

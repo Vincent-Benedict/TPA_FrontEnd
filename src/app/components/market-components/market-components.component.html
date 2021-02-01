@@ -1,0 +1,69 @@
+<main *ngIf="itemShow">
+
+    <div class="content">
+
+        <div class="header">
+            <p>MARKET ITEM LIST</p>
+        </div>
+
+        <div class="pagination-region">
+
+            <div class="pagination">
+
+                <div class="header-pagination">
+
+                    <div class="header-pagination-name">
+                        <p>NAME</p>
+                    </div>
+
+                    <div class="header-pagination-desc">
+                        <div class="quantity"><p>TRANSACTION</p></div>
+                        <div><p>PRICE</p></div>
+                    </div>
+
+                </div>
+
+                <div class="card" (click)="itemDetail(c?.id)" *ngFor="let c of itemShow; let i = index">
+                    <div class="card-left">
+                        <img src="{{c?.itemimage}}" alt="">
+
+                        <div class="not-image">
+                            <p>{{c?.itemname}}</p>
+                            <p>{{c?.game[0].name}}</p>
+                        </div>
+                    </div>
+
+                    <div class="card-right">
+                        <div class="item-transaction">
+                            <p>{{c?.itemtransaction}}</p>
+                        </div>
+                        <div class="item-price"> 
+                            <p>{{c?.itemprice | currency:"Rp ":'symbol':'3.0'}}</p>
+                        </div>
+                    </div>    
+                </div>
+
+            </div>
+
+            
+            <div class="pagination-button">
+                <div class="prev" style="cursor: pointer;" (click)="prev()">
+                    <p>
+                        &lt;
+                    </p>
+                </div>
+                <div class="page">
+                    <p>{{page}} / {{maxPage}}</p>
+                </div>
+                <div class="next" style="cursor: pointer;" (click)="next()">
+                    <p>></p>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>  
+
+
+
+</main>

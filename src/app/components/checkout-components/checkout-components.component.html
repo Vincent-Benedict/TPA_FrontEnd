@@ -1,0 +1,247 @@
+<main *ngIf="jwt && price && user">
+
+    <div *ngIf="user?.balance - price >= 0 && !changeMethods; then thenBlock else elseBlock"></div>
+
+
+    <ng-template #thenBlock class="then">
+        <div class="content">
+            <div class="content-head">
+                <p>CONFIRMATION FORM</p>
+            </div>
+
+            <div class="content-body">
+                <div class="content-body-head">
+                    <p>
+                        With This Confirmation Form, I am Ready to Buy These Games 
+                        with my Steam Wallet.
+                    </p>
+                </div>
+            
+                <div class="content-body-body">
+                    <p>
+                        My Steam Walet Balance
+                    </p>
+
+                    <p class="price">{{user?.balance | currency:"Rp ":'symbol':'3.0'}}</p>
+                </div>  
+            </div>
+
+            <div class="content-body2">
+                <p style="color: rgb(220, 239, 255); font-size: 20px; margin-bottom: 30px; text-align: center;
+                letter-spacing: 1.5px;">Your Bill</p>
+
+                <div>
+                    <div>
+                        <p>Subtotal:</p>
+                    </div>
+                    <div>
+                        {{price | currency:"Rp ":'symbol':'3.0'}}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p>Tax:</p>
+                    </div>
+                    <div>
+                        <p>Rp 0</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p>Total:</p>
+                    </div>
+                    <div>
+                        {{price | currency:"Rp ":'symbol':'3.0'}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content-tail">
+
+                <div class="content-tail-head">
+                    <p>Are you sure you want to buy these games ?</p>
+                </div>
+
+                <div class="content-tail-body">
+
+                    <div class="yes" (click)="yes()">
+                        <p>Yes</p>
+                    </div>
+
+                    <div class="no" (click)="no()">
+                        <p>No</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="change-method" (click)="changeMethod()">
+                <p>Change Method Payment</p>
+            </div>
+
+        </div>
+
+    </ng-template>
+
+
+
+    
+    <ng-template #elseBlock>
+
+        <div class="payment">
+
+            <div class="payment-header">
+                <p>PAYMENT FORM</p>
+            </div>
+
+            <div class="payment-form">
+
+                <div class="payment-method">
+                    <div class="label">
+                        <label for="payment-method-id">Please select a payment method</label>
+                    </div>
+    
+                    <div class="input">
+                        <select name="payment-method" id="payment-method-id" required [(ngModel)]="paymentMethod">
+                            <option value="Visa" selected>Visa</option>
+                            <option value="Bank">Bank</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="label">
+                        <label for="payment-card-id">Card Number</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="payment-card-id" required [(ngModel)]="paymentCard">
+                    </div>
+                </div>
+
+                <div class="payment-billing">
+                    <p>BILLING INFORMATION</p>
+                </div>
+
+                <div class="payment-billingrow1">
+                    <div class="payment-billingrow1-name">
+                        <div class="label">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="name" required [(ngModel)]="paymentName">
+                        </div>
+                    </div>
+
+                    <div class="payment-billingrow1-city">
+                        <div class="label">
+                            <label for="city">City</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="city" required [(ngModel)]="paymentCity">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="payment-billingrow2">
+                    <div class="payment-billingrow2-name">
+                        <div class="label">
+                            <label for="address">Billing Address</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="address" required [(ngModel)]="paymentAddress">
+                        </div>
+                    </div>
+
+                    <div class="payment-billingrow2-city">
+                        <div class="label">
+                            <label for="zip">Zip or postal code</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="zip" required [(ngModel)]="paymentZip">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="payment-billingrow3">
+                    <div class="payment-billingrow3-name">
+                        <div class="label">
+                            <label for="country">Country</label>
+                        </div>
+                        <div class="input">
+                            <select name="country" id="country" [(ngModel)]="paymentCountry">
+                                <option value="afghanistan">Afghanistan</option>
+                                <option value="brazil">Brazil</option>
+                                <option value="canada">Canada</option>
+                                <option value="denmark">Denmark</option>
+                                <option value="egypt">Egypt</option>
+                                <option value="france">France</option>
+                                <option value="germany">Germany</option>
+                                <option value="hong kong">Hong Kong</option>
+                                <option value="indonesia" selected>Indonesia</option>
+                                <option value="japan">Japan</option>
+                                <option value="korea">Korea</option>
+                                <option value="lithuania">Lithuania</option>
+                                <option value="maldives">Maldives</option>
+                                <option value="netherlands">Netherlands</option>
+                                <option value="oman">Oman</option>
+                                <option value="philippines">Philippines</option>
+                                <option value="qatar">Qatar</option>
+                                <option value="russia">Russia</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="turkey">Turkey</option>
+                                <option value="united kingdom">United Kingdom</option>
+                                <option value="venezuela">Venezuela</option>
+                                <option value="zimbabwe">Zimbabwe</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="payment-billingrow3-city">
+                        <div class="label">
+                            <label for="phone">Phone Number</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="phone" required [(ngModel)]="paymentPhone">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox" required [(ngModel)]="paymentChecked">
+                    <label for="checkbox">Save my payment information so checkout is easy next time</label>
+                </div>
+
+                <div class="paymentform-description">
+                    <p>You'll have a chance to review your order before it's placed.</p>
+                </div>
+
+                <div class="button">
+                    <input type="submit" (click)="submitForm()">
+                </div>
+
+            </div>
+
+
+
+            <div *ngIf="error != ''">
+                <p style="text-align: center; color: rgb(255, 161, 161); font-size: 12px; letter-spacing: 1.5px;">{{this.error}}</p>
+            </div>
+
+
+        </div>
+
+    </ng-template>
+
+
+</main>

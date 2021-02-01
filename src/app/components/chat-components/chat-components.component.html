@@ -1,0 +1,46 @@
+<main *ngIf="friend">
+
+    <div class="content">
+        <div class="header-region">
+
+            <img src="../../../assets/Avatar/{{friend?.avatar}}.jpg" alt="">
+            
+            <div>
+                <p class="username">{{friend?.username}}</p>
+                <p class="status">{{friend?.status}}</p>
+            </div>
+
+        </div>
+
+        <div class="chat-region">
+
+            <div class="chat-region-card" *ngFor="let c of chat; let i=index">
+                 <div class="user" *ngIf="c?.senderid == user.id">
+                    <p>{{c?.message}}</p>
+                 </div>
+
+                 <div class="recipient" *ngIf="c?.recipientid == user.id">
+                    <p>{{c?.message}}</p>
+                 </div>
+            </div>
+
+  
+        </div>
+
+
+        <div class="input-region">
+            <div>
+                <input type="text" [(ngModel)]="message" placeholder="Type text here...">
+            </div>
+
+            <div>
+                <input type="submit" value="send" (click)="submit()">
+            </div>
+        </div>
+    </div> 
+
+    
+
+
+
+</main>

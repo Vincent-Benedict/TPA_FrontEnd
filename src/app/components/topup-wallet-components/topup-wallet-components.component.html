@@ -1,0 +1,50 @@
+<main *ngIf="jwt">
+    
+    <div class="content">
+
+        <div class="content-header">
+            <p>REDEEM A STEAM GIFT CARD OR WALLET CODE</p>
+        </div>
+
+        <div class="content-body">
+            <p>ENTER YOUR STEAM WALLET CODE TO ADD FUNDS TO YOUR STEAM WALLET</p>
+        </div>
+
+        <div class="content-form">
+            <div class="content-form-label">
+                <label for="code">Steam Wallet Code</label>
+            </div>
+
+            <div class="content-form-input">
+                <div class="input">
+                    <input type="text" id="code" [(ngModel)]="code">
+                </div>
+                
+                <div class="button">
+                    <input type="submit" value="Continue" (click)="submit()">
+                </div>
+
+                <div style="color: rgb(255, 202, 202); margin-left: 15px; font-size: 13px; letter-spacing: 1.5px;" *ngIf="error">
+                    <p>{{error}}</p>
+                </div>
+            </div>
+            
+            <div class="content-form-note">
+                <p>Note : If the gift card you attempt to redeem is not in your currency. It will be automatically converted if redeemable in your region. Not all gift card currencies can be redeemed in all regions.</p>
+            </div>   
+
+        </div>
+
+        <div class="img">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/clusters/about_i18n_assets/about_i18n_assets_0/wallet_card_img_english.png?t=1610987256" alt="" width="250px">
+        </div>
+        
+
+
+    </div>
+
+
+
+
+
+</main>

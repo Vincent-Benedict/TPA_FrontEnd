@@ -1,0 +1,189 @@
+@import '../../styles/colors.scss';
+
+header{
+    background-color: $header;
+    min-width: 1000px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    margin: auto;
+    width: 70%;
+    min-width: 900px;
+    position: relative;
+    padding: 2rem 0;
+    color: $gray;
+
+    .left-menu{
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+
+        .logo-container{
+            width: 40%;
+        }
+        
+    }
+
+    .right-menu{
+
+        width: 18%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        font-size: 13px;
+
+        button{
+            color: $gray;
+            background-color: $green;
+            padding: 3px 8px;
+        }
+        
+        button:hover{
+            color: $white;
+        }
+
+        a{
+            text-decoration: none;
+            color: $gray;
+        }
+
+        a:hover{
+            color: $white;
+        }
+
+        .language{
+            .dropdown-language{
+                display: none;
+            }
+        }
+
+        .language>a{
+            color: $gray;
+        }
+
+        .language>a:hover{
+            color: $white;
+        }
+
+        .language>a:hover .dropdown-language{
+            
+            display: block;
+            z-index: 1;
+            position: absolute;
+            right: 5px;
+            background-color: $header;
+            box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.603);
+            width: 100%;
+            list-style: none;
+
+            li{
+                padding: 10px 10px;
+            }
+
+            li:hover a{
+                color: $white;
+            }
+        }
+    
+    }
+
+}
+
+
+
+// li, a, button{
+//     text-decoration: none;
+// }
+
+// .nav__links{
+//     list-style: none;
+
+//     li{
+//         display: inline-block;
+//         padding: 0px 10px;
+
+//         a{
+//             color: $gray;
+//             font-size: 15px;
+//         }
+
+//         a:hover{
+//             color: $white;
+//         }
+
+//     }
+
+// }
+
+
+li, a, button{
+    text-decoration: none;
+}
+
+.nav__links, .dropdown-menu{
+    list-style: none;
+    
+}
+
+
+
+.nav__links>li{
+    display: inline-block;
+    padding: 0px 10px;
+
+}
+
+.nav__links li a{
+    color: $gray;
+    font-size: 15px;
+}
+
+.dropdown-menu{
+    display: none;
+}
+
+li.dropdown:hover > a{
+    color: $white;
+}
+
+.dropdown-menu li a{
+    font-size: 12px;
+}
+
+li.dropdown:hover {
+
+    .dropdown-menu{
+        padding: 10px 0;
+        display: block;
+        z-index: 1;
+        position: absolute;
+        background-color: $header;
+        box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.603);
+        width: 15%;
+
+        li{
+            padding: 5px 0;
+            margin-left: 1rem;
+        }
+
+        li:hover a{
+            color: $white;
+        }
+    }
+    
+}
+
+.nav__links li a:hover{
+    color: $white;
+}
+
+
