@@ -1,17 +1,19 @@
-<main *ngIf="id && user && usergame && friends && comments && idLogin!=0">
+<main *ngIf="id && user && usergame && friends && activityShow && isFriend && comments && idLogin!=0">
 
     <div class="background">
-        <video autoplay loop poster="../../../assets/background-user/{{user.featuredbadge}}">
-            <source src="../../../assets/background-user/{{user.featuredbadge}}">
+        <video autoplay loop poster="../../../assets/User/background-user/{{user.background}}">
+            <source src="../../../assets/User/background-user/{{user.background}}">
         </video>
     </div>
 
-    <div class="content">
+    <div class="content" [style]="setMyStyle()">
         
         <div class="header">
             <div class="img">
-                <img src="../../../assets/Avatar/{{user?.avatar}}.jpg" alt="" width="164px">
-
+                <div class="img-image" style="background-image: url('../../../assets/User/Frame/{{user?.frame}}');">
+                    <img src="../../../assets/Avatar/{{user?.avatar}}" width="174px">
+                </div>
+                
                 <div class="desc"> 
                     <p>{{user?.username}}</p>
                     <p>Level {{user?.level}}</p>
@@ -19,12 +21,53 @@
                 </div>
             </div>
             
-
-            <div class="edit" *ngIf="idLogin == id"> 
-                <p>Edit Profile</p>
-            </div>
-        </div>
+            <div class="right"> 
+                <div class="upper">
+                    <div style="cursor: pointer;" *ngIf="idLogin != id && isFriend2" (click)="chat(id)">
+                        <img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_menu_notifications.png" alt="" width="40px">
+                    </div>
         
+                    <div class="report" *ngIf="idLogin != id" (click)="popUpReport()">
+                        <p>Report</p>
+                    </div>
+        
+                    <div class="edit" *ngIf="idLogin == id" (click)="edit()"> 
+                        <p>Edit Profile</p>
+                    </div>
+                </div>
+                
+                <div class="badge" routerLink="/badge">
+                    <div class="badge-img">
+                        <img src="../../../assets/User/badge/{{user?.badge.badgeimg}}" alt="">
+                    </div>
+                    
+
+                    <div class="badge-desc">
+                        <p>{{user?.badge.badgename}}</p>
+                        <p>{{user?.badge.badgexp}} points</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+       
+
+        <div class="report-modal">
+            
+            <p>Reason To Report</p>
+            
+            <div class="body">
+                <input type="text" class="input" [(ngModel)]="reportReason">
+            </div>
+            
+            <div class="tail">
+                <input type="button" value="submit" (click)="submitReport()">
+            </div>
+            
+               
+        </div> 
 
         <div class="content-body">
             <div class="user-game">
@@ -34,7 +77,7 @@
 
                 <div class="user-game-card" *ngFor="let g of usergame; let i = index">
                 
-                    <img src="../../../assets/Search Picture/{{g?.game[0].image}}.jpg" alt="" width="55%">
+                    <img src="../../../assets/Search Picture/{{g?.game[0].image}}.jpg" alt="" width="25%">
                 
                     <div>
                         <p class="card-name">{{g?.game[0].name}}</p>
@@ -46,27 +89,37 @@
 
             <div class="user-friend">
                 <div class="user-friend-header">
-                    <p>User Friend</p>
+                    <p (click)="redirectToFriend()">User Friend</p>
                 </div>
                 
                 <div class="user-friend-card" *ngFor="let f of friends; let i = index" (mouseenter)="hovered(i)" (mouseleave)="leave(i)">
                     <div class="user-friend-card-main">
-                        <div class="user-friend-card-main-image" (click)="navigate(f?.friend[0].id)" >
-                            <img src="../../../assets/Avatar/{{f?.friend[0].avatar}}.jpg" alt="">
+                        <div class="user-friend-card-main-image" (click)="navigate(f?.friend[0].customurl)" >
+                            <img src="../../../assets/Avatar/{{f?.friend[0].avatar}}" alt="">
 
                             <div class="user-friend-card-main-image-desc">
                                 <p>{{f?.friend[0].username}}</p>
-                                <p>{{f?.friend[0].status}}</p>
+                                <div *ngIf="f?.friend[0].status == 'online'">
+                                    <p style="color: rgb(107, 199, 252);">{{f?.friend[0].status}}</p>
+                                </div>
+
+                                <div *ngIf="f?.friend[0].status == 'offline'">
+                                    <p style="color: gray;">{{f?.friend[0].status}}</p>
+                                </div>
+                                
                             </div>
                         </div>
                         
 
                         <div class="user-friend-card-main-right">
-                            <div *ngIf="idLogin != f?.friend[0].id" >
+                            <div *ngIf="idLogin != f?.friend[0].id && isFriend[i] == true">
                                 <img style="cursor: pointer;" (click)="chat(f?.friend[0].id)" src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_menu_notifications.png" alt="" width="30px" height="25px">
                             </div>
+                            <div *ngIf="idLogin != f?.friend[0].id && isFriend[i] == false">
+                                <img style="cursor: pointer;" (click)="addFriend(f?.friend[0].id)" src="../../../assets/logo/addFriendSymbol.png" alt="" width="30px" height="25px">
+                            </div>
                             <div class="user-friend-card-main-right-level">
-                                <p>{{f?.friend[0].level}}</p>
+                                <p>{{f?.friend[0].level}}</p>                                
                             </div>
                                 
                         </div>
@@ -74,14 +127,14 @@
 
                     <div class="user-friend-card-hidden">
                         <div class="user-friend-card-hidden-video">
-                            <video autoplay loop poster="../../../assets/background-user/{{f?.friend[0].featuredbadge}}" width="100%" >
-                                <source src="../../../assets/background-user/{{f?.friend[0].featuredbadge}}">
-                            </video>
+                            <img src="../../../assets/User/mini-profile/{{f?.friend[0].miniprofile}}" alt="" width="100%">
                         </div>
 
                         <div class="user-friend-card-hidden-content">
                             <div class="user-friend-card-hidden-content-head">
-                                <img src="../../../assets/Avatar/{{f?.friend[0].avatar}}.jpg" alt="" width="100px">
+                                <div class="background" style="background-image: url('../../../assets/User/Frame/{{f?.friend[0].frame}}');">
+                                    <img style="border: 3px solid white;" src="../../../assets/Avatar/{{f?.friend[0].avatar}}" alt="" width="100px">
+                                </div>
 
                                 <div>
                                     <p>{{f?.friend[0].username}}</p>
@@ -111,7 +164,7 @@
             <div class="content-comment-body">
                 <div class="content-comment-body-card" *ngFor="let c of comments; let i = index">
                     
-                    <img src="../../../assets/Avatar/{{c?.person[0].avatar}}.jpg" alt="" width="40px">
+                    <img src="../../../assets/Avatar/{{c?.person[0].avatar}}" alt="" width="40px">
 
                     <div class="content-comment-body-card-desc">
                         <p class="username">{{c?.person[0].username}}</p>
@@ -121,11 +174,65 @@
                 </div>
 
             </div>
-
         </div>
 
+        <div class="content-inputcomment" *ngIf="idLogin != id">
+            <div class="content-inputcomment-header">
+                <p>Input Comment</p>
+            </div>
+            
+            <div class="content-inputcomment-body">
+                <div>
+                    <input type="text" class="input" [(ngModel)]="commentContent">
+                </div>
+                <div>
+                    <input type="submit" class="button" value="submit" (click)="submitComment()">
+                </div>
+            </div>
+             
+        </div>
+
+        <div class="content-activity">
+            
+            <div class="pagination">
+
+                <div class="header-pagination">
+
+                    <p>Acitivity</p>
+
+                </div>
+
+                <div class="card" *ngFor="let c of activityShow; let i = index">
+                    <div class="card-left">
+                        <img src="../../../assets/Avatar/{{c?.user.avatar}}" alt="" width="19.35px">
+                        <p>{{c?.activity}}</p>
+                    </div>
+                   
+                    <div class="card-right">
+                        <p>{{timeEach[i]}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="pagination-button">
+                <div class="prev" style="cursor: pointer;" (click)="prev()">
+                    <p>
+                        &lt;
+                    </p>
+                </div>
+                <div class="page">
+                    <p>{{page}} / {{maxPage}}</p>
+                </div>
+                <div class="next" style="cursor: pointer;" (click)="next()">
+                    <p>></p>
+                </div>
+                
+            </div>
+
+        </div>
                         
     </div>
     
-
 </main>

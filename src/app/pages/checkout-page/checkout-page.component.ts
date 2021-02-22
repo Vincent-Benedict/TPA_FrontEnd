@@ -11,6 +11,7 @@ export class CheckoutPageComponent implements OnInit {
   jwt = ""
 
   price;
+  state;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -19,6 +20,8 @@ export class CheckoutPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.price = this.actRoute.snapshot.paramMap.get('price');
+    this.state = this.actRoute.snapshot.paramMap.get('state');
+    console.log(this.state)
     this.jwt = localStorage.getItem("jwt")
 
     

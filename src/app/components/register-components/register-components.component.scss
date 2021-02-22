@@ -67,7 +67,6 @@ main{
                 scrollbar-color: $gray2 black;
                 font-size: 14px;
                 
-                
 
                 option{
                     color: $white;
@@ -107,5 +106,96 @@ main{
 
         }
 
+    }
+}
+
+
+.popup{
+    background-color: #32353C;
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: fit-content;
+    padding: 40px 30px;
+    min-width: 500px;
+    display: none;
+    
+
+    &-body{
+
+        &-header{
+            p{
+                font-size: 25px;
+                letter-spacing: 2.5px;
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+
+        &-form{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            &-mid{
+                
+                width: 80%;
+                
+                &-section{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+
+                    label{
+                        font-size: 13px;
+                        color: #b8b6b4;
+                        letter-spacing: 2px;
+                    }
+
+                    input{
+                        padding: 7px 10px;
+                        border-radius: 5px;
+                        background-color: #212429;
+                        color: white;
+                        font-size: 15px;
+                        letter-spacing: 2.5px;
+                        border-style: none;
+                    }
+
+                }
+
+                .button{
+                    margin-top: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    input{
+                        padding: 10px 35px;
+                        border-radius: 10px;
+                        background-color: rgb(75, 104, 21);
+                        color: $gray;
+                        border-style: none;
+                        cursor: pointer;
+                    }
+
+                    input:hover{
+                        background-color: rgb(103, 145, 25);
+                        color: $white;
+                    }
+
+                    input:active{
+                        background-color: rgb(62, 85, 19);
+                        color: $white;
+                    }
+                }
+            }
+        }
     }
 }

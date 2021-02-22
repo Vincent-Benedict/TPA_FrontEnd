@@ -1,0 +1,332 @@
+<main *ngIf="user">
+
+    <div class="header">
+        <p>{{user?.username}}'s Edit Profile</p>
+    </div>
+
+    <div class="body">
+        <div class="body-header">
+            <p>ABOUT</p>
+        </div>
+
+        <div class="body-body">
+            <div class="body-body-section">
+                <div class="label">
+                    <p>Display Name</p>
+                </div>
+                <div class="input">
+                    <input type="text" [(ngModel)]="username">
+                </div>
+            </div>
+
+            <div class="body-body-section">
+                <div class="label">
+                    <p>Real Name</p>
+                </div>
+                <div class="input">
+                    <input type="text" [(ngModel)]="realname">
+                </div>
+            </div>
+
+            <div class="body-body-section">
+                <div class="label">
+                    <p>Custom URL</p>
+                </div>
+                <div class="input">
+                    <input type="text" [(ngModel)]="url">
+                </div>
+            </div>
+
+            <div class="body-body-section">
+                <div class="label">
+                    <p>Country</p>
+                </div>
+                <div class="input">
+                    <select name="country" id="country" [(ngModel)]="country">
+                        <option value="afghanistan">Afghanistan</option>
+                        <option value="brazil">Brazil</option>
+                        <option value="canada">Canada</option>
+                        <option value="denmark">Denmark</option>
+                        <option value="egypt">Egypt</option>
+                        <option value="france">France</option>
+                        <option value="germany">Germany</option>
+                        <option value="hong kong">Hong Kong</option>
+                        <option value="indonesia" selected>Indonesia</option>
+                        <option value="japan">Japan</option>
+                        <option value="korea">Korea</option>
+                        <option value="lithuania">Lithuania</option>
+                        <option value="maldives">Maldives</option>
+                        <option value="netherlands">Netherlands</option>
+                        <option value="oman">Oman</option>
+                        <option value="philippines">Philippines</option>
+                        <option value="qatar">Qatar</option>
+                        <option value="russia">Russia</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="turkey">Turkey</option>
+                        <option value="united kingdom">United Kingdom</option>
+                        <option value="venezuela">Venezuela</option>
+                        <option value="zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="body-body-section">
+                <div class="label">
+                    <p>Summary</p>
+                </div>
+                <div class="input">
+                    <input type="text" [(ngModel)]="summary">
+                </div>
+            </div>
+
+            <div class="button">
+                <input type="submit" value="Save" (click)="saveAbout()">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="body2">
+
+        <div class="body2-header">
+            <p>AVATAR</p>
+        </div>
+
+        <div class="body2-body">
+
+            <div class="body2-body-head">
+                <div class="body2-body-head-left">
+                    <p>Current Avatar</p>
+
+                    <div class="img-back" style="background-image: url('../../../assets/User/Frame/{{frame}}');">
+                        <img src="../../../assets/Avatar/{{user?.avatar}}" alt="">
+                    </div>
+
+                </div>
+
+                <div class="body2-body-head-right">
+                    <div>
+                        <p>Upload Your Picture</p>
+                    </div>
+                    
+                    <div class="input-file">
+                        <input type="file" (change)="setGameHeader($event)">
+                    </div>
+                    
+                    <div>
+                        <p>Upload a file from your device. Image should be square, at least 184px x 184px.</p>
+                    </div>    
+
+                </div>
+            </div>
+
+            <div class="body2-body-body">
+
+                <div class="body2-body-body-head">
+                    <p>Your Avatar Frame</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card" *ngFor="let c of userframe" (click)="clickAvatar(c?.frame)">
+                        <img src="../../../assets/User/Frame/{{c?.frame}}" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="body2-body-tail">
+                <input type="submit" value="Save" (click)="saveAvatar()">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="body3">
+
+        <div class="body3-header">
+            <p>PROFILE BACKGROUND</p>
+        </div>
+
+        <div class="body3-body">
+
+            <div class="current">
+                <div class="current-header">
+                    <p>Current Background</p>
+                </div>
+
+                <div class="current-body">
+                    <video autoplay loop poster="../../../assets/User/background-user/{{currbackground}}" width="100%">
+                        <source src="../../../assets/User/background-user/{{currbackground}}">
+                    </video>
+                </div>
+            </div>
+
+            <div class="userbackground">
+
+                <div class="userbackground-header">
+                    <p>Your Background</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card" *ngFor="let c of userbackground; let i = index" (click)="clickBackground(c?.background)">
+                        <video autoplay loop poster="../../../assets/User/background-user/{{c?.background}}" width="100%">
+                            <source src="../../../assets/User/background-user/{{c?.background}}">
+                        </video>
+                    </div>
+                </div>
+                
+
+            </div>
+
+            <div class="body3-body-tail">
+                <input type="submit" value="Save" (click)="saveBackground()">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="body4">
+
+        <div class="body4-header">
+            <p>MINI PROFILE BACKGROUND</p>
+        </div>
+
+        <div class="body4-body">
+            <div class="current2">
+                <div class="current2-header">
+                    <p>Current Mini Profile Background</p>
+                </div>
+
+                <div class="current2-body">
+                    <img src="../../../assets/User/mini-profile/{{currminiprofile}}" alt="" width="100%">
+                </div>
+            </div>
+
+
+            <div class="userminiprofile">
+
+                <div class="userminiprofile-header">
+                    <p>Your Mini Profile</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card" *ngFor="let c of userminiprofile; let i = index" (click)="clickMiniProfile(c?.miniprofile)">
+                        <img src="../../../assets/User/mini-profile/{{c?.miniprofile}}" alt="" width="100%">
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="body4-body-tail">
+                <input type="submit" value="Save" (click)="saveMiniProfile()">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="body5">
+
+        <div class="body5-header">
+            <p>THEME</p>
+        </div>
+
+        <div class="body5-body">
+            <div class="current3">
+                <div class="current3-header">
+                    <p>Current Theme</p>
+                </div>
+
+                <div class="current3-body" [ngStyle]="setMyStyles(currtheme?.color)">
+                    <p>{{currtheme?.theme}}</p>
+                </div>
+            </div>
+
+            <div class="theme">
+                <div class="theme-header">
+                    <p>Your Theme</p>
+                </div>
+
+                <div class="cards">
+
+                    <div class="card" *ngFor="let c of theme; let i = index" [ngStyle]="setMyStyles(c?.color)" (click)="clickTheme(c)">
+                        <p>{{c?.theme}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="body5-body-tail">
+                <input type="submit" value="Save" (click)="saveTheme()">
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="body6">
+
+        <div class="body6-header">
+            <p>BADGE</p>
+        </div>
+
+        <div class="body6-body">
+            <div class="current4">
+                <div class="current4-header">
+                    <p>Current Badge</p>
+                </div>
+
+                <div class="current4-body">
+                    <div class="badge">
+                        
+                        <img src="../../../assets/User/badge/{{currbadge?.badgeimg}}" alt="">
+
+                        <div class="badge-desc">
+                            <p>{{currbadge?.badgename}}</p>
+                            <p>{{currbadge?.badgexp}} Points</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="userbadge">
+                <div class="userbadge-header">
+                    <p>Your Badge</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card" *ngFor="let c of userbadge; let i = index" (click)="clickBadge(c)">
+                        <img src="../../../assets/User/badge/{{c?.badgeimg}}" alt="">
+
+                        <div class="card-desc">
+                            <p>{{c?.badgename}}</p>
+                            <p>{{c?.badgexp}} Points</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="body6-body-tail">
+                <input type="submit" value="Save" (click)="saveBadge()">
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</main>
+
+

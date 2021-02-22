@@ -74,10 +74,34 @@ main{
             }
 
             &-right{
-                font-size: 12.5px;
-                color: $white;
-                background: rgba(48, 60, 73, 0.9);
-                padding: 6.5px 10px;
+
+                &-price{
+                    font-size: 12.5px;
+                    color: $white;
+                    background: rgba(48, 60, 73, 0.9);
+                    padding: 6.5px 10px;
+                }
+                
+                &-remove{
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 20px;
+
+                    p{
+                        font-size: 12px;
+                        letter-spacing: 2px;
+                        color: $gray;
+                        cursor: pointer;
+                    }
+
+                    p:hover{
+                        color: $white;
+                    }
+
+                    p:active{
+                        color: gray;
+                    }
+                }
 
                 p{
                     letter-spacing: 1.5px;

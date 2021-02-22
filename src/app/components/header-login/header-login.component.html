@@ -16,16 +16,17 @@
                   <li><a href="#h">HOME</a></li>
                   <li><a href="#d">DISCOVERY QUEUE</a></li>
                   <li><a href="#w">WISHLIST</a></li>
-                  <li><a href="#p">POINTS SHOP</a></li>
+                  <li><a routerLink='/pointshop'>POINTS SHOP</a></li>
                 </ul>
               </li>
-              <li class="dropdown"><a href="#">COMMUNITY</a>
+              <li class="dropdown"><a routerLink='/community'>COMMUNITY</a>
                 <ul class="dropdown-menu">
                   <li><a href="#h">HOME</a></li>
                   <li><a href="#dis">DISCUSSION</a></li>
                   <li><a href="#work">WORKSHOP</a></li>
                   <li><a routerLink='/market'>MARKET</a></li>
                   <li><a href="#bt">BROADCAST</a></li>
+                  <li *ngIf="token"><a routerLink='/inventory'>MY INVENTORY</a></li>
                 </ul>
               </li>
               <li><a href="#">ABOUT</a></li>
@@ -42,12 +43,70 @@
           </div>
           <div class="notify">
             <button>not</button>
+
+            <div class="notify-cards">
+
+              <p style="letter-spacing: 1.5px; font-size: 12px; text-align: center;">Notification</p>
+
+              <div class="notify-cards-card" *ngFor="let c of friendRequest; let i = index">
+
+                <div>
+                  <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+                  <p>{{c?.friend[0].username}} Added You</p>
+                </div>
+                
+                <div (click)="acceptRequest(c?.userid, c?.friendid)">
+                  <a>accept</a>
+                </div>
+              </div>
+
+              <div class="notify-cards-card2" *ngFor="let c of chatNotif; let i = index" (click)="goChat(c?.friend[0].id)">
+                <div>
+                  <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+                  <p style="color: yellow;">{{c?.friend[0].username}} Chat You !</p>
+                </div>
+              </div>
+
+              <div class="notify-cards-card3" *ngFor="let c of giftNotif; let i = index" (click)="redirectToProfile(c?.friend[0].id)">
+                <div>
+                  <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+                  <p style="color: rgb(255, 179, 38);">{{c?.friend[0].username}} has a Gift for You !</p>
+                </div>
+              </div>
+
+              <div class="notify-cards-card4" *ngFor="let c of commentNotif; let i = index" (click)="redirectToProfile2(c?.friend[0].id)">
+                <div>
+                  <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+                  <p style="color: rgb(135, 196, 66);">{{c?.friend[0].username}} add a Comment on your profile !</p>
+                </div>
+              </div>
+
+              <div class="notify-cards-card5" *ngFor="let c of itemNotif; let i = index" (click)="redirectToInventory(c?.id)">
+                <div>
+                  <img src="../../../assets/User/game-item/{{c?.item[0].itemimage}}" alt="">
+                  <p style="color: rgb(206, 79, 79);">{{c?.user[0].username}}, Item Transaction Success !</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- <div class="notify-cards-card2" *ngFor="let c of chatNotif; let i = index">
+              <p>{{c?.friend[0].username}} Chat You !</p>
+
+            </div> -->
+
+            
+
+
+
           </div>
+
+    
           <div>
             <p><a routerLink="/login">{{user?.username}}</a></p>
             <p class="saldo"><span style="cursor: pointer;" routerLink="/topup-wallet">{{user?.balance | currency:"Rp ":'symbol':'3.0'}}</span></p>
           </div>
-          <img style="cursor: pointer;" routerLink="/profile/{{user?.id}}" src="../../../assets/Avatar/{{user?.avatar}}.jpg" alt="" width="13%">
+          <img style="cursor: pointer;" src="../../../assets/Avatar/{{user?.avatar}}" alt="" width="13%" (click)="navigate(user?.customurl)">
         </div>
     </div>
     

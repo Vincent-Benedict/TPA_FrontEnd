@@ -20,8 +20,8 @@ export class MainMenuComponent implements OnInit {
   gameSpecials;
 
   gameHoveredReal;
-  gameHoveredName = "Knights College";
-  gameHoveredImage = "side-image1";
+  gameHoveredName = "Heroes of the Three Kingdoms 8";
+  gameHoveredImage = "side-image5";
   gameHoveredOverall = "";
   gameHoveredCategory = "";
 
@@ -53,12 +53,12 @@ export class MainMenuComponent implements OnInit {
     this.jwt = localStorage.getItem("jwt");
 
     this.service.getGameRecommendeds(8).subscribe(async data =>{
-      this.gameRecommendeds = data.data.gamesByStatusLimit;
+      this.gameRecommendeds = data.data.getgamesbyfeatureandrecommend;
       // console.log(this.gameRecommendeds)
     })
 
     this.service.getGameOnSales(6).subscribe(async data =>{
-      this.gameOnSales = data.data.gamesByStatusLimit;
+      this.gameOnSales = data.data.getgamesspecialoffer;
     })
 
     this.service.getGameCommunityRecommendeds(6).subscribe(async data =>{
@@ -66,7 +66,7 @@ export class MainMenuComponent implements OnInit {
     })
 
     this.service.getGameNewAndTrendings(5).subscribe(async data =>{
-      this.gameNewAndTrendings = data.data.gamesByStatusLimit;
+      this.gameNewAndTrendings = data.data.getgamesnewandtrending;
       // console.log(this.gameNewAndTrendingsName)
       //  await console.log(data)
     })
@@ -83,7 +83,7 @@ export class MainMenuComponent implements OnInit {
       //  await console.log(data)
     })
 
-    this.service.getGameHovered(21).subscribe(async data =>{ 
+    this.service.getGameHovered(35).subscribe(async data =>{ 
       this.gameHoveredReal = data.data.game;
       this.gameHoveredName = this.gameHoveredReal.name;
       this.gameHoveredImage = this.gameHoveredReal.sideimage;
@@ -91,7 +91,7 @@ export class MainMenuComponent implements OnInit {
       this.gameHoveredCategory = this.gameHoveredReal.category;
     })
 
-    this.service.getGameHovered(26).subscribe(async data =>{ 
+    this.service.getGameHovered(21).subscribe(async data =>{ 
       this.gameHoveredReal2 = data.data.game;
       this.gameHoveredName2 = this.gameHoveredReal2.name;
       this.gameHoveredImage2 = this.gameHoveredReal2.sideimage;
@@ -99,7 +99,7 @@ export class MainMenuComponent implements OnInit {
       this.gameHoveredCategory2 = this.gameHoveredReal2.category;
     })
 
-    this.service.getGameHovered(31).subscribe(async data =>{ 
+    this.service.getGameHovered(26).subscribe(async data =>{ 
       this.gameHoveredReal3 = data.data.game;
       this.gameHoveredName3 = this.gameHoveredReal3.name;
       this.gameHoveredImage3 = this.gameHoveredReal3.sideimage;

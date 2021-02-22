@@ -13,12 +13,13 @@ export class GameDetailComponentsComponent implements OnInit {
 
 
   @Input() id;
+  user;
   game;
   mostHelpfulReviews
   recentlyPostedReviews;
   jwt="";
-  isAdded="";
-  isHaving="";
+  isAdded;
+  isHaving;
 
   myReview="";
 
@@ -39,14 +40,18 @@ export class GameDetailComponentsComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.game);
     this.jwt = localStorage.getItem("jwt");
+
+    this.service.getUserByToken(this.jwt).subscribe(async data => {
+      this.user = data.data.getUserByToken;
+    })
      
     this.service.getGameByIdWithVideoReqAndPicture(this.id).subscribe(async data=>{ 
       this.game = data.data.game;
       // console.log(this.game)
     })
 
-    this.service.getReviewsByGameIdEqualsUpvotedAndLimit(this.id, 0, 5).subscribe(async data =>{
-      this.recentlyPostedReviews = data.data.reviewsByGameIdEqualsUpvotedAndLimit
+    this.service.getReviewsRecently(this.id, 5).subscribe(async data =>{
+      this.recentlyPostedReviews = data.data.reviewsRecently
       // await console.log(this.recentlyPostedReviews)
 
       for (let i = 0; i < this.recentlyPostedReviews.length; i++) {
@@ -58,8 +63,8 @@ export class GameDetailComponentsComponent implements OnInit {
 
     })
 
-    this.service.getReviewsByGameIdGreaterUpvotedAndLimit(this.id, 1, 5).subscribe(async data=>{
-      this.mostHelpfulReviews = data.data.reviewsByGameIdGreaterUpvotedAndLimit
+    this.service.getReviewsUpvoted(this.id, 5).subscribe(async data=>{
+      this.mostHelpfulReviews = data.data.reviewsUpvoted
       // await console.log(this.mostHelpfulReviews)
 
       for (let i = 0; i < this.mostHelpfulReviews.length; i++) {
@@ -69,30 +74,36 @@ export class GameDetailComponentsComponent implements OnInit {
       
     })
 
-    this.service.isAddedGameToWishlist(this.jwt, this.id).subscribe(async data =>{
+    
+    if(this.jwt != ""){
 
-      // this.isAdded 
-      const x = data.data.isaddedgametowishlist
+      this.service.isAddedGameToWishlist(this.jwt, this.id).subscribe(async data =>{
 
-      if(x == true){
-        this.isAdded = "true"
-      }else{
-        this.isAdded = "false"
-      }
+        // this.isAdded 
+        const x = data.data.isaddedgametowishlist
+  
+        if(x == true){
+          this.isAdded = "true"
+        }else{
+          this.isAdded = "false"
+        }
+  
+      })
 
-    })
+      this.service.checkUserIsHavingAGame(this.jwt, this.id).subscribe(async data=>{
+        const x = data.data.checkuserishavingagame
+        if(x == true){
+          this.isHaving = "true"
+        }else{
+          this.isHaving = "false"
+        }
+  
+        // console.log(this.isHaving)
+  
+      })
+    }
 
-    this.service.checkUserIsHavingAGame(this.jwt, this.id).subscribe(async data=>{
-      const x = data.data.checkuserishavingagame
-      if(x == true){
-        this.isHaving = "true"
-      }else{
-        this.isHaving = "false"
-      }
-
-      // console.log(this.isHaving)
-
-    })
+    
 
     
   }
@@ -151,11 +162,16 @@ export class GameDetailComponentsComponent implements OnInit {
   wishlistClicked(){
   
     this.service.insertGameIntoWishlist(this.jwt, this.id).subscribe(async data =>{
-      await console.log(data)
     })
 
+    if(this.game.discount > 0){
+      this.service.sendEmailWishlist(this.user.email, this.game.name).subscribe(async data => {
+        console.log(data)
+      })
+    }
+    
+    
     this.isAdded="true";
-    console.log("oi")
   }
 
   redirectToWishlist(){
@@ -171,8 +187,10 @@ export class GameDetailComponentsComponent implements OnInit {
   
         // nambahin data langsung masuk
         this.recentlyPostedReviews = [...this.recentlyPostedReviews, (data.data as any).insertreview]
-  
+      })
 
+      this.service.insertRecentActivity(this.jwt, this.user.username + " Submit a Review on Game " + this.game.name).subscribe(async data => {
+        console.log(data.data)
       })
 
       this.myReview = '';

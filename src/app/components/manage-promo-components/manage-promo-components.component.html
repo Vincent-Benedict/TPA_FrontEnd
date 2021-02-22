@@ -1,0 +1,160 @@
+<main>
+
+    <div class="content">
+        <div class="content-header">
+            <p routerLink="/home-admin" style="cursor: pointer;">Admin Manage Promo</p>
+        </div>
+
+
+        <div class="pagination-region">
+
+            <div class="pagination">
+
+                <div class="card" *ngFor="let c of gamePromoShow; let i = index">
+                    <div class="card-left">
+                        <img src="../../../assets/Search Picture/{{c?.image}}.jpg" alt="">
+
+                        <div class="desc">
+                            <p>{{c?.name}}</p>
+                            <p>{{c?.category}}</p>
+                        </div>
+                    </div>
+
+                    <div class="card-mid1">
+                        <p>-{{c?.discount}}%</p>
+                    </div>
+
+                    <div class="card-mid2">
+                        <p>{{c?.price | currency:"Rp. ":'symbol':'3.0'}}</p>
+                        <p>{{c?.price - (c.price * c.discount / 100) | currency:"Rp. ":'symbol':'3.0'}}</p>
+                    </div>
+
+                    <div class="card-right">
+                        <div class="update-button" (click)="showPopUpUpdate(c)">
+                            <p>UPDATE</p>
+                        </div>
+                        <div class="delete-button" (click)="showPopUpDelete(c)">
+                            <p>DELETE</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            
+            <div class="pagination-button">
+                <div class="prev" style="cursor: pointer;" (click)="prev()">
+                    <p>
+                        &lt;
+                    </p>
+                </div>
+                <div class="page">
+                    <p>{{page}} / {{maxPage}}</p>
+                </div>
+                <div class="next" style="cursor: pointer;" (click)="next()">
+                    <p>></p>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="insert">
+
+        <div class="insert-header">
+            <p>Insert Promo</p>
+        </div>
+
+        <div class="insert-body">
+
+            <div class="game">
+                <div class="label">
+                    <p>Select Game</p>
+                </div>
+
+                <div class="input">
+                    <select name="games" id="game" [(ngModel)]="selectedId">
+                        <option value="{{c?.id}}" *ngFor="let c of games">{{c?.name}}</option>     
+                    </select>
+                </div>
+            </div>
+
+            <div class="promo">
+                <div class="label">
+                    <p>Insert Promo</p>
+                </div>
+
+                <div class="input">
+                    <input type="number" min="1" max="100" [(ngModel)]="promo">
+                </div>
+            </div>
+
+            <div class="button" (click)="insertPromo()">
+                <p>Submit</p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <div class="overlay">
+        <div class="overlay-delete">
+            <div class="header">
+                <p>Are You sure You Want to Delete ?</p>
+            </div>
+            
+
+            <div class="button">
+                <div class="button-no" (click)="closePopUpDelete()">
+                    <p>No</p>
+                </div>
+
+                <div class="button-yes" (click)="deleteTheGamePromo()">
+                    <p>Yes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay2">
+        <div class="overlay2-update">
+            <div class="header">
+                <div class="title">
+                    <p>Update Game</p>
+                </div>
+                <div>
+                    <span (click)="closePopUpUpdate()">x</span>
+                </div>
+                
+            </div>
+
+            <div class="body" *ngIf="updateGame">
+                <img src="../../../assets/Search Picture/{{updateGame?.image}}.jpg" alt="">
+            </div>
+
+            <div class="body2">
+                <div class="label">
+                    <p>Update Promo</p>
+                </div>
+
+                <div class="input">
+                    <input type="number" min="1" max="100" [(ngModel)]="updatePromo">
+                </div>
+            </div>
+
+            <div class="button" (click)="funcUpdatePromo()">
+                <p>UPDATE</p>
+            </div>
+        </div>
+    </div>
+
+
+</main>

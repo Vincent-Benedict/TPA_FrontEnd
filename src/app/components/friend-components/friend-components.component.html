@@ -1,0 +1,253 @@
+<main *ngIf="jwt && receivedInvites && sentInvites">
+
+    <div class="content">
+
+        <div class="content-friends">
+
+            <div class="content-friends-header">
+                <div class="title">
+                    <p>Friends {{friendsnumber}}</p>
+                </div>
+
+                <div class="search">    
+                    <input type="text" placeholder="search friend" name="search" [(ngModel)]="nameSearchString" (input) = "search()">
+                    <button style="cursor: pointer;" type="submit"><img src="../../../assets/logo/search-icon.png" alt=""></button>   
+                </div>
+            </div>
+
+            <div class="content-friends-body">
+
+                <div class="online">
+
+                    <div class="online-header">
+                        <p>Online</p>
+                    </div>
+
+                    <div class="online-cards">
+
+                        <div class="card" *ngFor="let c of onlineFriends; let i = index;" >
+                            <div class="card-main">
+                                <div class="card-main-left" (click)="redirectProfile(c?.customurl)">
+                                    <img src="../../../assets/Avatar/{{c?.avatar}}" alt="">
+    
+                                    <div class="card-main-left-desc">
+                                        <p>{{c?.username}}</p>
+                                        <p style="color: rgb(82, 170, 221);">{{c?.status}}</p>
+                                    </div>
+                                </div>
+    
+                                <div class="card-main-right">
+                                    <div class="card-main-right-level">
+                                        <p>{{c?.level}}</p>
+                                    </div>
+                                    
+                                    <div class="card-main-right-report" (click)="onlineReportClicked(i)"></div>
+
+                                </div>
+                            </div>
+                            
+
+
+
+                            <div class="onlinehidden">
+                                <p>Add Report</p>
+                                <div class="report">
+                                    <input type="text" [(ngModel)]="reportReason">
+                                </div>
+                                
+                                <div class="button">
+                                    <input type="submit" (click)="submitReason(c?.id)"> 
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="offline">
+                    <div class="offline-header">
+                        <p>Offline</p>
+                    </div>
+
+
+                    <div class="offline-cards">
+
+                        <div class="card" *ngFor="let c of offlineFriends; let i = index;">
+                            <div class="card-main">
+                                <div class="card-main-left" (click)="redirectProfile(c?.customurl)">
+                                    <img src="../../../assets/Avatar/{{c?.avatar}}" alt="">
+    
+                                    <div class="card-main-left-desc">
+                                        <p>{{c?.username}}</p>
+                                        <p style="color: rgb(143, 143, 143);">{{c?.status}}</p>
+                                    </div>
+                                </div>
+    
+                                <div class="card-main-right">
+                                    <div class="card-main-right-level">
+                                        <p>{{c?.level}}</p>
+                                    </div>
+    
+                                    <div class="card-main-right-report" (click)="offlineReportClicked(i)"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="offlinehidden">
+                                <p>Add Report</p>
+                                <div class="report">
+                                    <input type="text" [(ngModel)]="reportReason">
+                                </div>
+                                
+                                <div class="button">
+                                    <input type="submit" (click)="submitReason(c?.id)">
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="content-addfriend">
+            <div class="content-addfriend-header">
+                <p>Add Friend</p>     
+            </div>
+
+            <div class="content-addfriend-body">
+                <div class="mycode">
+                    <div class="mycode-title">
+                        <p>Your Friend Code</p>
+                    </div>
+                    <div class="mycode-content">
+                        <p>{{user?.friendcode}}</p>
+                    </div>
+                </div>
+                <div class="searchcode">
+                    <div class="searchcode-title">
+                        <p>Enter your friend's Friend Code to invite them to connect.</p>
+                    </div>
+                    <div class="searchcode-content">
+                        <input type="text" placeholder="Enter a friend code here..." [(ngModel)]="friendCode">
+                        <div class="searchcode-content-search" (click)="searchFriendCode()">
+                            <p>search</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-addfriend-tail">
+                <div class="searchedfriend" *ngIf="searchedFriend && searchedFriend?.id != 0">
+                    <div class="searchedfriend-left">
+                        <img src="../../../assets/Avatar/{{searchedFriend?.avatar}}" alt="">
+
+                        <div class="searchedfriend-left-desc">
+                            <p>{{searchedFriend?.username}}</p>
+                            <p>{{searchedFriend?.status}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="searchedfriend-right" *ngIf="searchedFriendStatus == 0">
+                        <img src="../../../assets/logo/addFriendSymbol.png" alt="" (click)="addFriendRequest(searchedFriend?.id)">
+                    </div>
+                    
+                </div>
+
+                <div *ngIf="error != ''">
+                    <p style="color: white; font-size: 12px; letter-spacing: 2.5px;">{{error}}</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="content-invites">
+
+            <div class="content-invites-received">
+                <div class="content-invites-received-header">
+                    <p>RECEIVED INVITES</p>
+                </div>
+
+                <div class="cards">
+
+                    <div class="card" *ngFor="let c of receivedInvites; let i = index">
+                        <div class="card-left">
+                            <div class="card-left-level"><p>{{c?.friend[0].level}}</p></div>
+                            <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+                            <div class="card-left-username"><p>{{c?.friend[0].username}}</p></div>
+                        </div>
+
+                        <div class="card-right">
+                            <div (click)="accept(c?.userid, c?.friendid)"><p>Accept</p></div>
+                            <div (click)="decline(c?.userid, c?.friendid)"><p>Decline</p></div>
+                            <div (click)="ignore(c?.userid, c?.friendid)"><p>Ignore</p></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="content-invites-sent">
+                <div class="content-invites-sent-header">
+                    <p>SENT INVITES</p>
+                </div>
+
+                <div class="cards">
+
+                    <div class="card" *ngFor="let c of sentInvites; let i = index">
+                        <div class="card-left">
+                            <div class="card-left-level"><p>{{c?.user[0].level}}</p></div>
+                            <img src="../../../assets/Avatar/{{c?.user[0].avatar}}" alt="">
+                            <div class="card-left-username"><p>{{c?.user[0].username}}</p></div>
+                        </div>
+
+                        <div class="card-right">
+                            <div><p>Invites Sent</p></div>
+                        </div>
+
+                    </div>
+
+                    <div class="card" *ngFor="let c of ignored; let i = index">
+                        <div class="card-left">
+                            <div class="card-left-level"><p>{{c?.friend[0].level}}</p></div>
+                            <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+                            <div class="card-left-username"><p>{{c?.friend[0].username}}</p></div>
+                        </div>
+
+                        <div class="card-right">
+                            <div><p>Invites Sent</p></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</main>

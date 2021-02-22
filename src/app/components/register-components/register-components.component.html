@@ -12,7 +12,7 @@
                 </div>
     
                 <div class="email-input">
-                    <input class="input" type="email" name="email" id="email">
+                    <input class="input" type="email" name="email" id="email" [(ngModel)]="email">
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="address-input">
-                    <input class="input" type="text" name="address" id="address">
+                    <input class="input" type="text" name="address" id="address" [(ngModel)]="confirmEmail">
                 </div>
             </div>
             
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="country-input">
-                    <select name="country" id="country">
+                    <select name="country" id="country" [(ngModel)]="country">
                         <option value="afghanistan">Afghanistan</option>
                         <option value="brazil">Brazil</option>
                         <option value="canada">Canada</option>
@@ -41,7 +41,7 @@
                         <option value="france">France</option>
                         <option value="germany">Germany</option>
                         <option value="hong kong">Hong Kong</option>
-                        <option value="indonesia" selected>Indonesia</option>
+                        <option value="indonesia">Indonesia</option>
                         <option value="japan">Japan</option>
                         <option value="korea">Korea</option>
                         <option value="lithuania">Lithuania</option>
@@ -76,18 +76,83 @@
             
 
             <div class="terms-section">
-                <input type="checkbox" id="terms" name="terms" value="terms">
+                <input type="checkbox" id="terms" name="terms" value="terms" [(ngModel)]="checked">
                 <label for="terms">I am 13 years of age or older and agree to the terms of the <span class="link">Steam Subscriber Agreement </span>and the <span class="link">Privacy Policy</span> Valve.</label><br>
             </div>
 
             <div class="submit-section">
-                <input type="reset" name="submit" value="continue" id="button">
+                <input type="submit" name="submit" value="continue" id="button" (click)="continue()">
+            </div>
+
+            <div *ngIf="error">
+                <p style="color: white; font-size: 13px; letter-spacing: 2px;">{{error}}</p>
             </div>
 
 
         </form>
 
     </div>
+
+    <div class="popup">
+
+        <div class="popup-body">
+            <div class="popup-body-header">
+                <p>Account Registration</p>
+            </div>
+
+            <div class="popup-body-form">
+                <div class="popup-body-form-mid">
+                    <div class="popup-body-form-mid-section">
+                        <div>
+                            <label for="account">Account</label>
+                        </div>
+                        <div>
+                            <input type="text" id="account" [(ngModel)]="account">
+                        </div>
+                    </div>
+                    
+                    <div class="popup-body-form-mid-section">
+                        <div>
+                            <label for="password">Password</label>
+                        </div>
+                        <div>
+                            <input type="password" id="password" [(ngModel)]="password">
+                        </div>
+                    </div>
+                    
+                    <div class="popup-body-form-mid-section">
+                        <div>
+                            <label for="confirm-password">Confirm Password</label>
+                        </div>
+                        <div>
+                            <input type="password" id="confirm-password" [(ngModel)]="confirmPassword">
+                        </div>
+                    </div>
+                    
+                    <div class="popup-body-form-mid-section">
+                        <div>
+                            <label for="otp-code">OTP Code</label>
+                        </div>
+                        <div>
+                            <input type="text" id="otp-code" [(ngModel)]="otpCode">
+                        </div>
+                    </div>
+                    
+
+                    <div class="button">
+                        <input type="submit" value="register" (click)="register()">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="this.error2" style="margin-top: 30px;">
+                <p style="color: white; font-size: 13px; letter-spacing: 2px; text-align: center;">{{error2}}</p>
+            </div>
+
+        </div>
+
+    </div>
+
 
 </main>
 

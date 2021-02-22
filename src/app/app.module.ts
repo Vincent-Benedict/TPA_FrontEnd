@@ -42,6 +42,37 @@ import { ChatComponentsComponent } from './components/chat-components/chat-compo
 import { ChatPageComponent } from './pages/chat-page/chat-page.component';
 import { SearchGamePageComponent } from './pages/search-game-page/search-game-page.component';
 import { SearchGameComponentsComponent } from './components/search-game-components/search-game-components.component';
+import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
+import { EditProfileComponentsComponent } from './components/edit-profile-components/edit-profile-components.component';
+import { Checkout2ComponentsComponent } from './components/checkout2-components/checkout2-components.component';
+import { FriendPageComponent } from './pages/friend-page/friend-page.component';
+import { FriendComponentsComponent } from './components/friend-components/friend-components.component';
+import { PointShopPageComponent } from './pages/point-shop-page/point-shop-page.component';
+import { PointShopComponentsComponent } from './components/point-shop-components/point-shop-components.component';
+import { CommunityPageComponent } from './pages/community-page/community-page.component';
+import { CommunityComponentsComponent } from './components/community-components/community-components.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tab/tab.component';
+import { ReviewDetailPageComponent } from './pages/review-detail-page/review-detail-page.component';
+import { ReviewDetailComponentsComponent } from './components/review-detail-components/review-detail-components.component';
+import { DiscussionDetailPageComponent } from './pages/discussion-detail-page/discussion-detail-page.component';
+import { DiscussionDetailComponentsComponent } from './components/discussion-detail-components/discussion-detail-components.component';
+import { InventoryComponentsComponent } from './components/inventory-components/inventory-components.component';
+import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
+import { BadgePageComponent } from './pages/badge-page/badge-page.component';
+import { BadgeComponentsComponent } from './components/badge-components/badge-components.component';
+import { DiscoveryPageComponent } from './pages/discovery-page/discovery-page.component';
+import { DiscoveryComponentsComponent } from './components/discovery-components/discovery-components.component';
+import { LoginAdminComponentsComponent } from './components/login-admin-components/login-admin-components.component';
+import { LoginAdminPageComponent } from './pages/login-admin-page/login-admin-page.component';
+import { AdminHomePageComponent } from './pages/admin-home-page/admin-home-page.component';
+import { AdminHomeComponentsComponent } from './components/admin-home-components/admin-home-components.component';
+import { ManageGameComponentsComponent } from './components/manage-game-components/manage-game-components.component';
+import { ManageGamePageComponent } from './pages/manage-game-page/manage-game-page.component';
+import { ManagePromoPageComponent } from './pages/manage-promo-page/manage-promo-page.component';
+import { ManagePromoComponentsComponent } from './components/manage-promo-components/manage-promo-components.component';
+import { ManageUserPageComponent } from './pages/manage-user-page/manage-user-page.component';
+import { ManageUserComponentsComponent } from './components/manage-user-components/manage-user-components.component';
 
 
 
@@ -79,6 +110,37 @@ import { SearchGameComponentsComponent } from './components/search-game-componen
     ChatPageComponent,
     SearchGamePageComponent,
     SearchGameComponentsComponent,
+    EditProfilePageComponent,
+    EditProfileComponentsComponent,
+    Checkout2ComponentsComponent,
+    FriendPageComponent,
+    FriendComponentsComponent,
+    PointShopPageComponent,
+    PointShopComponentsComponent,
+    CommunityPageComponent,
+    CommunityComponentsComponent,
+    TabsComponent,
+    TabComponent,
+    ReviewDetailPageComponent,
+    ReviewDetailComponentsComponent,
+    DiscussionDetailPageComponent,
+    DiscussionDetailComponentsComponent,
+    InventoryComponentsComponent,
+    InventoryPageComponent,
+    BadgePageComponent,
+    BadgeComponentsComponent,
+    DiscoveryPageComponent,
+    DiscoveryComponentsComponent,
+    LoginAdminComponentsComponent,
+    LoginAdminPageComponent,
+    AdminHomePageComponent,
+    AdminHomeComponentsComponent,
+    ManageGameComponentsComponent,
+    ManageGamePageComponent,
+    ManagePromoPageComponent,
+    ManagePromoComponentsComponent,
+    ManageUserPageComponent,
+    ManageUserComponentsComponent,
   ],
   imports: [
     BrowserModule,

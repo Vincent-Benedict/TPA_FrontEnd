@@ -1,8 +1,8 @@
-<main>
+<main *ngIf="jwt && data && wishlist">
 
     <div class="content">
        <div class="header">
-           <img src="../../../assets/Avatar/{{data?.avatar}}.jpg" alt="">
+           <img src="../../../assets/Avatar/{{data?.avatar}}" alt="">
             <p>{{data?.username}}'S WISHLIST </p>
        </div>
 
@@ -13,7 +13,7 @@
             <div class="card" *ngFor="let g of wishlist">
 
                 <div class="card-left">
-                    <img src="../../../assets/{{g?.game[0]?.image}}.jpg" alt="" width="292px" height="136px">
+                    <img src="../../../assets/Search Picture/{{g?.game[0]?.image}}.jpg" alt="" width="292px" height="136px">
 
                     <div class="card-content">
                         <div class="game-name">
@@ -33,7 +33,14 @@
                 
 
                 <div class="card-right">
-                    <p>{{g?.game[0]?.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                    <div class="card-right-price">
+                        <p>{{g?.game[0]?.price - (g?.game[0]?.price * g?.game[0]?.discount / 100)  | currency:"Rp ":'symbol':'3.0'}}</p>
+                    </div>
+                    
+                    <div class="card-right-remove">
+                        <p (click)="remove(g?.game[0].id)">Remove</p>
+                    </div>
+                    
                 </div>
 
             </div>

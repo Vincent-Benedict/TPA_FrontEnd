@@ -1,0 +1,160 @@
+<main>
+
+    <div class="content">
+
+        <div class="content-header">
+            <p>Inventory</p>
+        </div>
+
+        <div class="content-body" *ngIf="games">
+
+            <div class="content-body-header">
+                <div class="tab" *ngFor="let c of games; let i = index" (click)="tabClicked(i, c?.game[0].id)" [ngStyle]="initTabStyles(i)">
+                    <p>{{c?.game[0].name}}</p>
+                </div>
+            </div>
+            <div class="content-body-body2">
+                <div class="header">
+                    <p>{{gameName}}</p>
+                </div>
+
+                <div class="searchbar">
+                    <div class="label">
+                        <p>Looking for a specific item?</p>
+                    </div>
+                    <div class="input">
+                        <input type="text" placeholder="start typing an item name here" [(ngModel)]="searchString" (input)="filterData()">
+                    </div>
+                </div>
+
+                <div class="content2">
+
+                    <div class="pagination-region">
+
+                        <div class="pagination">
+
+                            <div class="header-pagination">
+                                <p>Game Item</p>
+                            </div>
+                            
+                            <div class="cards">
+                                <div style="cursor: pointer;" class="card" *ngFor="let c of itemShow; let i = index" (click)="clickDetail(c)">
+                                    <img src="../../../assets/User/game-item/{{c?.item[0].itemimage}}" alt="">
+                                </div>
+                            </div>
+                            
+            
+                        </div>
+            
+                        
+                        <div class="pagination-button">
+                            <div class="prev" style="cursor: pointer;" (click)="prev()">
+                                <p>
+                                    &lt;
+                                </p>
+                            </div>
+                            <div class="page">
+                                <p>{{page}} / {{maxPage}}</p>
+                            </div>
+                            <div class="next" style="cursor: pointer;" (click)="next()">
+                                <p>></p>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                    <div class="detail-region">
+                        <div class="img">
+                            <img src="../../../assets/User/game-item/{{itemDetail?.itemimage}}" alt="">
+                        </div>
+
+                        <div class="desc">
+                            <p>{{itemDetail?.itemname}}</p>
+                            <p>{{gameName}}</p>
+                            <p>{{itemDetail?.itemdescription}}</p>
+                        </div>
+
+                        <div class="buy-area">
+
+                            <div class="button" (click)="openHidden()">
+                                <p>Sell</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="overlay-hidden">
+
+            <div class="hidden">
+                <div class="hidden-header">
+                    <div class="title">
+                        <p>PUT AN ITEM UP FOR SALE</p>
+                    </div>
+
+                    <div class="span-close" (click)="closeHidden()">
+                        <span class="close">×</span>
+                    </div>
+                </div>
+
+                <div class="hidden-body">
+                    <img src="../../../assets/User/game-item/{{itemDetail?.itemimage}}" alt="">
+
+                    <div class="desc">
+                        <p>{{itemDetail?.itemname}}</p>
+                        <p>{{gameName}}</p>
+                    </div>
+
+                </div>  
+                
+                <div class="hidden-body2">
+
+
+                </div>
+
+                <div class="hidden-tail">
+
+                    <div>
+                        <div class="label">
+                            <p>You Receive</p>
+                        </div>
+                        <div class="input">
+                            <input type="text" [(ngModel)]="received" (input)="convertPrice()">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="label">
+                            <p>Buyer Pays</p>
+                        </div>
+                        <div class="input">
+                            <input type="text" [(ngModel)]="buyerPays">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="hidden-button" (click)="sellItem()">
+                    <p>
+                        Ok, put it up for sale
+                    </p>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+</main>

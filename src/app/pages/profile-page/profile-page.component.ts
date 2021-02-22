@@ -9,14 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfilePageComponent implements OnInit {
 
   jwt = "";
-  id;
+  customurl;
 
   constructor(
     private actRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.id = this.actRoute.snapshot.paramMap.get('id');
+    this.customurl = this.actRoute.snapshot.paramMap.get('customurl');
     this.jwt = localStorage.getItem("jwt")
   }
 

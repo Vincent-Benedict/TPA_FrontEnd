@@ -1,0 +1,149 @@
+<main *ngIf="avatar && frame && background && minibackground && chatsticker">
+
+    <div class="header">
+        <div class="header-left">
+            <p>THE POINTS SHOP</p>
+        </div>
+        <div class="header-right">
+            <p>Your Points</p>
+            <p>{{user?.point}}</p>
+        </div>
+    </div>   
+
+    <div class="content">
+
+        <div class="content-avatar">
+            <div class="content-avatar-header">
+                <p>ALL ANIMATED AVATARS</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card" *ngFor="let c of avatar; let i = index">
+                    <div class="card-img">
+                        <img src="../../../assets/Avatar/{{c?.avatarimage}}" alt="">
+                    </div>
+                    <div class="card-desc">
+                        <p>{{c?.avatarname}}</p>
+                        <p>Avatar Animate</p>
+                        <p style="text-align: right">{{c?.avatarpoint}}</p>
+                    </div>
+
+                    <div class="button" (click)="buyAvatar()">
+                        <p>Buy</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-frame">
+            <div class="content-frame-header">
+                <p>ALL FRAMES</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card" *ngFor="let c of frame; let i = index">
+                    <div class="card-img">
+                        <img src="../../../assets/User/Frame/{{c?.frameimage}}" alt="">
+                    </div>
+                    <div class="card-desc">
+                        <p>{{c?.framename}}</p>
+                        <p>Frame Animate</p>
+                        <p style="text-align: right">{{c?.framepoint}}</p>
+                    </div>
+                    <div class="button" (click)="buyFrame(c)">
+                        <p>Buy</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="content-background">
+            <div class="content-background-header">
+                <p>ALL PROFILE BACKGROUND</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card" *ngFor="let c of background; let i = index">
+                    <div class="card-img2">
+                        <img src="../../../assets/User/background-user/{{c?.backgroundimage}}" alt="">
+                    </div>
+                    <div class="card-desc">
+                        <p>{{c?.backgroundname}}</p>
+                        <p>Profile Background</p>
+                        <p style="text-align: right">{{c?.backgroundpoint}}</p>
+                    </div>
+                    <div class="button" (click)="buyBackground(c)">
+                        <p>Buy</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content-minibackground">
+            <div class="content-minibackground-header">
+                <p>ALL MINI BACKGROUND</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card" *ngFor="let c of minibackground; let i = index">
+                    <div class="card-img2">
+                        <img src="../../../assets/User/mini-profile/{{c?.minibackgroundimage}}" alt="">
+                    </div>
+                    <div class="card-desc">
+                        <p>{{c?.minibackgroundname}}</p>
+                        <p>Mini Background</p>
+                        <p style="text-align: right">{{c?.minibackgroundpoint}}</p>
+                    </div>
+                    <div class="button" (click)="buyMiniBackground(c)">
+                        <p>Buy</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="content-chatsticker">
+            <div class="content-chatsticker-header">
+                <p>ALL CHAT STICKER</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card" *ngFor="let c of chatsticker; let i = index">
+                    <div class="card-img">
+                        <img src="../../../assets/User/chat-sticker/{{c?.chatstickerimage}}" alt="">
+                    </div>
+                    <div class="card-desc">
+                        <p>{{c?.chatstickername}}</p>
+                        <p>Chat Sticker</p>
+                        <p style="text-align: right">{{c?.chatstickerpoint}}</p>
+                        
+                    </div>
+                    <div class="button" (click)="buyChatSticker()">
+                        <p>Buy</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+
+        
+    </div>
+
+
+</main>

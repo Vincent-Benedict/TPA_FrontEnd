@@ -12,7 +12,7 @@ header{
     flex-wrap: wrap;
     margin: auto;
     width: 70%;
-    min-width: 900px;
+    min-width: 950px;
     position: relative;
     padding: 2rem 0;
     color: $gray;
@@ -48,6 +48,90 @@ header{
             padding: 3px 8px;
         }
 
+        .notify{
+            position: relative;
+            &-cards{
+                &-card, &-card2, &-card3, &-card4, &-card5{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 3px 0;
+                    background-color: rgb(16, 33, 54);
+                    padding: 5px 10px;
+                }
+                padding: 5px 10px;
+                width: 250px;
+                background-color: rgb(19, 46, 80);
+                position: absolute;
+                color: white;
+                height: fit-content;
+                min-height: 100px;
+                z-index: 1;
+                display: none;
+                
+                &-card div:nth-child(1){
+                    display: flex;
+                    align-items: center;
+                    img{
+                        width: 25px;
+                        margin-right: 8px;
+                        border-radius: 2px solid black !important;
+                    }
+
+                    p{
+                        font-size: 10px;
+                        letter-spacing: 1.5px;
+                    }
+                }
+
+                &-card2, &-card3, &-card4, &-card5{
+                    cursor: pointer;
+                }
+
+                &-card2 div:nth-child(1), &-card3 div:nth-child(1), &-card4 div:nth-child(1), &-card5 div:nth-child(1){
+                    display: flex;
+                    align-items: center;
+                    img{
+                        width: 25px;
+                        margin-right: 8px;
+                        border-radius: 2px solid black !important;
+                    }
+
+                    p{
+                        font-size: 10px;
+                        letter-spacing: 1.5px;
+                    }
+                }
+
+                &-card2:hover, &-card3:hover, &-card4:hover, &-card5:hover{
+                    background-color: rgb(19, 37, 59);
+                }
+
+                &-card2:active, &-card3:active, &-card4:active, &-card5:active{
+                    background-color: rgb(13, 23, 36);
+                }
+
+                &-card div:nth-child(2){
+                    background-color: rgb(67, 99, 20);
+                    padding: 5px 10px;
+                    a{
+                        font-size: 11px;
+                        letter-spacing: 1.5px;
+                    }
+                }
+
+                &-card div:nth-child(2):hover{
+                    background-color: rgb(117, 170, 39);
+                    cursor: pointer;
+                }
+            }
+            
+        }
+
+        .notify:hover .notify-cards{
+            display: block;
+        }
+
         .notify button{
             color: $gray;
             background-color: $green;
@@ -58,9 +142,15 @@ header{
             color: $white;
         }
 
+        
+
+
         .notify button:hover{
             color: $white;
         }
+
+        
+        
 
         a{
             text-decoration: none;

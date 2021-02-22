@@ -16,7 +16,7 @@ export class CheckoutComponentsComponent implements OnInit {
   gameCart;
   jwt="";
   user;
-  changeMethods: boolean = false;
+  changeMethods;
 
 
 
@@ -43,7 +43,8 @@ export class CheckoutComponentsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+    this.changeMethods = false;
+
     if(this.price == 0){
       this.router.navigate(['/']);
     }
@@ -51,7 +52,6 @@ export class CheckoutComponentsComponent implements OnInit {
     this.jwt = localStorage.getItem("jwt");
     this.service.getGamesInCart().subscribe(async data=>{
       this.gameCart = data.data.getAllGamesInCart
-      // await console.log(data.data.getAllGamesInCart)
     })
 
     this.service.getUserByToken(this.jwt).subscribe(async data =>{
@@ -67,23 +67,23 @@ export class CheckoutComponentsComponent implements OnInit {
       this.service.insertUserGame(this.jwt, this.gameCart[i].gameid).subscribe(async data=> {
         // await console.log(data);
       })
+
+      this.service.insertRecentActivity(this.jwt, this.user.username + " just played " + this.gameCart[i].name + " game").subscribe(async data =>{
+    
+      })
     }
 
     this.service.deleteAllGameFromCart().subscribe(async data=> {
-      await console.log(data)
     })
 
     this.service.updateDecreaseUserBalance(this.jwt, this.price).subscribe(async data =>{
-      await console.log(data)
+      console.log("decrease" + data)
     })
     
     
     this.router.navigate(['/']).then(()=>{
       window.location.reload()
     })
-
-    // this.router.navigate(['/'])
-
 
   }
 
@@ -104,11 +104,17 @@ export class CheckoutComponentsComponent implements OnInit {
       for (let i = 0; i < this.gameCart.length; i++) {
         this.service.insertUserGame(this.jwt, this.gameCart[i].gameid).subscribe(async data=> {
         })
+
+        this.service.insertRecentActivity(this.jwt, this.user.username + " just played " + this.gameCart[i].name + " game").subscribe(async data =>{
+    
+        })
       }
   
       this.service.deleteAllGameFromCart().subscribe(async data=> {
         await console.log(data)
       })
+
+      this.changeMethods = false;
 
       this.router.navigate(['/']).then(()=>{
         window.location.reload()

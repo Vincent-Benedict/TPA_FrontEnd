@@ -1,0 +1,23 @@
+<main *ngIf="games">
+
+    <div class="content">
+
+        <div class="content-header">
+            <p>Discovery by {{title}}</p>
+        </div>
+
+        <div class="content-body">
+            <div class="cards">
+                <div class="card" *ngFor="let c of games">
+                    <img src="../../../assets/Search Picture/{{c?.image}}.jpg" alt="">
+
+                    <div class="desc">
+                        <p>{{c?.name}}</p>
+                        <p>{{c?.category}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

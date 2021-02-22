@@ -1,0 +1,61 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background: #1b2838;
+    min-width: 1000px;
+    min-height: 600px;
+    // height: fit-content;
+    padding: 20px 0;
+}
+
+.content{
+    width: 50%;
+    min-width: 400px;
+    padding: 20px 20px;
+    margin: auto;
+
+    &-header{
+        background-color: #015e80;
+        color: #f4f4f4;
+        padding: 15px 15px;
+
+        p{
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+    }
+
+    &-body{
+        .card{
+            background-color: rgba($color: #000000, $alpha: .25);
+            padding: 25px 0;
+            transition: 0.3s;
+            cursor: pointer;
+            p{
+                color: rgb(211, 211, 211);
+                font-size: 15px;
+                letter-spacing: 2px;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+
+        .card:hover{
+            transform: scale(1.05);
+            background-color: rgba($color: #505050, $alpha: .2);
+            color: white;
+        }
+
+        .card:active{
+            transform: scale(1.02);
+            background-color: rgba($color: #000000, $alpha: .3);
+            color: rgb(219, 219, 219);
+        }
+
+
+    }
+
+}

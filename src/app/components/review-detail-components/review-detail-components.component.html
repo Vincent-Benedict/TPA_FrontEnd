@@ -1,0 +1,88 @@
+<main *ngIf="review">
+
+    <div class="content">
+        <div class="content-review">
+            <div class="content-review-left">
+                <div class="image">
+                    <img src="../../../assets/Avatar/{{review?.reviewavatar}}" alt="">
+                </div>
+                <div class="desc">
+                    <p>{{review?.reviewusername}}</p>
+                </div>
+            </div>
+
+            <div class="content-review-right">
+                <div class="content-review-right-header">
+                    <div class="image">
+                        <img *ngIf="review?.reviewsentiment == 'positive'" src="../../../assets/logo/thumbs-up.png" alt="">
+                        <img *ngIf="review?.reviewsentiment == 'negative'" src="../../../assets/logo/thumbs-down.png" alt="">  
+                    </div>
+                    <div class="desc">
+                        <p *ngIf="review?.reviewsentiment == 'positive'">Recommended</p>
+                        <p *ngIf="review?.reviewsentiment == 'negative'">Unrecommended</p>
+                    </div>
+                </div>
+
+                <div class="content-review-right-content">
+                    <p>{{review?.reviewdesc}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-reviewComment">
+
+            <div class="content-reviewComment-header">
+                <p>Comments That Posted Earlier</p>
+            </div>
+
+            <div class="pagination">
+                <div class="card" *ngFor="let c of reviewCommentShow; let i = index">
+                    <img src="../../../assets/Avatar/{{c?.user[0].avatar}}" alt=""> 
+                    
+                    <div>
+                        <p>{{c?.user[0].username}}</p>
+                        <p>{{c?.comment}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            
+            <div class="pagination-button">
+                <div class="prev" style="cursor: pointer;" (click)="prev()">
+                    <p>
+                        &lt;
+                    </p>
+                </div>
+                <div class="page">
+                    <p>{{page}} / {{maxPage}}</p>
+                </div>
+                <div class="next" style="cursor: pointer;" (click)="next()">
+                    <p>></p>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <div class="content-inputComment">
+            <div class="content-inputComment-header">
+                <p>Input Comment</p>
+            </div>
+
+            <div class="content-inputComment-body">
+                <div class="input">
+                    <input type="text" [(ngModel)]="comment">
+                </div>
+                <div class="button">
+                    <input type="submit" (click)="insert()">
+                </div>  
+            </div>
+        </div>
+
+
+    </div>
+
+</main>

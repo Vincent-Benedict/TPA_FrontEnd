@@ -3,6 +3,12 @@
 <ng-template #thenBlock><header-login></header-login></ng-template>
 <ng-template #elseBlock><header-logoff></header-logoff></ng-template>
 
-<checkout-components [price]="price"></checkout-components>
+<div *ngIf="state == 'myself'; then block1 else block2"></div>
+
+<ng-template #block1><checkout-components [price]="price"></checkout-components></ng-template>
+<ng-template #block2><checkout2-components [price]="price"></checkout2-components></ng-template>
+
+
+
 <footer></footer>
 

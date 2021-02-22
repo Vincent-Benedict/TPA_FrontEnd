@@ -1,0 +1,109 @@
+<main>
+
+    <div class="content">
+        <div class="content-header">
+            <p routerLink="/home-admin" style="cursor: pointer;">Admin Manage User</p>
+        </div>
+
+        <div class="content-body">
+            <div class="pagination-region">
+
+                <div class="pagination">
+    
+                    <div class="card" *ngFor="let c of userShow; let i = index" (click)="changeDetailReport(c?.id)">
+                        <div class="card-left">
+                            <img src="../../../assets/Avatar/{{c?.avatar}}" alt="">
+    
+                            <div class="desc">
+                                <p>{{c?.username}}</p>
+                                <p>{{c?.summary}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="card-right">
+                            <div class="label">
+                                <p>user</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                
+                <div class="pagination-button">
+                    <div class="prev" style="cursor: pointer;" (click)="prev()">
+                        <p>
+                            &lt;
+                        </p>
+                    </div>
+                    <div class="page">
+                        <p>{{page}} / {{maxPage}}</p>
+                    </div>
+                    <div class="next" style="cursor: pointer;" (click)="next()">
+                        <p>></p>
+                    </div>
+                    
+                </div>
+    
+            </div>
+
+
+            <div class="right">
+                <div class="right-header">
+                    <p>Report List</p>
+                </div>
+
+                <div class="right-body">
+                    <div class="card" *ngFor="let c of reportDetail">
+
+                        <img src="../../../assets/Avatar/{{c?.reporter.avatar}}" alt="">
+                        <div class="desc">
+                            <p>{{c?.reporter.username}} Has Reported {{c?.reported.username}} !</p>
+                            <p>"{{c?.reportreason}}"</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        
+
+    </div>
+
+
+    <div class="content2">
+
+        <div class="content2-header">
+            <p>Unsuspend Request</p>
+        </div>
+
+        <div class="cards">
+            <div class="card" *ngFor="let c of suspendRequest">
+
+                <div class="card-left">
+                    <img src="../../../assets/Avatar/{{c?.user.avatar}}" alt="">
+
+                    <div>
+                        <p><span>{{c?.user.username}}</span> has request to unsuspend his/her account !</p>
+                    </div>
+                </div>
+                
+                <div class="card-right">
+                    <div (click)="approve(c?.user.id, c?.id)">
+                        <p>Approve</p>
+                    </div>
+
+                    <div (click)="reject(c?.id)">
+                        <p>Reject</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</main>  

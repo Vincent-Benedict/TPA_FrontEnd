@@ -15,10 +15,9 @@ export class MarketComponentsComponent implements OnInit {
   itemShow = [];
 
   page: number=1;
-  firstIndex: number = 0;
   limit: number= 5;
-  lastIndex: number;
   maxPage: number;
+  offset: number = 0;
 
   constructor(
     private service: ApolloService,
@@ -27,21 +26,25 @@ export class MarketComponentsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.lastIndex = this.page*this.limit-1;
+    // this.lastIndex = this.page*this.limit-1;
 
+    // To Get Max Page Of Pagination
     this.service.getAllItemGame().subscribe(async data => {
-      this.itemList = data.data.getallgameitem;
 
-      for (let i = this.firstIndex; i <= this.lastIndex; i++) {
-        this.itemShow.push(this.itemList[i])
-      }
+      this.itemList = data.data.getallgameitem;
 
       if(this.itemList.length % this.limit != 0){
         this.maxPage = Math.ceil(this.itemList.length/this.limit);
       } else{
         this.maxPage = this.itemList.length/this.limit;
       }
+    })
 
+    // The Real Pagination
+    this.offset = (this.page - 1) * this.limit;
+    this.service.getAllItemGameOffsetLimit(this.offset, this.limit).subscribe(async data => {
+
+      this.itemShow = data.data.getgameitemoffsetlimit;
       
     })
   
@@ -69,13 +72,11 @@ export class MarketComponentsComponent implements OnInit {
   }  
 
   fetchData(){
-    this.itemShow = [];
-    this.lastIndex = this.page*this.limit - 1;
-    this.firstIndex =  this.lastIndex - this.limit+1;
-  
-    for(let i=this.firstIndex; i<=this.lastIndex; i++){
-      this.itemShow.push(this.itemList[i])
-    }
+    
+    this.offset = (this.page - 1) * this.limit;
+      this.service.getAllItemGameOffsetLimit(this.offset, this.limit).subscribe(async data => {
+      this.itemShow = data.data.getgameitemoffsetlimit;
+    })
   }
 
   itemDetail(id: number){

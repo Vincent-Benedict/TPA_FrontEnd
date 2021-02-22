@@ -1,0 +1,338 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background: #1b2838;
+    min-width: 1000px;
+    min-height: 600px;
+    // height: fit-content;
+    padding: 20px 0;
+    user-select: none;
+}
+
+.content{
+    width: 65%;
+    min-width: 400px;
+    padding: 20px 20px;
+    margin: auto;
+
+    &-header{
+        background-color: #015e80;
+        color: #e6e6e6;
+        padding: 15px 15px;
+
+        p{
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        p:hover{
+            color: white;
+        }
+        p:active{
+            color: rgb(226, 226, 226);
+        }
+
+    }
+
+
+    &-body{
+
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba($color: #152025, $alpha: .3);
+        // height: fit-content;
+        
+        
+        padding-bottom: 20px;
+
+
+        .right{
+            width: 49.5%;
+            
+            // padding: 10px 2px;
+
+            &-header{
+                padding: 15px 0;
+                
+                p{
+                    text-align: center;
+                    font-size: 16px;
+                    color: white;
+                    letter-spacing: 1.3px;
+                    font-weight: bold;
+                }
+            }
+
+            &-body{
+                padding: 0px 10px;
+                height: 150px;
+                overflow-y: auto;
+
+                .card{
+                    display: flex;
+                    align-items: center;
+                    background-color: #272f38;
+                    margin-bottom: 5px;
+                    padding: 10px 7px;
+                    img{
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 10px;
+                    }
+
+                    .desc p:nth-child(1){
+                        color: white;
+                        font-size: 13px;
+                        letter-spacing: 0.5px;
+                        margin: 2px 0;
+                        
+                    }
+
+                    .desc p:nth-child(2){
+                        color: rgb(134, 134, 134);
+                        font-size: 11.5px;
+                        letter-spacing: 0.5px;
+                        margin: 2px 0;
+                    }
+                }
+            }
+
+            &-body::-webkit-scrollbar {
+                display: none;
+            }
+
+        }
+
+        
+
+        .pagination-region{
+            width: 50%;
+            // background-color: rgba($color: #152025, $alpha: .3);
+            padding-bottom: 20px;
+    
+            .pagination{
+                // background-color: rgba($color: #152025, $alpha: .5);
+                height: fit-content;
+                min-height: 130px;
+    
+                .card{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 12px 20px;
+                    margin-bottom: 8px;
+                    background: linear-gradient(144.37deg,rgba(130,156,219,0) 28.22%,rgba(82,125,235,.32) 113.95%);
+                    transition: 0.3s;
+                    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%), 0 1px 3px 0 rgb(0 0 0 / 20%);
+                    cursor: pointer;
+
+                    &-left{
+                        display: flex;
+                        align-items: center;
+    
+                        img{
+                            width: 35px;
+                            height: 35px;
+                            margin-right: 15px;
+                        }
+    
+                        .desc p:nth-child(1){
+                            color: rgb(214, 214, 214);
+                            font-size: 12px;
+                            letter-spacing: 1px;
+                            font-weight: bold;
+                            margin: 2px 0;
+                        }
+    
+                        .desc p:nth-child(2){
+                            color: #2f89bc;
+                            font-size: 10.5px;
+                            letter-spacing: 1px;
+                            margin: 2px 0;
+                        }
+                    }
+    
+                    &-right{
+                        .label{
+                            padding: 1px 6px;
+                            background-color: #5c707a;
+                            color: #a7ddfc;
+                            font-size: 12px;
+                            letter-spacing: 1px;
+                        }
+                    }
+                
+                }
+    
+                .card:hover{
+                    transform: scale(1.02);
+                    background-color: rgba($color: #30444d, $alpha: .6);
+    
+                    .desc p:nth-child(1){
+                        color: #ffffff;
+                    }
+    
+                    .desc p:nth-child(2){
+                        color: #3397d1;
+                    }
+                }
+            }
+    
+    
+            .pagination-button{
+                margin-top: 20px;
+                display: flex;
+                align-content: center;
+                justify-content: center;
+    
+                p{
+                    color: $gray2;
+                    font-size: 20px;
+                }
+    
+                .prev{
+                    margin-right: 20px;
+                }
+    
+                .prev p:hover{
+                    color: $white;
+                }
+    
+                .prev p:active{
+                    color: #797979;
+                }
+    
+                .page{
+                    p{
+                        color: $gray;
+                    }
+                    
+                }
+    
+                .next{
+                    margin-left: 20px;
+                }
+    
+                .next p:hover{
+                    color: $white;
+                }
+    
+                .next p:active{
+                    color: #797979;
+                }
+            }
+        }
+    }
+    
+}
+
+
+
+.content2{
+    width: 75%;
+    min-width: 400px;
+    padding: 20px 20px;
+    margin: 20px auto;
+
+    &-header{
+        background-color: #015e80;
+        color: #e6e6e6;
+        padding: 15px 15px;
+
+        p{
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+    }
+
+    .cards{
+        height: 265px;
+        overflow-y: auto;
+        .card{
+            background: linear-gradient(144.37deg,rgba(130, 157, 219, 0.055) 28.22%,rgba(103, 163, 252, 0.32) 113.95%);
+            transition: 0.3s;
+            box-shadow: 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%), 0 1px 3px 0 rgb(0 0 0 / 20%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+
+            &-left{
+                width: 80%;
+                display: flex;
+                align-items: center;
+                img{
+                    width: 40px;
+                    margin-right: 15px;
+                }
+
+                p{
+                    color: white;
+                    font-size: 12px;
+                    letter-spacing: 1.25px;
+
+                    span{
+                        font-size: 13.5px;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            &-right{
+                width: 25%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            &-right div:nth-child(1){
+                background-color: rgb(107, 141, 26);
+                color: rgb(198, 255, 66);
+                padding: 4px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            &-right div:nth-child(1):hover{
+                background-color: rgb(142, 182, 49);
+                color: rgb(242, 255, 212);
+            }
+
+            &-right div:nth-child(1):active{
+                background-color: rgb(93, 119, 34);
+                color: rgb(242, 255, 212);
+            }
+
+
+            &-right div:nth-child(2){
+                background-color: rgb(168, 53, 45);
+                color: rgb(255, 189, 189);
+                padding: 4px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            &-right div:nth-child(2):hover{
+                background-color: rgb(218, 87, 70);
+                color: rgb(255, 255, 255);
+            }
+
+            &-right div:nth-child(2):active{
+                background-color: rgb(156, 61, 48);
+                color: rgb(255, 255, 255);
+            }
+        }
+
+        .card:hover{
+            transform: scale(1.015);    
+            background-color: rgba($color: #3d5d6b, $alpha: .6);
+
+        }
+    }
+
+    .cards::-webkit-scrollbar{
+        display: none;
+    }
+}

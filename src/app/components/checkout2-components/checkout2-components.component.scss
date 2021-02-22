@@ -1,0 +1,236 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background-color: $theme2;
+    padding: 20px 0;
+    min-width: 1000px;
+    min-height: 600px;
+   
+}
+
+.content{
+    width: 60%;
+    min-width: 300px;
+    margin: 50px auto;
+    background-color: #24374e;
+    padding: 20px 20px;
+
+    .button{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input{
+            padding: 8px 50px;
+            background-color: rgb(38, 88, 22);
+            color: $gray;
+            font-size: 13px;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            border-style: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input:hover{
+            background-color: rgb(55, 119, 34);
+            color: $white;
+        }
+
+        input:active{
+            background-color: rgb(35, 65, 25);
+            color: $white;
+        }
+    }
+
+    &-header{
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 2px;
+    }
+
+    &-form{
+        margin-top: 20px;
+        background: rgba($color: black, $alpha: .3);
+        padding: 20px 30px;
+
+        &-header{
+            p{
+                font-size: 16px;
+                letter-spacing: 2px;
+                text-align: center;
+                color: white;
+                font-weight: bold;
+            }
+            margin-bottom: 25px;
+        }
+
+        &-region{
+            width: 40%;
+            min-width: 300px;
+            margin: auto;
+
+            .section{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 13px 0;
+
+                .label{
+                    color: white;
+                    font-size: 13px;
+                    letter-spacing: 2px;
+                }
+
+                .input{
+                    input{
+                        height: 23px;
+                        padding: 4px 5px;
+                        background-color: #24374e;
+                        color: white;
+                        width: 204px;
+                        border-style: none;
+                        border-radius: 5px;
+                        font-size: 12px;
+                        letter-spacing: 2px;
+                    }
+
+                    textarea{
+                        padding: 4px 5px;
+                        background-color: #24374e;
+                        color: white;
+                        border-style: none;
+                        border-radius: 5px;
+                        font-size: 12px;
+                        letter-spacing: 2px;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    &-recipient{
+        margin-top: 20px;
+        background: rgba($color: black, $alpha: .3);
+        padding: 20px 30px;
+
+        .intro{
+            p{
+                font-size: 16px;
+                letter-spacing: 2px;
+                text-align: center;
+                color: white;
+                font-weight: bold;
+            }
+            margin-bottom: 25px;
+        }
+
+        &-header{
+            &-header{
+                p{
+                    color: white;
+                    font-size: 15px;
+                    letter-spacing: 2.5px;
+                }
+            }
+
+            &-choosen{
+                margin-top: 15px;
+                margin-bottom: 20px;
+                width: 30%;
+                min-width: 208px;
+                display: flex;
+                align-items: center;
+                background-color: rgba($color: #000000, $alpha: .4);
+                padding: 7px 10px;
+                img{
+                    margin-right: 20px;
+                    width: 40px;
+                    border: 2px solid rgb(48, 175, 197);
+                }
+
+                .desc p:nth-child(1){
+                    color: white;
+                    font-size: 13px;
+                    letter-spacing: 2px;
+                    margin: 2px 0;
+                }
+
+                .desc p:nth-child(2){
+                    color: rgb(116, 205, 240);
+                    font-size: 12px;
+                    letter-spacing: 2px;
+                    margin: 2px 0;
+                }
+
+            }
+
+        }  
+
+        &-body{
+            &-header{
+                p{
+                    color: white;
+                    font-size: 14.5px;
+                    letter-spacing: 2.5px;
+                }
+            }
+
+            .cards{
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+
+                .card{
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    width: 30%;
+                    min-width: 208px;
+                    background-color: rgba($color: #000000, $alpha: .4);
+                    padding: 7px 10px;
+                    margin: 5px 3px;
+                    cursor: pointer;
+
+                    img{
+                        margin-right: 20px;
+                        width: 40px;
+                        border: 2px solid rgb(48, 175, 197);
+                    }
+
+                    .desc p:nth-child(1){
+                        color: white;
+                        font-size: 13px;
+                        letter-spacing: 2px;
+                        margin: 2px 0;
+                    }
+
+                    .desc p:nth-child(2){
+                        color: rgb(116, 205, 240);
+                        font-size: 12px;
+                        letter-spacing: 2px;
+                        margin: 2px 0;
+                    }
+                }
+
+
+                .card:hover{
+                    background-color: rgba($color: #000000, $alpha: .2);
+                }
+
+                .card:active{
+                    background-color: rgba($color: #000000, $alpha: .6);
+                }
+
+            }
+
+
+        }
+    }
+}

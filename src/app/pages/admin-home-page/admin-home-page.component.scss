@@ -1,0 +1,32 @@
+.header{
+    color: rgb(219, 219, 219);
+    background-color: #171a21;
+    min-width: 1000px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p{
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 1.8px;
+        cursor: pointer;
+    }
+
+    p:hover{
+        color: white;
+    }
+
+    p:active{
+        color: rgb(211, 211, 211);
+    }
+
+}
+
+.footer{
+    background-color: #171a21;
+    min-width: 1000px;
+    height: 150px;
+}

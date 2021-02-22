@@ -14,7 +14,10 @@ export class LoginComponentsComponent implements OnInit {
 
   username = "";
   password = "";
+  check;
   error = "";
+  report;
+  formerUser;
   
   // FORM GROUP
   /*
@@ -24,6 +27,10 @@ export class LoginComponentsComponent implements OnInit {
   });
   */
 
+  // SUSPEND USERNAME
+  suspendUsername:string = '';
+  error2 = "";
+
   constructor(
     private service: ApolloService,
     private router: Router,
@@ -32,6 +39,8 @@ export class LoginComponentsComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.removeItem("jwt");
+    // localStorage.removeItem("username");
+    this.username = localStorage.getItem("username");
   }
 
 
@@ -40,14 +49,31 @@ export class LoginComponentsComponent implements OnInit {
 
       if(data.data.getUser !== "can't find user"){
         localStorage.setItem("jwt", data.data.getUser)
-        this.error = "";
-        this.router.navigate(['/']);
+
+        this.service.getReport(data.data.getUser).subscribe(async data2 => {
+          this.report = data2.data.getreportbytoken;
+          
+          if(this.report.length >= 5){
+            this.error = "your account is suspended";
+          }
+          else{
+
+            if(this.check){
+              localStorage.removeItem("username");
+              localStorage.setItem("username", this.username)
+            }
+
+            this.error = "";
+            this.router.navigate(['/']);
+          }
+        })
       }else{
         this.error = data.data.getUser;
       }
 
     })
 
+    console.log(this.check)
     /*
     if(this.form.status == "INVALID"){
       alert("SALAH");
@@ -58,6 +84,37 @@ export class LoginComponentsComponent implements OnInit {
     console.log(this.form.get("accountname").value);
     */
     
+  }
+
+
+  showSuspendPopUp(){
+    let hidden = document.getElementsByClassName('overlay') as HTMLCollectionOf<HTMLElement>;
+    hidden[0].style.display = "block";
+  }
+
+  closeSuspendPopUp(){
+    let hidden = document.getElementsByClassName('overlay') as HTMLCollectionOf<HTMLElement>;
+    hidden[0].style.display = "none";
+    this.suspendUsername = '';
+  }
+
+  submitSuspend(){
+    this.service.checkUserByUsername(this.suspendUsername).subscribe(async data => {
+      const x = (data.data as any).checkuserbyusername
+      
+      if(x == false){
+        this.error2 = "There is no user !"
+        this.suspendUsername = '';
+      }
+      else{
+        this.error2 = "";
+        this.service.insertUnsuspendRequest(this.suspendUsername).subscribe(async data =>{
+
+        })
+
+        window.location.reload();
+      }
+    })
   }
 
 }

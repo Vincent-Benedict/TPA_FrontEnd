@@ -1,0 +1,218 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background: #1b2838;
+    min-width: 1000px;
+    min-height: 600px;
+    height: fit-content;
+    padding: 20px 0;
+}
+
+.content{
+    width: 60%;
+    min-width: 300px;
+    padding: 20px 20px;
+    margin: auto;
+    &-header{
+        background-color: #015e80;
+        color: #f4f4f4;
+        padding: 15px 15px;
+
+        p{
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+    }
+
+    &-body{
+        &-header{
+            background-color: rgba($color: black, $alpha: .4);
+            display: flex;
+            align-items: center;
+            padding: 20px 35px;
+            img{
+                width: 300px;
+                margin-right: 35px;
+            }
+
+            .desc{
+                color: white;
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+        }
+
+        &-body{
+            margin-top: 15px;
+            border: 1px solid #26384f;
+            box-shadow: 0 0 5px #000;
+            background-color: #212f43;
+            padding: 1.3rem;
+            display: flex;
+            transition: 0.3s;
+            
+            img{
+                width: 40px;
+                height: 40px;
+                margin-right: 25px;
+            }
+
+            .desc{
+                &-user{
+                    p{
+                        font-size: 17px;
+                        color: #a4d007;
+                        font-weight: bold;
+                    }
+                }
+
+                &-title{
+                    margin-top: 15px;
+                    p{
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: white;
+                    }
+                }
+
+                &-comment{
+                    margin-top: 15px;
+                    p{
+                        font-size: 13.5px;
+                        color: white;
+                        letter-spacing: 0.5px;
+                    }
+                }
+            }
+        }
+
+        &-body:hover{
+            transform: scale(1.03);
+            background-color: #2e425f;
+        }
+
+        &-body2{
+            margin-top: 15px;
+            .cards{
+                width: 80%;
+                .card{
+
+                    margin-top: 3px;
+                    border: 1px solid #26384f;
+                    box-shadow: 0 0 5px #000;
+                    background-color: #212f43;
+                    padding: 1rem;
+                    padding-bottom: 3rem;
+                    display: flex;
+                    transition: 0.3s;
+                    width: 100%;
+
+                    img{
+                        width: 35px;
+                        height: 35px;
+                        margin-right: 25px;
+                    }
+
+                    .desc{
+
+                        &-user{
+                            p{
+                                font-size: 14.5px;
+                                color: #a4d007;
+                                font-weight: bold;
+                                letter-spacing: 0.5px;
+                            } 
+                        }
+
+                        &-comment{
+                            margin-top: 15px;
+                            p{
+                                font-size: 13.5px;
+                                color: white;
+                                letter-spacing: 0.5px;
+                            }
+                        }
+
+                    }
+
+                }
+
+                .card:hover{
+                    transform: scale(1.03);
+                    background-color: #2e425f;
+                }
+
+                
+            }
+        }
+
+
+        &-tail{
+            
+
+            margin-top: 25px;
+            &-header{
+                width: 80%;
+                background: rgba(0,0,0,.2);
+                padding: 1rem;
+                margin-bottom: 5px;
+                p{
+                    color: white;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                }
+            }
+
+            &-body{
+                width: 80%;
+                background: rgba(0,0,0,.2);
+                padding: 1rem;
+
+                div{
+                    display: flex;
+                    justify-content: flex-end;
+
+                    textarea{
+                        background: rgba(0,0,0,.2);
+                        color: white;
+                        border: 1px solid #000;
+                        border-radius: .25rem;
+                        padding: 5px 10px;
+                        font-size: 17px;
+                        letter-spacing: 1.5px;
+                    }
+                }
+
+                .button{
+                    background-color: rgb(79, 119, 26);
+                    color: rgb(155, 223, 46);
+                    width: fit-content;
+                    padding: 10px 20px;
+                    margin: auto;
+                    margin-top: 20px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                }
+
+                .button:hover{
+                    background-color: rgb(123, 185, 41);
+                    color: rgb(215, 255, 152);
+                }
+
+                .button:active{
+                    background-color: rgb(71, 104, 28);
+                    color: rgb(215, 255, 152);
+                }
+
+                
+                
+                // flex-direction: column;
+                // justify-content: flex-end;
+            }
+        }
+
+    }
+
+}

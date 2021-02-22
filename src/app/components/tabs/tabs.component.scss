@@ -1,0 +1,23 @@
+.tabs{
+    display: flex; margin-top: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid black;
+
+    .tabTitle{
+        padding: 8px 10px;
+        color: gainsboro;
+        font-size: 13px;
+        cursor: pointer;
+        letter-spacing: 1px;
+    }
+
+    .tabTitle:hover{
+        color: white;
+        background: #25364b;
+    }
+    .tabTitle:active{
+        color: white;
+        background: #182330;
+    }
+}

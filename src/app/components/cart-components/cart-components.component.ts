@@ -71,7 +71,7 @@ export class CartComponentsComponent implements OnInit {
     if(localStorage.getItem("jwt") == null){
       this.router.navigate(['/login']);
     }else{
-      this.router.navigate(['/checkout/'+this.subtotal]);
+      this.router.navigate(['/checkout/'+this.subtotal+'/myself']);
     }
   }
 
@@ -79,7 +79,7 @@ export class CartComponentsComponent implements OnInit {
     if(localStorage.getItem("jwt") == null){
       this.router.navigate(['/login']);
     }else{
-      this.router.navigate(['/checkout'+this.subtotal]);
+      this.router.navigate(['/checkout/'+this.subtotal+'/gift']);
     }
   }
 

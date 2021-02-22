@@ -1,0 +1,313 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background: #1b2838;
+    min-width: 1000px;
+    min-height: 600px;
+    // height: fit-content;
+    padding: 20px 0;
+}
+
+.content{
+    width: 60%;
+    min-width: 300px;
+    padding: 20px 20px;
+    margin: auto;
+    // height: fit-content;
+
+    &-review{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: rgba(0,0,0,.2);
+        padding: 5px 10px;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 35px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        // height: 300px;
+        height: fit-content;
+        transition: 0.5s;
+        // overflow: hidden;
+
+        &-left{
+            width: 15%;
+            padding: 8px 3px;
+            // min-width: 100px;
+
+            .image{
+                img{
+                    border: 1.5px solid rgb(40, 138, 196);
+                    width: 55px;
+                    height: 55px;
+                }
+                margin-bottom: 10px;
+            }
+
+            .desc{
+                p{
+                    color: white;
+                    font-size: 13px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+
+        &-right{
+            width: 84%;
+            
+            &-header{
+                background: #171a21;
+                padding: 15px 20px;
+                display: flex;
+                align-items: center;
+
+                .image{
+                    
+                    background-color: #194858;
+                    padding: 5px;
+
+                    img{
+                        width: 30px;
+                        height: 30px;
+                    }
+                    margin-right: 10px;
+                }
+
+                .desc{
+                    p{
+                        color: white;
+                        font-size: 15px;
+                        letter-spacing: 1px;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            &-content{
+                padding: 0 15px;
+                margin-top: 25px;
+                height: fit-content;
+                white-space: pre-line;
+
+                p{
+                    color: rgb(207, 207, 207);
+                    font-size: 12px;
+                    letter-spacing: 1.5px;
+                }
+            }
+
+            &-vote{
+                padding: 0 15px;
+                margin-top: 15px;
+
+                &-quest{
+                    font-size: 10px;
+                    margin-bottom: 10px;
+                    letter-spacing: 1.5px;
+                    color: #7a7a7a;
+                }
+
+                &-button{
+                    display: flex;
+                    div{
+                        display: flex;
+                        align-items: center;
+                        background-color: #32353b;
+                        margin-right: 8px;
+                        color: #7dbaf7;
+                        padding: 3px 5px;
+                        cursor: pointer;
+
+                        img{
+                            width: 15px;
+                            margin-right: 5px;
+                        }
+
+                        p{
+                            font-size: 15px;
+                        }
+                    }
+
+                    div:hover{
+                        background-color: #3a638b;
+                        color: #ffffff;
+                    }
+
+                    div:active{
+                        background-color: #284868;
+                        color: #ffffff;
+                    }
+                }
+            }
+
+            .review-upvoted{
+                padding: 0 15px;
+                margin: 15px 0;
+                p{
+                    color: rgb(122, 122, 122);
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+
+
+    &-reviewComment{
+        background-color: rgba(0,0,0,.2);
+        padding: 10px 20px;
+        
+        &-header{
+            background-color: rgba(84,133,183,.4);;
+            width: 98%;
+            color: white;
+            padding: 10px 9px;
+
+            p{
+                text-align: center;
+                font-size: 18px;
+                letter-spacing: 1.5px;
+                font-weight: bold;
+            }
+        }
+
+        .pagination{
+            width: 100%;
+            height: 600px;
+            min-height: 600px;
+            .card{
+                margin-bottom: 5px;
+                background: rgba( 32, 47, 67, 0.8);
+                border: 1px solid #26384f;
+                box-shadow: 0 0 5px #000;
+                overflow: hidden;
+                color: white;
+                width: 98%;
+                display: flex;
+                align-items: center;
+                padding: 6px 8px;
+
+                img{
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 15px;
+                }
+
+                div p:nth-child(1){
+                    font-size: 14px;
+                    font-weight: bold;  
+                    margin: 3px 0;      
+                }
+
+                div p:nth-child(2){
+                    font-size: 13.5px;
+                    margin: 3px 0;    
+                }
+            }
+        }
+
+        .pagination-button{
+            margin-top: 15px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            p{
+                color: $gray2;
+                font-size: 18px;
+            }
+            .prev{
+                margin-right: 20px;
+            }
+            .prev p:hover{
+                color: $white;
+            }
+            .prev p:active{
+                color: #797979;
+            }
+            .page{
+                p{
+                    color: $gray;
+                } 
+            }
+            .next{
+                margin-left: 20px;
+            }
+            .next p:hover{
+                color: $white;
+            }
+            .next p:active{
+                color: #797979;
+            }
+        }
+
+    }
+
+
+
+
+    &-inputComment{
+        margin-top: 25px;
+        background-color: rgba(0,0,0,.2);
+        padding: 15px 25px;
+        &-header{
+            p{
+                font-size: 17px;
+                letter-spacing: 2px;
+                color: white;
+                text-align: center;
+            }
+        }
+
+        &-body{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+
+            .input{
+                width: 73%;
+                input{
+                    width: 100%;
+                    height: 25px;
+                    background-color: #26384f;
+                    color: white;
+                    border-style: none;
+                    border-radius: 5px;
+                    padding: 8px 10px;
+                    letter-spacing: 2px;
+                }
+                
+            }
+            .button{
+                width: 24%;
+                input{
+                    padding: 8px 10px;
+                    width: 100%;
+                    height: 40px;
+                    border-style: none;
+                    letter-spacing: 2px;
+                    border-radius: 5px;
+                    background-color: #52791f;
+                    color: rgb(214, 214, 214);
+                    cursor: pointer;
+                }
+
+                input:hover{
+                    background-color: #6a9c29;
+                    color: white;
+                }
+
+                input:active{
+                    background-color: #3e5520;
+                    color: white;
+                }
+            }
+        }
+
+    }
+
+
+
+}

@@ -29,6 +29,8 @@ export class InnapropriateComponentsComponent implements OnInit {
   validateAge(){
     var d = new Date(this.date);
 
+    
+
     if(d.toString() == "Invalid Date"){
       console.log("no date like that")
       this.error = "Please choose the date !";

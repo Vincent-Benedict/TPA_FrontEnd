@@ -1,0 +1,574 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+
+main{
+    background-color: $theme2;
+    padding: 20px 0;
+    min-width: 1000px;
+    min-height: 600px;
+   
+}
+
+.content{
+    width: 55%;
+    min-width: 300px;
+    margin: 50px auto;
+    // background-color: rgba($color: black, $alpha: .25);
+    
+    margin: 0 auto;
+
+    &-friends{
+        background-color: rgba($color: black, $alpha: .25);
+        padding: 20px 20px;
+        height: fit-content;
+        min-height: 350px;
+        &-header{
+            background-color: #015e80;;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 20px;
+
+            .title{
+                p{
+                    font-size: 15px;
+                    letter-spacing: 2px;
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+
+            .search{
+                height: fit-content;
+                input{
+                    height: 25px;
+                    padding: 0 10px;
+                    padding-right: 20px;
+                    border-style: none;
+                    border: 1px solid #3e7dad;
+                    margin: 0 1px;
+                    border-radius: 0.3rem;
+                    color: $white;
+                    background-color: #0e283b;
+                    letter-spacing: 2px;
+                
+                }
+                button{
+                    height: 29px;
+                    width: 29px;
+                    position: relative;
+                    top: 2.5px;
+                    border-style: none;
+                    background-color: #5babec;
+                    border: 2px solid #3a7099;
+                    
+                    img{
+                        width: 18px;
+                    }
+                }
+            }
+
+
+        }
+
+
+        &-body{
+
+            margin-top: 25px;
+
+            .online, .offline{
+                margin-top: 20px;
+
+                &-header{
+                    margin-bottom: 15px;
+                    p{
+                        font-size: 15px;
+                        letter-spacing: 2.5px;
+                        color: white;
+                    }
+                }
+
+                &-cards{
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+
+                    .card{
+                        position: relative;
+                        .onlinehidden, .offlinehidden{
+                            background-color: #2a6385;
+                            padding: 10px 20px;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            display: none;
+                            
+
+                            .report{
+                                input{
+                                    width: 100%;
+                                    margin-bottom: 10px;
+                                    background-color: #1b3d50;
+                                    height: 25px;
+                                    border-style: none;
+                                    border-radius: 5px;
+                                    padding: 5px 10px;
+                                    color: white;
+                                    letter-spacing: 3px;
+                                }
+                            }
+
+                            .button{
+                                input{
+                                    width: 40%;
+                                    margin-bottom: 10px;
+                                    background-color: rgb(145, 39, 39);
+                                    color: $gray;
+                                    border-style: none;
+                                    border-radius: 5px;
+                                    height: 25px;
+                                    cursor: pointer;
+                                }
+
+                                input:hover{
+                                    background-color: rgb(175, 62, 62);
+                                    color: white;
+                                }
+
+                                input:active{
+                                    background-color: rgb(78, 29, 29);
+                                    color: white;
+                                }
+                            }
+                            
+
+                            p{
+                                text-align: center;
+                                margin-bottom: 15px;
+                                color: white;
+                                letter-spacing: 2px;
+                                font-weight: bold;
+                                font-size: 13px;
+                            }
+
+                            div{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                        }
+
+                        &-main:hover{
+                            background-color: rgba($color: rgb(82, 82, 82), $alpha: .5);
+                        }
+
+                        &-main:active{
+                            background-color: rgba($color: rgb(82, 82, 82), $alpha: .15);
+                        }
+
+                        &-main{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 40%;
+                            min-width: 240px;
+                            background-color: rgba($color: rgb(82, 82, 82), $alpha: .3);
+                            padding: 5px 10px;
+                            border-radius: 3px;
+                            margin: 5px 3px;
+                            cursor: pointer;
+
+
+                            &-left{
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+    
+                                img{
+                                    width: 40px;
+                                    margin-right: 15px;
+                                    border: 2px solid rgb(76, 161, 218);
+                                }
+    
+                                &-desc p:nth-child(1){
+                                    color: $gray;
+                                    font-size: 12px;
+                                    letter-spacing: 2px;
+                                    font-weight: bold;
+                                    margin: 1px 0;
+                                }
+    
+                                &-desc p:nth-child(2){
+                                    font-size: 12px;
+                                    letter-spacing: 2px;
+                                    margin: 1px 0;
+                                }
+                            }
+    
+                            &-right{
+    
+                                display: flex;
+                                
+                                align-items: center;
+    
+                                &-level{
+                                    color: white;
+                                    border: 2px solid orange;
+                                    padding: 5px 10px;
+                                    border-radius: 200px;
+                                    margin-right: 10px;
+                                    p{
+                                        text-align: center;
+                                    }
+                                }
+    
+                                &-report{
+                                    cursor: pointer;
+                                    background-color: rgb(197, 38, 38);
+                                    padding: 5px 5px;
+                                    width: 1px;
+                                    border-radius: 200px;
+                                }
+    
+                                &-report:hover{
+                                    background-color: rgb(221, 119, 119);
+                                }
+    
+                                &-report:active{
+                                    background-color: rgb(155, 39, 39);
+                                }
+                                
+                            }
+                        }
+
+                        
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+
+    &-addfriend{
+
+        margin-top: 30px;
+        background-color: rgba($color: black, $alpha: .25);
+        padding: 20px 20px;
+        height: fit-content;
+        min-height: 350px;
+        &-header{
+            background-color: #015e80;;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+
+            p{
+                font-size: 15px;
+                letter-spacing: 2px;
+                color: white;
+                font-weight: bold;
+            }
+        }
+
+        &-body{
+
+            margin-top: 20px;
+            .mycode{
+                width: 75%;
+                &-title{
+                    p{
+                        font-size: 16px;
+                        color: white;
+                        letter-spacing: 2px;
+                        font-weight: bold;
+                    }
+                }
+
+                &-content{
+                    margin-top: 8px;
+                    background-color: hsla(0,0%,56.5%,.1);
+                    padding: 10px 15px;
+                    p{
+                        font-size: 30px;
+                        letter-spacing: 2.5px;
+                        color: white;
+                    }
+                }
+            }
+
+            .searchcode{
+                margin-top: 30px;
+                &-title{
+                    p{
+                        font-size: 13.5px;
+                        color: $gray2;
+                        letter-spacing: 2px;
+                    }
+                }
+
+                &-content{
+                    margin-top: 8px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    input{
+                        height: 35px;
+                        width: 85%;
+                        background-color: rgba(0,0,0,.2);
+                        padding: 5px 10px;
+                        font-size: 13px;
+                        color: white;
+                        letter-spacing: 2.5px;
+                        border-style: none;
+                        border-radius: 5px;
+                    }
+
+                    &-search{
+                        width: 10%;
+                        background-color: rgb(83, 117, 31);
+                        color: rgb(206, 206, 206);
+                        padding: 10px 0;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        p{
+                            text-align: center;
+                        }
+                    }
+
+                    &-search:hover{
+                        background-color: rgb(109, 153, 42);
+                        color: rgb(255, 255, 255);
+                    }
+
+                    &-search:active{
+                        background-color: rgb(70, 97, 29);
+                        color: rgb(255, 255, 255);
+                    }
+                }
+            }
+        }
+
+        &-tail{
+            margin-top: 30px;
+            .searchedfriend{
+                width: 30%;
+                display: flex;
+                justify-content: space-between;
+                background: rgba($color: black, $alpha: 0.3);
+                padding: 8px 10px;
+
+                &-left{
+                    display: flex;
+                    align-items: center;
+
+                    img{
+                        margin-right: 15px;
+                        width: 30px;
+                    }
+
+                    &-desc p:nth-child(1){
+                        font-size: 12px;
+                        letter-spacing: 2px;
+                        font-weight: bold;
+                        color: white;
+                    }
+
+                    &-desc p:nth-child(2){
+                        font-size: 11px;
+                        letter-spacing: 2px;
+                        color: rgb(187, 185, 185);
+                    }
+                }
+
+                &-right{
+                    img{
+                        width: 25px;
+                        cursor: pointer;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    &-invites{
+        margin-top: 30px;
+        background-color: rgba($color: black, $alpha: .25);
+        padding: 20px 20px;
+        height: fit-content;
+        min-height: 350px;
+
+        &-received, &-sent{
+            margin-bottom: 25px;
+            &-header{
+                background-color: #015e80;;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 20px;
+    
+                p{
+                    font-size: 15px;
+                    letter-spacing: 2px;
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        &-received{
+            .cards{
+                margin-top: 5px;
+                .card{
+                    background-color: #3d4349;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 8px 15px;
+                    margin-bottom: 5px;
+
+                    &-left{
+                        width: 40%;
+                        display: flex;
+                        align-items: center;
+                        div, img{
+                            margin-right: 20px;
+                        }
+
+                        &-level{
+                            border: 2px solid orange;
+                            padding: 4px 8px;
+                            border-radius: 300px;
+                            p{
+                                color: white;
+                            }
+                        }
+
+                        img{
+                            margin-right: 10px;
+                            width: 45px;
+                            border: 2px solid #3e7dad;
+                        }
+
+                        &-username{
+                            color: white;
+                            font-size: 11px;
+                            font-weight: bold;
+                            letter-spacing: 2.5px;
+                        }
+                    }
+
+                    &-right{
+                        width: 60%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+
+                        div{
+                            margin-left: 10px;
+                            border: 2px solid white;
+                            background-color:  rgba($color: black, $alpha: .25);
+                            cursor: pointer;
+                            padding: 5px 5px;
+                            width: 55px;
+
+                            
+                            p{
+                                font-size: 10px;
+                                color: white;
+                                letter-spacing: 2.5px;
+                                text-align: center;
+                            }
+                        }
+
+                        div:hover{
+                            background-color:  rgba($color: rgb(85, 85, 85), $alpha: .3);
+                        }
+
+                        div:active{
+                            background-color:  rgba($color: rgb(20, 20, 20), $alpha: .3);
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+        &-sent{
+            .cards{
+                margin-top: 5px;
+                .card{
+                    background-color: #3d4349;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 8px 15px;
+                    margin-bottom: 5px;
+
+                    &-left{
+                        width: 40%;
+                        display: flex;
+                        align-items: center;
+                        div, img{
+                            margin-right: 20px;
+                        }
+
+                        &-level{
+                            border: 2px solid orange;
+                            padding: 4px 8px;
+                            border-radius: 300px;
+                            p{
+                                color: white;
+                            }
+                        }
+
+                        img{
+                            margin-right: 10px;
+                            width: 50px;
+                            border: 2px solid #3e7dad;
+                        }
+
+                        &-username{
+                            color: white;
+                            font-size: 11px;
+                            font-weight: bold;
+                            letter-spacing: 2.5px;
+                        }
+                    }
+
+                    &-right{
+                        width: 60%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+
+                        div{
+                            margin-left: 10px;
+                            border: 2px solid white;
+                            background-color:  rgba($color: black, $alpha: .25);
+                            cursor: pointer;
+                            padding: 5px 10px;
+                            width: 125px;
+
+                            
+                            p{
+                                font-size: 11px;
+                                color: white;
+                                letter-spacing: 2.5px;
+                                text-align: center;
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+        
+    }
+
+}

@@ -1,0 +1,48 @@
+<main>
+
+    <div class="content">
+
+        <div class="content-left">
+            <div class="container">
+
+                <div class="title">
+                    <p>Admin Login</p>
+                </div>
+
+                
+                <div class="form">
+                
+                    <div>
+                        <label for="account">Usename</label>
+                        <br>
+                        <input class="input" [(ngModel)]="username" type="text" id="account" name="password">
+                    </div>
+                    
+                    <div>
+                        <label for="password">Password</label>
+                        <br>
+                        <input class="input" [(ngModel)]="password" type="password" id="password" name="password">
+                    </div>
+
+                    <div>
+                        <input id="button" type="submit" (click)="login()" name="submit" value="Sign In">
+                    </div>
+
+                </div>
+                
+                <div>
+                    <p style="color: white; text-align: center;">{{error}}</p>
+                </div>
+
+                <div style="margin-top: 25px; display: flex; justify-content: center;">
+                    <a style="color: white; text-align: center; letter-spacing: 1.5px; text-decoration: none;" routerLink="/login">Login as User !</a>
+                </div>
+                
+            </div>
+        </div>
+
+
+
+    </div>
+
+</main>

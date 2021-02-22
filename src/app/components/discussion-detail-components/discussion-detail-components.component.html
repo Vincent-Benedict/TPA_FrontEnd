@@ -1,0 +1,76 @@
+<main *ngIf="discussion">
+
+    <div class="content">
+        <div class="content-header">
+            <p>Discussion Detail</p>
+        </div>
+
+        <div class="content-body">
+
+            <div class="content-body-header">
+                <img src="../../../assets/Search Picture/{{discussion?.game[0].image}}.jpg" alt="">
+                
+                <div class="desc">
+                    <p>{{discussion?.game[0].name}}</p>
+                </div>
+            </div>
+
+            <div class="content-body-body">
+                <img src="../../../assets/Avatar/{{discussion?.user[0].avatar}}" alt="">
+
+                <div class="desc">
+                    <div class="desc-user">
+                        <p>{{discussion?.user[0].username}}</p>
+                    </div>
+
+                    <div class="desc-title">
+                        <p>{{discussion?.discussiontitle}}</p>
+                    </div>
+
+                    <div class="desc-comment">
+                        <p>{{discussion?.discussioncontent}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-body-body2">
+
+                <div class="cards">
+                    <div class="card" *ngFor="let c of discussionComment">
+                        <img src="../../../assets/Avatar/{{c?.user[0].avatar}}" alt="">
+
+                        <div class="desc">
+                            <div class="desc-user">
+                                <p>{{c?.user[0].username}}</p>
+                            </div>
+
+                            <div class="desc-comment">
+                                <p>{{c?.comment}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-body-tail">
+                <div class="content-body-tail-header">
+                    <p>Reply</p>
+                </div>
+                <div class="content-body-tail-body">
+                    <div class="textarea">
+                        <textarea cols="90" rows="10" [(ngModel)]="comment"></textarea>
+                    </div>
+                    <div class="button" (click)="postComment()">
+                        <p>Post Comment</p>
+                    </div>   
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>

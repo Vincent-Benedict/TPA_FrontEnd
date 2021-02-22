@@ -1,0 +1,217 @@
+<main>
+
+    <div class="content">
+        
+        <div class="content-header">
+            <p routerLink="/home-admin" style="cursor: pointer;">Admin Manage Game</p>
+        </div>
+
+        <div class="pagination-region">
+
+            <div class="pagination">
+
+                <div class="card" *ngFor="let c of gameShow; let i = index">
+                    <div class="card-left">
+                        <img src="../../../assets/Search Picture/{{c?.image}}.jpg" alt="">
+
+                        <div class="desc">
+                            <p>{{c?.name}}</p>
+                            <p>{{c?.category}}</p>
+                        </div>
+                    </div>
+
+                    <div class="card-right">
+                        <div class="update-button" (click)="showPopUpUpdate(c)">
+                            <p>UPDATE</p>
+                        </div>
+                        <div class="delete-button" (click)="showPopUpDelete(c?.id)">
+                            <p>DELETE</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            
+            <div class="pagination-button">
+                <div class="prev" style="cursor: pointer;" (click)="prev()">
+                    <p>
+                        &lt;
+                    </p>
+                </div>
+                <div class="page">
+                    <p>{{page}} / {{maxPage}}</p>
+                </div>
+                <div class="next" style="cursor: pointer;" (click)="next()">
+                    <p>></p>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+        <div class="insert">
+
+            <div class="insert-header">
+                <p>Insert Game</p>
+            </div>
+
+            <div class="insert-body">
+
+                <div class="insert-body-title">
+                    <div>
+                        <p>Insert Title</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="insertTitle">
+                    </div>
+                </div>
+
+                <div class="insert-body-description">
+                    <div>
+                        <p>Insert Description</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="insertDesc">
+                    </div>
+                </div>
+                
+                <div class="insert-body-price">
+                    <div>
+                        <p>Insert Price</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="insertPrice">
+                    </div>
+                </div>
+
+                <div class="insert-body-tags">
+                    <div>
+                        <p>Insert Tags</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="insertTags">
+                    </div>
+                </div>
+
+                <div class="insert-body-image">
+                    <div>
+                        <p>Upload Your Game Picture</p>
+                    </div>
+                    
+                    <div class="input-file">
+                        <input type="file" (change)="setGameHeader($event)">
+                    </div>
+                </div>
+
+                <div class="button" (click)="submit()">
+                    <p>Submit</p>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="overlay">
+        <div class="overlay-delete">
+            <div class="header">
+                <p>Are You sure You Want to Delete ?</p>
+            </div>
+            
+
+            <div class="button">
+                <div class="button-no" (click)="closePopUpDelete()">
+                    <p>No</p>
+                </div>
+
+                <div class="button-yes" (click)="deleteTheGame()">
+                    <p>Yes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overlay2">
+        <div class="overlay2-update">
+            <div class="header">
+                <div class="title">
+                    <p>Update The Game</p>
+                </div>
+                <div class="span">
+                    <span (click)="closePopUpUpdate()">x</span>
+                </div>  
+            </div>
+            
+            <div class="body">
+                <div class="body-title">
+                    <div>
+                        <p>Update Title</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="updateTitle">
+                    </div>
+                </div>
+
+                <div class="body-description">
+                    <div>
+                        <p>Update Description</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="updateDesc">
+                    </div>
+                </div>
+                
+                <div class="body-price">
+                    <div>
+                        <p>Update Price</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="updatePrice">
+                    </div>
+                </div>
+
+                <div class="body-tags">
+                    <div>
+                        <p>Update Tags</p>
+                    </div>
+                    
+                    <div class="input">
+                        <input type="text" [(ngModel)]="updateTags">
+                    </div>
+                </div>
+
+                <div class="body-image">
+                    <div>
+                        <p>Update Your Game Picture</p>
+                    </div>
+                    
+                    <div class="input-file">
+                        <input type="file" (change)="setGameHeaderUpdate($event)">
+                    </div>
+                </div>
+
+                <div class="button" (click)="submitUpdate()">
+                    <p>Submit</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</main>

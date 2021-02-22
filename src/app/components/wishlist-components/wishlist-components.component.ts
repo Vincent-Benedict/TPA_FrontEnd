@@ -29,4 +29,14 @@ export class WishlistComponentsComponent implements OnInit {
 
   }
 
+  remove(id: number){
+    // console.log(id)
+
+    this.service.deleteGameFromWishlist(id).subscribe(async data => {
+      // console.log(data)
+    })
+
+    window.location.reload()
+  }
+
 }

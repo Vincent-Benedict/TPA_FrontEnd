@@ -1,0 +1,355 @@
+<main>
+
+    <div class="content">
+        <div class="content-header">
+            <div class="content-header-title">
+                <p>Community Activity</p>
+            </div>
+            <div class="content-header-desc">
+                <p>Community and official content for all games and software on Steam.</p>
+            </div>
+        </div>
+
+        <div class="tab">
+            <tabs>
+                <tab tabTitle="Image and Videos">
+                  <div class="imageandvideos">
+                      <div class="imageandvideos-header">
+                        <p>Image and Videos</p>
+                      </div>
+
+                      <div class="cards">
+                        <div class="card" *ngFor="let c of imageandvideos; let i = index">
+                            <div class="card-main">
+                                <img style="cursor: pointer;" src="{{c?.poster}}" alt="" (click)="showHiddenImgAndVideos(i, c?.id)">
+
+                                <div class="card-main-thumbs">
+                                    <div class="card-main-thumbs-left">
+                                        <div (click)="like(c?.id)">
+                                            <img src="../../../assets/logo/recommended-logo.png" alt="">
+                                        </div>
+                                        <div (click)="dislike(c?.id)">
+                                            <img src="../../../assets/logo/unrecommended-logo.png" alt="">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="card-main-thumbs-right">
+                                        <div>
+                                            <img src="../../../assets/logo/thumbs-up.png" alt="">
+                                            <p style="color: rgb(114, 170, 42); font-size: 14px; font-weight: bold;">{{c?.liked}}</p>
+                                        </div>
+                                        <div>
+                                            <img src="../../../assets/logo/thumbs-down.png" alt="">
+                                            <p style="color: rgb(218, 10, 10); font-size: 14px; font-weight: bold;">{{c?.disliked}}</p>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+
+                                <div class="imageandvideos-desc">
+                                    <p>{{c?.description}}</p>
+                                </div>
+                            </div>
+
+                            
+                            <div class="overlay-card">
+                                <div class="overlay-card-hidden">
+
+                                    <div class="overlay-card-hidden-cross">
+                                        <img src="../../../assets/logo/cross.png" alt="" (click)="removeHiddenImgAndVideos(i)">
+                                    </div>
+    
+                                    <div class="overlay-card-hidden-header">
+                                        <p>Image And Video Discussion</p>
+                                    </div>
+    
+                                    <div class="overlay-card-hidden-content">
+                                        <div class="overlay-card-hidden-content-left">
+                                            
+                                            <video id="video{{i}}" loop poster="{{c?.poster}}">
+                                                <source src="{{c?.source}}">
+                                            </video>
+    
+                                            <div class="desc">
+    
+                                                <img src="../../../assets/Avatar/{{c?.user[0].avatar}}" alt="">
+                                                
+                                                <div>
+                                                    <p>{{c?.user[0].username}}</p>
+                                                    <p>{{c?.description}}</p>
+                                                </div>
+                                                
+                                            </div>
+    
+                                            <div class="form">
+                                                <p>Comment Section</p>
+    
+                                                <div class="input">
+                                                    <input type="text" [(ngModel)]="comment">
+                                                    <input type="submit" value="submit" (click)="insertComment(c?.id)">
+                                                </div>
+    
+                                            </div>               
+    
+                                        </div>
+    
+                                        <div class="overlay-card-hidden-content-right">
+                                            <div class="overlay-card-hidden-content-right-header">
+                                                <p>All Posted Comment</p>
+                                            </div>
+    
+    
+                                            <!-- PAGINATION -->
+                                            <div class="pagination">
+                                                <div class="card" *ngFor="let c of commentshow; let i = index">
+                                                    <img src="../../../assets/Avatar/{{c?.user[0].avatar}}" alt=""> 
+                                                    
+                                                    <div>
+                                                        <p>{{c?.user[0].username}}</p>
+                                                        <p>{{c?.comment}}</p>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                
+                                            
+                                            <div class="pagination-button">
+                                                <div class="prev" style="cursor: pointer;" (click)="prev(c?.id)">
+                                                    <p>
+                                                        &lt;
+                                                    </p>
+                                                </div>
+                                                <div class="page">
+                                                    <p>{{page}} / {{maxPage}}</p>
+                                                </div>
+                                                <div class="next" style="cursor: pointer;" (click)="next(c?.id)">
+                                                    <p>></p>
+                                                </div>
+                                                
+                                            </div>
+    
+                                        </div>
+    
+                                        
+                                    </div>
+                                    
+    
+                                </div>
+                            </div>
+                            
+                        </div>
+                      </div>
+                  </div>
+                </tab>
+                
+                <tab tabTitle="Reviews">
+                  <div class="reviews">
+
+                    <div class="reviews-header">
+                        <p>Reviews</p>
+                    </div>
+
+                    <div class="cards">
+                        <div class="card" *ngFor="let c of reviews">
+                            <div class="card-left">
+                                <div class="image">
+                                    <img src="../../../assets/Avatar/{{c?.reviewavatar}}" alt="">
+                                </div>
+                                <div class="desc">
+                                    <p>{{c?.reviewusername}}</p>
+                                </div>
+                            </div>
+
+                            <div class="card-right">
+                                <div class="card-right-header">
+                                    <div class="image">
+                                        <img *ngIf="c?.reviewsentiment == 'positive'" src="../../../assets/logo/thumbs-up.png" alt="">
+                                        <img *ngIf="c?.reviewsentiment == 'negative'" src="../../../assets/logo/thumbs-down.png" alt="">  
+                                    </div>
+                                    <div class="desc">
+                                        <p *ngIf="c?.reviewsentiment == 'positive'">Recommended</p>
+                                        <p *ngIf="c?.reviewsentiment == 'negative'">Unrecommended</p>
+                                    </div>
+                                </div>
+
+                                <div class="card-right-content" (click)="redirectToReviewDetail(c?.id)">
+                                    <p>{{c?.reviewdesc}}</p>
+                                </div>
+
+                                <div class="card-right-vote">
+                                    <div class="card-right-vote-quest">
+                                        <p>Was this review helpful ?</p>
+                                    </div>
+            
+                                    <div class="card-right-vote-button">
+                                        <!-- <div (click)="upvoteHelpful(r?.id, i)"> -->
+                                        <div (click)="upvote(c?.id)">
+                                            <img src="../../../assets/logo/recommended-logo.png" alt="">
+                                            <p>Yes</p>
+                                        </div>
+                                        <!-- <div (click)="downvoteHelpful(r?.id, i)"> -->
+                                        <div (click)="downvote(c?.id)">
+                                            <img src="../../../assets/logo/unrecommended-logo.png" alt="">
+                                            <p>No</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="review-upvoted">
+                                    <p>{{c?.reviewupvoted}} people found this review helpful</p>
+                                    <p>{{c?.reviewdownvoted}} people found this review bad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                  </div>
+                    
+                </tab>
+                
+                <tab tabTitle="Discussion">
+                    <div class="discussion">
+                        <div class="discussion-header">
+                            <div>
+                                <p>Discussion</p>
+                            </div>
+                            
+                            <div class="discussion-header-search">
+                                <input type="text" placeholder="Search by game title..." [(ngModel)]="searchString" (input)="search()">
+                            </div>
+
+                        </div>
+
+                        <div class="discussion-body">
+                            <div class="game" *ngFor="let c of gameId; let i = index">
+                                <div class="game-header">
+                                    <img src="../../../assets/Search Picture/{{c?.image}}.jpg" alt="">
+                                    <div>
+                                        <p>{{c?.name}}</p>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="comment" *ngFor="let e of discussionsGameGroup[i]; let f = index" (click)="redirectToCommentDetail(e?.id)">   
+                                    
+                                    <div *ngIf="f < 3" class="comment-section"> 
+
+                                        <img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_menu_notifications.png" alt="">
+
+                                        <div class="comment-section-desc" >
+                                            <p>{{e?.discussiontitle}}</p>
+                                            <p>{{e?.user[0].username}}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="discussion-tail" (click)="show()">
+                            <p>Add New Discussion</p>
+                        </div>
+
+                        <div class="overlay">
+                            <div class="insert-hidden">
+                                <div class="header">
+                                    <div class="title">
+                                        <p>CREATE NEW DISCUSSION</p>
+                                    </div>
+    
+                                    <div class="span-close" (click)="close()">
+                                        <span class="close">×</span>
+                                    </div>
+                                </div>
+    
+                                <div class="body">
+                                    <div class="game-title">
+                                        <div class="label">
+                                            <p>Game Title</p>
+                                        </div>
+                                        <div>
+                                            <select name="country" id="country" [(ngModel)]="gameTitle">
+                                                <option *ngFor="let c of games" value="{{c?.id}}">{{c?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+    
+                                    <div class="discussion-title">
+                                        <div class="label">
+                                            <p>Description Title</p>
+                                        </div>
+                                        <div>
+                                            <input type="text" [(ngModel)]="descriptionTitle">
+                                        </div>
+                                    </div>
+    
+                                    <div class="discussion-content">
+                                        <div class="label">
+                                            <p>Description Content</p>
+                                        </div>
+                                        <div>
+                                            <input type="text" [(ngModel)]="descriptionContent">
+                                        </div>
+                                    </div>
+    
+                                    <div class="submit" (click)="submit()">
+                                        <div>
+                                            <p>Add Discussion</p>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+
+                    </div>
+                </tab>
+            </tabs>
+        </div>
+        
+
+        <!-- <div class="content-tab">
+            <div data-tab-target="#tab-imageandvideos" class="content-tab-menu" (click)="changeTab()">
+                <p>Image and Videos</p>
+            </div>
+            <div data-tab-target="#tab-reviews" class="content-tab-menu" (click)="changeTab()">
+                <p>Reviews</p>
+            </div>
+            <div data-tab-target="#tab-discussion" class="content-tab-menu" (click)="changeTab()">
+                <p>Discussion</p>
+            </div>
+        </div>
+
+        <div class="content-tabmain">
+
+            <div id="tab-imageandvideos" data-tab-content class="active">
+                <p>imageandvideos</p>
+            </div>
+
+            <div id="tab-reviews" data-tab-content>
+                <p>reviews</p>
+            </div>
+
+            <div id="tab-discussion" data-tab-content>
+                <p>discussion</p>
+            </div>
+
+        </div> -->
+
+    </div>
+
+
+
+</main>

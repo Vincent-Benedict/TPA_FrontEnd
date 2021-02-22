@@ -1,4 +1,4 @@
-<main *ngIf="game && isAdded != '' && isHaving != '' && mostHelpfulReviews && recentlyPostedReviews">
+<main *ngIf="game">
 
     <div class="header">
         <div class="breadcrumbs">
@@ -107,7 +107,7 @@
         </div>
         <div class="game-buy-price">
             <div>
-                <p>{{game?.price | currency:"Rp ":'symbol':'3.0'}}</p>
+                <p>{{game?.price -(game?.price * game?.discount / 100)  | currency:"Rp ":'symbol':'3.0'}}</p>
             </div>
             <div class="game-buy-price-addCart">
                 <!-- <a routerLink="../../cart" (click)="insert()" >Add to Cart</a> -->
@@ -152,7 +152,7 @@
                     
                     <div class="user" style="justify-content: space-between;">
                         <div class="user-desc">
-                            <img src="../../../assets/Avatar/{{r.reviewavatar}}.jpg" alt="" width="34px" height="34px">
+                            <img src="../../../assets/Avatar/{{r.reviewavatar}}" alt="" width="34px" height="34px">
                             <p>{{r.reviewusername}}</p>
                         </div>
                         
@@ -202,7 +202,7 @@
                     
                     <div class="user">
                         <div class="user-desc" style="display: flex; align-items: center;">
-                            <img src="../../../assets/Avatar/{{r.reviewavatar}}.jpg" alt="" width="34px" height="34px">
+                            <img src="../../../assets/Avatar/{{r.reviewavatar}}" alt="" width="34px" height="34px">
                             <p>{{r.reviewusername}}</p>
                         </div>
                         
@@ -267,6 +267,13 @@
         </div>
 
     </div>
+
+
+    <!-- <div style="background-color: rgb(23, 46, 80); width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
+        <div>
+            <p style="color: white; text-align: center; font-size: 13px; letter-spacing: 2px;">this game is on sale</p>
+        </div>
+    </div> -->
 
 
 </main>

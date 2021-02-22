@@ -1,0 +1,142 @@
+<main *ngIf="jwt && idLogin && friends && choosenFriend">
+
+    <div class="content">
+
+        <div class="content-header">
+            <p>Gift Games</p>
+        </div>
+
+        <div class="content-recipient">
+            <div class="content-recipient-header">
+
+                <div class="intro">
+                    <p>Please Choose Your Recipient</p>
+                </div>
+
+                <div class="content-recipient-header-header">
+                    <p>Recipient Choosen</p>
+                </div>
+    
+                <div class="content-recipient-header-choosen">
+
+                    <img src="../../../assets/Avatar/{{choosenFriend?.friend[0].avatar}}" alt="">
+                    
+                    <div class="desc">
+                        <p>{{choosenFriend?.friend[0].username}}</p>
+                        <p>{{choosenFriend?.friend[0].status}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="content-recipient-body">
+                <div class="content-recipient-body-header">
+                    <p>Recipient List</p>
+                </div>
+    
+                <div class="cards">
+                    <div class="card" *ngFor="let c of friends; let i=index" (click)="chooseRecipient(c)">
+
+                        <img src="../../../assets/Avatar/{{c?.friend[0].avatar}}" alt="">
+
+                        <div class="desc">
+                            <p>{{c?.friend[0].username}}</p>
+                            <p>{{c?.friend[0].status}}</p>
+                        </div>
+
+                    </div>
+                </div>   
+            </div>
+
+            
+        </div>
+
+
+        <div class="content-form">
+
+            <div class="content-form-header">
+                <p>Add Note to Recipient</p>
+            </div>
+
+            <div class="content-form-region">
+                <div class="section">
+                    <div class="label">
+                        <p>First Name</p>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="firstname" [(ngModel)]="choosenFriend?.friend[0].realname">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="label">
+                        <p>Message</p>
+                    </div>
+                    <div class="input">
+                        <textarea cols="29" rows="5" placeholder="input your message" id="message" [(ngModel)]="message"></textarea>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="label">
+                        <p>Sentiment</p>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="sentiment" [(ngModel)]="sentiment">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="label">
+                        <p>Signature</p>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="signature" [(ngModel)]="signature">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="button">
+            <input type="submit" value="Gift" (click)="gift()">
+        </div>
+
+        <br>
+
+        <div style="color: white; text-align: center; font-size: 13px; letter-spacing: 2px;" *ngIf="error != ''">
+            <p>{{error}}</p>
+        </div>
+
+    </div>
+
+
+    <!-- <div style="width: 200px; background-color: #1b2838;">
+        <div style="margin-bottom: 20px;">
+            <p style="text-align: center; color: white;">Transaction Success</p>
+        </div>
+
+        <div style="color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div><p>name: </p></div>
+            <div><p>Vincent</p></div>
+        </div>
+
+        <div style="color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div><p>Message: </p></div>
+            <div><p>jas juss</p></div>
+        </div>
+
+        <div style="color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div><p>Sentiment: </p></div>
+            <div><p>sentiment</p></div>
+        </div>
+
+        <div style="color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div><p>Signature: </p></div>
+            <div><p>signature</p></div>
+        </div>
+
+    </div> -->
+
+
+</main>

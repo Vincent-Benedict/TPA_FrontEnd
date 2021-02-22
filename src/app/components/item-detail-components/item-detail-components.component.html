@@ -1,32 +1,371 @@
-<main *ngIf="item">
+<main>
+
+    
 
     <div class="content">
 
-        <div class="content-image">
-            <img src="{{item?.itemimage}}" alt="" width="360px">
+        <div class="header">
+            <p>Item Detail</p>
         </div>
 
-        <div class="content-desc">
-            <div class="content-desc-name">
-                <p>{{item?.itemname}}</p>
+        <div class="content-body">
+            <div class="content-body-image">
+                <img src="../../../assets/User/game-item/{{item?.itemimage}}" alt="" width="360px">
             </div>
-
-            <div class="content-desc-game">
-                <div class="image">
-                    <img src="../../../assets/{{item?.game[0].image}}.jpg" alt="" width="32px" height="32px">
+    
+            <div class="content-body-desc">
+                <div class="content-body-desc-name">
+                    <p>{{item?.itemname}}</p>
                 </div>
-                <div class="name">
-                    <p>{{item?.game[0].name}}</p>
+    
+                <div class="content-body-desc-game">
+                    <div class="image">
+                        <img src="../../../assets/{{item?.game[0].image}}.jpg" alt="" width="48px" height="34px">
+                    </div>
+                    <div class="name">
+                        <p>{{item?.game[0].name}}</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="content-desc-description">
-                <p>{{item?.itemdescription}}</p>
+    
+                <div class="content-body-desc-description">
+                    <p>{{item?.itemdescription}}</p>
+                </div>
             </div>
         </div>
 
+
+        <div class="content-body2">
+
+            <div class="buy">
+                <div class="label">
+                    <p>Sell Listing</p>
+                </div>
+                <div class="button" (click)="showBuyPopup()">
+                    <p>Buy</p>
+                </div>
+                <div class="cards">
+                    <div class="cards-header">
+                        <div>
+                            <p>Price</p>
+                        </div>
+                        <div>
+                            <p>Quantity</p>
+                        </div>
+                    </div>
+                    <div class="card" *ngFor="let c of sellquantityprice; let i=index" [ngStyle]="myCardListStyle(i)">
+                        <div>
+                            <p>{{c?.price | currency:"Rp. ":'symbol':'3.0'}}</p>
+                        </div>
+                        <div>
+                            <p>{{c?.qty}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sell">
+                <div class="label">
+                    <p>Buy Listing</p>
+                </div>
+                <div class="button" (click)="showSellPopup()">
+                    <p>Sell</p>
+                </div>
+                <div class="cards">
+                    <div class="cards-header">
+                        <div>
+                            <p>Price</p>
+                        </div>
+                        <div>
+                            <p>Quantity</p>
+                        </div>
+                    </div>
+                    <div class="card" *ngFor="let c of buyquantityprice; let i=index" [ngStyle]="myCardListStyle(i)">
+                        <div>
+                            <p>{{c?.price | currency:"Rp. ":'symbol':'3.0'}}</p>
+                        </div>
+                        <div>
+                            <p>{{c?.qty}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content-body3">
+            <div class="content-body3-header">
+                <p>Recent Activity</p>
+            </div>
+            <div class="cards">
+                <div class="card" *ngFor="let c of activity">
+                    <img src="../../../assets/Avatar/{{c?.user[0].avatar}}" alt="">
+                    
+                    <div class="card-desc">
+                        <p><span>{{c?.user[0].username}}</span> listed this item for {{c?.activity}} for {{c?.price | currency:"Rp. ":'symbol':'3.0'}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body4">
+            <div class="content-body4-header">
+                <p>Your Sell Listing</p>
+            </div>
+            <div class="cards" *ngIf="sellListing">
+                <div class="card" *ngFor="let c of sellListing">
+                    <p>You have a sell order for this item for Rp. {{c?.price | currency:"Rp. ":'symbol':'3.0'}} (Quantity: {{c?.quantity}})</p>
+                </div>
+            </div>
+            <div class="nocards" *ngIf="!sellListing">
+                <p>You are not selling any of this item on the Community Market. Sell items from your inventory, or click the "Sell" button above.</p>
+            </div>
+        </div>
+
+        <div class="content-body5">
+            <div class="content-body5-header">
+                <p>Your Buy Listing</p>
+            </div>
+            <div class="cards" *ngIf="buyListing">
+                <div class="card" *ngFor="let c of buyListing">
+                    <p>You have a buy order for this item for Rp. {{c?.price | currency:"Rp. ":'symbol':'3.0'}} (Quantity: {{c?.quantity}})</p>
+                </div>
+            </div>
+            <div class="nocards" *ngIf="!buyListing">
+                <p>You are not buying any of this item on the Community Market. Click the "Buy" button above.</p>
+            </div>
+        </div>
 
     </div>
+
+
+
+
+    <div class="overlay-buy">
+        <div class="overlay-buy-content">
+            <div class="header">
+                <div class="title">
+                    <p>BUY - {{item?.itemname}}</p>
+                </div>
+
+                <div class="span-close" (click)="closeBuyPopup()">
+                    <span class="close">×</span>
+                </div>
+            </div>
+
+            <div class="body">
+                <div class="body-left">
+                    <p>{{item?.itemname}}</p>
+                    <p>{{item?.game[0].name}}</p>
+                </div>
+                <div class="body-right">
+                    <div class="section">
+                        <div>
+                            <p>What price do you want to pay:</p>
+                        </div>
+                        <div>
+                            <input type="text" [(ngModel)]="iPay">
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div>
+                            <p>How many do you want to buy:</p>
+                        </div>
+                        <div>
+                            <input type="number" value="1" min="1" [(ngModel)]="iQty">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tail">
+                <div class="tail-left">
+                    <p *ngIf="user">Payment Method: <span style="color: #a4d007;">My Steam Wallet</span> {{user?.balance | currency:"Rp ":'symbol':'3.0'}}</p>
+                    <p class="second" *ngIf="user">Steam account: {{user?.username}}</p>
+                    
+                    <div class="tail-left-desc">
+                        <p>After purchase, this item:</p>
+                        <p>will not be tradable for one week</p>
+                        <p>can immediately be re-sold on the Steam Community Market</p>
+                    </div>
+                    
+                </div>
+
+                <div class="tail-right" (click)="buyItem()">
+                    <p>PLACE ORDER</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="overlay-sell">
+        
+        <div class="content2">
+
+            <div class="content2-header">
+                <div>
+                    <p>Inventory</p>
+                </div>
+                <div (click)="closeSellPopup()">
+                    <span class="close">×</span>
+                </div>
+                
+            </div>
+    
+            <div class="content2-body" *ngIf="games">
+    
+                <div class="content2-body-header">
+                    <div class="tab" *ngFor="let c of games; let i = index" (click)="tabClicked(i, c?.game[0].id)" [ngStyle]="initTabStyles(i)">
+                        <p>{{c?.game[0].name}}</p>
+                    </div>
+                </div>
+                <div class="content2-body-body2">
+                    <div class="header">
+                        <p>{{gameName}}</p>
+                    </div>
+    
+                    <div class="searchbar">
+                        <div class="label">
+                            <p>Looking for a specific item?</p>
+                        </div>
+                        <div class="input">
+                            <input type="text" placeholder="start typing an item name here" [(ngModel)]="searchString" (input)="filterData()">
+                        </div>
+                    </div>
+    
+                    <div class="content3">
+    
+                        <div class="pagination-region">
+    
+                            <div class="pagination">
+    
+                                <div class="header-pagination">
+                                    <p>Game Item</p>
+                                </div>
+                                
+                                <div class="cards">
+                                    <div style="cursor: pointer;" class="card" *ngFor="let c of itemShow; let i = index" (click)="clickDetail(c)">
+                                        <img src="../../../assets/User/game-item/{{c?.item[0].itemimage}}" alt="">
+                                    </div>
+                                </div>
+                                
+                
+                            </div>
+                
+                            
+                            <div class="pagination-button">
+                                <div class="prev" style="cursor: pointer;" (click)="prev()">
+                                    <p>
+                                        &lt;
+                                    </p>
+                                </div>
+                                <div class="page">
+                                    <p>{{page}} / {{maxPage}}</p>
+                                </div>
+                                <div class="next" style="cursor: pointer;" (click)="next()">
+                                    <p>></p>
+                                </div>
+                                
+                            </div>
+    
+                        </div>
+    
+                        <div class="detail-region">
+                            <div class="img">
+                                <img src="../../../assets/User/game-item/{{itemDetail?.itemimage}}" alt="">
+                            </div>
+    
+                            <div class="desc">
+                                <p>{{itemDetail?.itemname}}</p>
+                                <p>{{gameName}}</p>
+                                <p>{{itemDetail?.itemdescription}}</p>
+                            </div>
+    
+                            <div class="buy-area">
+    
+                                <div class="button" (click)="openHidden()">
+                                    <p>Sell</p>
+                                </div>
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+    
+            <div class="overlay-hidden">
+    
+                <div class="hidden">
+                    <div class="hidden-header">
+                        <div class="title">
+                            <p>PUT AN ITEM UP FOR SALE</p>
+                        </div>
+    
+                        <div class="span-close" (click)="closeHidden()">
+                            <span class="close">×</span>
+                        </div>
+                    </div>
+    
+                    <div class="hidden-body">
+                        <img src="../../../assets/User/game-item/{{itemDetail?.itemimage}}" alt="">
+    
+                        <div class="desc">
+                            <p>{{itemDetail?.itemname}}</p>
+                            <p>{{gameName}}</p>
+                        </div>
+    
+                    </div>  
+                    
+                    <div class="hidden-body2">
+                    </div>
+    
+                    <div class="hidden-tail">
+    
+                        <div>
+                            <div class="label">
+                                <p>You Receive</p>
+                            </div>
+                            <div class="input">
+                                <input type="text" [(ngModel)]="received" (input)="convertPrice()">
+                            </div>
+                        </div>
+    
+                        <div>
+                            <div class="label">
+                                <p>Buyer Pays</p>
+                            </div>
+                            <div class="input">
+                                <input type="text" [(ngModel)]="buyerPays">
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="hidden-button" (click)="sellItem()">
+                        <p>
+                            Ok, put it up for sale
+                        </p>
+                    </div>
+                    
+                </div>
+    
+            </div>
+    
+    
+    
+    
+        </div>
+        
+    </div>
+
 
 
 

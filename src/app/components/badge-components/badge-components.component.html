@@ -1,0 +1,46 @@
+<main>
+
+    <div class="content">
+
+        <div class="content-header">
+            <p>Badge Page</p>
+        </div>
+        <div class="content-body">
+            <div class="content-body-left">
+                <div class="cards">
+                    <div class="card" *ngFor="let c of allBadge" (click)="setDetail(c)">
+                        <img src="../../../assets/User/badge/{{c?.badgeimg}}" alt="">
+
+                        <div class="card-desc">
+                            <p>{{c?.badgename}}</p>
+                            <p>{{c?.badgexp}} points</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-body-right">
+                <div class="header">
+                    <img src="../../../assets/User/badge/{{badgeDetail?.badgeimg}}" alt="">
+
+                    <div class="header-desc">
+                        <p>{{badgeDetail?.badgename}}</p>
+                        <p>{{badgeDetail?.badgexp}} points</p>
+                    </div>
+                </div>
+
+                <div class="body">
+                    <div class="cards">
+                        <div class="card" *ngFor="let c of badgeCard">
+                            <img *ngIf="c?.status=='owned'" src="../../../assets/User/badge-card/{{c?.card}}" alt="">
+                            <img *ngIf="c?.status=='not-owned'" style="opacity: 0.2;" src="../../../assets/User/badge-card/{{c?.card}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

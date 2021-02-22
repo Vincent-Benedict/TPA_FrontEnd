@@ -6,8 +6,8 @@
             <p>DISCOVERY QUEUES</p>
     
             <ul>
-                <a href="#"><li>Recommendations</li></a>
-                <a href="#"><li>New Releases</li></a>
+                <a routerLink="/discovery/recommend"><li>Recommendations</li></a>
+                <a routerLink="/discovery/newrelease"><li>New Releases</li></a>
             </ul>
         </div>
     
@@ -109,7 +109,7 @@
             <H4>SPECIAL OFFERS</H4>
 
             <div class="special-offers-cards">
-                    <div class="special-offers-cards-card" *ngFor="let g of gameOnSales; let i = indeex">
+                    <div style="cursor: pointer;" class="special-offers-cards-card" *ngFor="let g of gameOnSales; let i = indeex" (click)="inappropriateControl(g?.id, g?.inappropriate)">
                         <img src="../../../assets/OnSale/{{g.image}}.jpg" alt="">
                         
                         <div class="content2">
@@ -140,12 +140,12 @@
                     <img src="../../../assets/Community Recommended/{{g.image}}.jpg" alt="" width="350px" height="230px">
 
                     <div class="content3">
-                        <p>"{{g.review[0].reviewdesc}}"</p>
+                        <p>"{{g.reviewpastweek[0].reviewdesc}}"</p>
                         
                         <div class="avatar">
-                            <img src="../../../assets/Avatar/{{g.review[0].reviewavatar}}.jpg" alt="" width="12%">
+                            <img src="../../../assets/Avatar/{{g.reviewpastweek[0].reviewavatar}}" alt="" width="12%">
                             <div>
-                                <p>{{g.review[0].reviewusername}}</p>
+                                <p>{{g.reviewpastweek[0].reviewusername}}</p>
                             </div>
                         </div>
                         

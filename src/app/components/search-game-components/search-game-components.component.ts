@@ -1,5 +1,7 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators'
+
 import { ApolloService } from 'src/app/services/apollo.service';
 
 @Component({
@@ -17,9 +19,11 @@ export class SearchGameComponentsComponent implements OnInit {
   gamesList = [];
   gameShow = [];
 
-  limit: number= 10;
+  limit: number= 0;
   firstIndex: number = 0;
   lastIndex: number = 0;
+  offset: number=0;
+  fetchgames = new EventEmitter<void>();
 
   constructor(
     private service: ApolloService,
@@ -27,62 +31,48 @@ export class SearchGameComponentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.gamesList = [];
-    this.gameShow = [];
-    if(this.name == "allGames") {
-      this.service.getAllGames().subscribe(async data =>{
-        this.gamesList = [];
-        this.gameShow = [];
-        
-        this.gamesList = data.data.games;
-        console.log(data)
-        this.loadMore();
-        
-      })
-    }else{
-      this.service.getGameByFilter(this.name, this.price, this.category, this.genre).subscribe(async data =>{
-        this.gamesList = [];
-        this.gameShow = [];
-        
-        this.gamesList = data.data.gamesByFilter;
-        
-        this.lastIndex = this.firstIndex + this.limit - 1;
-        
-        this.submit();
-        
-      })
-    }
+    // this.gamesList = [];
+    // this.gameShow = [];
 
-    
+    this.fetchgames.pipe(debounceTime(500)).subscribe(() => {
+
+      if(this.name=="allGames"){
+        this.name = '';
+      }
+
+      this.limit += 10;
+
+      this.service.getGameByFilter(this.offset, this.limit, this.name, this.price, this.category, this.genre).subscribe(async data =>{
+        
+        console.log(data.data.gamesByFilter)  
+        this.gameShow = data.data.gamesByFilter;
+
+        
+      })
+    })
+
+    this.fetchgames.emit();
   }
 
   submit(){
 
-   this.gamesList = [];
    this.gameShow = [];
 
     if(this.name=="allGames"){
       this.name = '';
     }
 
-    this.service.getGameByFilter(this.name, this.price, this.category, this.genre).subscribe(async data=>{
-      this.gamesList = data.data.gamesByFilter;
-      this.firstIndex = 0;
-      this.lastIndex = 0;
-      this.loadMore();
+    this.limit = 0;
 
-      // console.log(this.gamesList)
-      
-    })
+    this.fetchgames.emit();
     
   }
 
-  @HostListener('window:scroll', ['$event']) 
-    scrollHandler(event) {
+  @HostListener('window:scroll') 
+    scrollHandler() {
 
-      if(window.scrollY + window.innerHeight >= document.body.scrollHeight - 2){
-        // console.log("jos")
-        this.loadMore();
+      if( Math.round(window.scrollY + window.innerHeight) >= document.body.clientHeight - 1){
+        this.fetchgames.emit();
       }
     }
 
@@ -93,6 +83,9 @@ export class SearchGameComponentsComponent implements OnInit {
     }
     this.firstIndex = this.lastIndex+1;
   }
+
+
+
 
 
   hovered(idx : number){
